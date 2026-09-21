@@ -179,12 +179,25 @@ netpoisson -u --tls --psk secret -l 100 -s 10 127.0.0.1
 `-w` serves a live page with four timelines, RTT / jitter charts, analysis
 notes, **netpoisson-induced bandwidth**, and **session rx/tx bytes**.
 
-Themes come from WorldMan (`suite/worldman/themes`), generated into
-`src/web_themes/`. Default is **Dark X-Files** (`dark-x-files`); pick another
-from the header control (grouped Pride / Vibe / Countries, persisted in
-`localStorage`). UI language defaults to English with a lang switcher; all
-dashboard copy (including analysis notes) lives in `src/web_i18n/<locale>.json` and
-is not wired through gettext/`po/`.
+The header switches between **Capture** (live Runnings / Raw events) and
+**Analyse** (stats, charts, and notes). Lang and Theme sit in the header;
+defaults are English and **Dark X-Files** (`dark-x-files`), both persisted in
+`localStorage`. Themes come from WorldMan (`suite/worldman/themes`), generated
+into `src/web_themes/`. Dashboard copy (including analysis notes) lives in
+`src/web_i18n/<locale>.json` and is not wired through gettext/`po/`.
+
+![Capture view: Raw events 3D with Live stats](screenshot/capture.png)
+
+*Capture* — Runnings / Raw events fill the viewport; Live stats stay pinned at
+the bottom. Views: Front (X-Z), Top Down / Spectrum (X-Y with Z colormap);
+optional perspective (default ortho), Z log scale, Fit + Keep aspect, and
+Swing ±5–20°. Free 3D keeps LMB rotate / wheel zoom / MMB pan.
+
+![Analyse view: stats, RTT charts, and notes](screenshot/analyse.png)
+
+*Analyse* — actual req/s, loss, RTT percentiles, RFC 3550 jitter, bandwidth,
+session bytes, timeline lag, plus RTT / queue / histogram charts and the
+written analysis notes.
 
 `--window` defaults to **auto** (fit the visible cells). Fixed durations such as
 `--window 12s` disable auto resize. The dashboard can `POST /api/window` when
@@ -192,10 +205,7 @@ auto is on. **dense** (runnings 0.25×/0.5×(default)/1×/2×; raw 0.5×/1×(def
 `timeline window = default × dense` so X fits canvas width and Y (bucket group)
 fits height. Live **λ**, **bucket**, and **status** interval post to
 `/api/config`. Use **Pause/Resume** to freeze the live view (handy when Recv/Resp
-briefly show gaps before STATUS redraws). Toggle **Runnings** / **Raw events**
-for per-echo 3D points (X=slot spanning canvas width, Y=bucket group, Z=latency).
-Views: Front (X-Z), Top Down / Spectrum (X-Y with Z colormap); optional perspective
-(default ortho) and smooth curves; Free 3D keeps LMB rotate / wheel zoom / MMB pan.
+briefly show gaps before STATUS redraws).
 
 ```bash
 ./scripts/regen-web-themes.sh

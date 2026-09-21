@@ -147,6 +147,14 @@ install_data(
     install_dir: pkgdocdir,
 )
 
+install_data(
+    [
+        'screenshot/capture.png',
+        'screenshot/analyse.png',
+    ],
+    install_dir: pkgdocdir / 'screenshot',
+)
+
 test(
     'python-unit',
     py,
