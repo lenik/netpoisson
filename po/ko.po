@@ -1,198 +1,408 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: netpoisson\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-21 13:26+0800\n"
-"Language: ko\n"
+"Report-Msgid-Bugs-To: netpoisson@bodz.net\n"
+"POT-Creation-Date: 2026-09-21 21:03+0800\n"
 "PO-Revision-Date: 2026-09-21 13:26+0800\n"
 "Last-Translator: Lenik <netpoisson@bodz.net>\n"
 "Language-Team: \n"
+"Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/netpoisson.py:66
+#: src/npcli/args.py:109
 msgid "Usage: netpoisson [OPTION]... [SERVER]\n"
 msgstr "사용법: netpoisson [옵션]... [서버]\n"
 
-#: src/netpoisson.py:69
+#: src/npcli/args.py:112
 msgid ""
-"Offer a Poisson stream of requests to SERVER, or listen for them when\n"
-"SERVER is omitted.\n"
-msgstr "SERVER에 푸아송 과정으로 요청을 보낸다. SERVER를 생략하면 수신 대기한다.\n"
+"Offer a Poisson stream of requests to SERVER, or listen when SERVER is "
+"omitted.\n"
+msgstr "SERVER에 포아송 요청 스트림을 보내거나, SERVER를 생략하면 수신합니다.\n"
 
-#: src/netpoisson.py:74
-msgid "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
-msgstr "  -d, --daemon       수신 대기 (서버를 생략했을 때의 기본값)\n"
+#: src/npcli/args.py:116
+msgid "Modes:\n"
+msgstr "모드:\n"
 
-#: src/netpoisson.py:75
-msgid "  -H, --host HOST    address to bind (default 0.0.0.0)\n"
-msgstr "  -H, --host HOST    바인드 주소 (기본값 0.0.0.0)\n"
+#: src/npcli/args.py:117
+msgid ""
+"  -d, --daemon              listen (also the default when SERVER is "
+"omitted)\n"
+msgstr "  -d, --daemon              수신 (SERVER 생략 시 기본값이기도 함)\n"
 
-#: src/netpoisson.py:76
-msgid "  -p, --port PORT    port to bind or connect to (default 1871)\n"
-msgstr "  -p, --port PORT    바인드 또는 접속 포트 (기본값 1871)\n"
+#: src/npcli/args.py:118
+msgid ""
+"      --stdio-server        serve NDJSON @nPoi protocol on stdin/stdout\n"
+msgstr "      --stdio-server        stdin/stdout에서 NDJSON @nPoi 프로토콜 제공\n"
 
-#: src/netpoisson.py:77
-msgid "  -u, --udp          use UDP (default is TCP)\n"
-msgstr "  -u, --udp          UDP 사용 (기본값은 TCP)\n"
+#: src/npcli/args.py:119
+msgid "      --ssh TARGET          run client over SSH stdio to TARGET\n"
+msgstr "      --ssh TARGET          SSH stdio로 TARGET에 클라이언트 실행\n"
 
-#: src/netpoisson.py:78
-msgid "  -l, --lambda N     offered requests per second (default 100)\n"
-msgstr "  -l, --lambda N     초당 제공 요청 수 (기본값 100)\n"
+#: src/npcli/args.py:120
+msgid "      --install/--remove    manage a systemd user service unit\n"
+msgstr "      --install/--remove    systemd 사용자 서비스 유닛 관리\n"
 
-#: src/netpoisson.py:79
-msgid "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
-msgstr "  -s, --stats SECS   SECS초 동안 실행한 뒤 JSON 보고서를 출력\n"
+#: src/npcli/args.py:122
+msgid "Transport:\n"
+msgstr "전송:\n"
 
-#: src/netpoisson.py:80
-msgid "  -w, --web          serve a live dashboard and open a browser\n"
-msgstr "  -w, --web          실시간 대시보드를 제공하고 브라우저를 연다\n"
+#: src/npcli/args.py:123
+msgid "  -H, --host HOST           bind host (default 0.0.0.0)\n"
+msgstr "  -H, --host HOST           바인드 호스트 (기본 0.0.0.0)\n"
 
-#: src/netpoisson.py:81
-msgid "      --web-host H   dashboard address (default 127.0.0.1)\n"
-msgstr "      --web-host H   대시보드 주소 (기본값 127.0.0.1)\n"
+#: src/npcli/args.py:124
+msgid "  -p, --port PORT           port (default 1871)\n"
+msgstr "  -p, --port PORT           포트 (기본 1871)\n"
 
-#: src/netpoisson.py:82
-msgid "      --web-port N   dashboard port (default 8711)\n"
-msgstr "      --web-port N   대시보드 포트 (기본값 8711)\n"
+#: src/npcli/args.py:125
+msgid "  -u, --udp                 UDP; default TCP\n"
+msgstr "  -u, --udp                 UDP; 기본은 TCP\n"
 
-#: src/netpoisson.py:84
+#: src/npcli/args.py:126
+msgid "      --tls                 TLS on TCP; PSK seal on UDP (needs --psk)\n"
+msgstr "      --tls                 TCP에서는 TLS; UDP에서는 PSK 봉인 (--psk 필요)\n"
+
+#: src/npcli/args.py:127
+msgid "      --psk TEXT            pre-shared key for UDP seal\n"
+msgstr "      --psk TEXT            UDP 봉인용 사전 공유 키\n"
+
+#: src/npcli/args.py:128
+msgid "      --cert/--key PATH     TLS server certificate and key (PEM)\n"
+msgstr "      --cert/--key PATH     TLS 서버 인증서와 키 (PEM)\n"
+
+#: src/npcli/args.py:129
+msgid "      --tls-ca PATH         TLS client CA file\n"
+msgstr "      --tls-ca PATH         TLS 클라이언트 CA 파일\n"
+
+#: src/npcli/args.py:130
+msgid "      --tls-insecure        TLS client: skip certificate verify\n"
+msgstr "      --tls-insecure        TLS 클라이언트: 인증서 검증 생략\n"
+
+#: src/npcli/args.py:131
+msgid "      --ssh-command PATH    ssh binary (default ssh)\n"
+msgstr "      --ssh-command PATH    ssh 바이너리 (기본 ssh)\n"
+
+#: src/npcli/args.py:132
+msgid "      --remote-command CMD  remote stdio server command\n"
+msgstr "      --remote-command CMD  원격 stdio 서버 명령\n"
+
+#: src/npcli/args.py:133
+msgid "      --ssh-option KEY=VAL  extra -o option (repeatable)\n"
+msgstr "      --ssh-option KEY=VAL  추가 -o 옵션 (반복 가능)\n"
+
+#: src/npcli/args.py:135
+msgid "Traffic:\n"
+msgstr "트래픽:\n"
+
+#: src/npcli/args.py:136
+msgid "  -l, --lambda RATE         mean requests/s (default 100)\n"
+msgstr "  -l, --lambda RATE         평균 요청/초 (기본 100)\n"
+
+#: src/npcli/args.py:137
+msgid "      --payload SIZE        payload size (default 64B)\n"
+msgstr "      --payload SIZE        페이로드 크기 (기본 64B)\n"
+
+#: src/npcli/args.py:138
+msgid "      --connections N       parallel TCP connections (default 1)\n"
+msgstr "      --connections N       병렬 TCP 연결 (기본 1)\n"
+
+#: src/npcli/args.py:139
+msgid "      --max-pending N       client pending queue limit\n"
+msgstr "      --max-pending N       클라이언트 대기 큐 한도\n"
+
+#: src/npcli/args.py:140
+msgid "      --status-interval D   STATUS interval (default 100ms)\n"
+msgstr "      --status-interval D   STATUS 간격 (기본 100ms)\n"
+
+#: src/npcli/args.py:141
+msgid "      --bucket D            timeline bucket (default 100ms)\n"
+msgstr "      --bucket D            타임라인 버킷 (기본 100ms)\n"
+
+#: src/npcli/args.py:142
+msgid ""
+"      --window D            visible window (default auto; or e.g. 12s)\n"
+msgstr "      --window D            표시 창 (기본 auto; 예: 12s)\n"
+
+#: src/npcli/args.py:143
+msgid "      --seed N              reproducible RNG seed\n"
+msgstr "      --seed N              재현 가능한 RNG 시드\n"
+
+#: src/npcli/args.py:144
+msgid "      --profile NAME        ssh-interactive | ssh-bulk\n"
+msgstr "      --profile NAME        ssh-interactive | ssh-bulk\n"
+
+#: src/npcli/args.py:146
+msgid "Execution:\n"
+msgstr "실행:\n"
+
+#: src/npcli/args.py:147
+msgid "  -s, --stats D             run for D then print a final report\n"
+msgstr "  -s, --stats D             D 동안 실행 후 최종 보고서 출력\n"
+
+#: src/npcli/args.py:148
+msgid "  -w, --web[=ADDR]          start Web UI (default 127.0.0.1:3871)\n"
+msgstr "  -w, --web[=ADDR]          웹 UI 시작 (기본 127.0.0.1:3871)\n"
+
+#: src/npcli/args.py:149
+msgid "      --no-open             do not open a browser\n"
+msgstr "      --no-open             브라우저를 열지 않음\n"
+
+#: src/npcli/args.py:150
+msgid "      --json                force NDJSON event output\n"
+msgstr "      --json                NDJSON 이벤트 출력 강제\n"
+
+#: src/npcli/args.py:151
+msgid "      --report FILE         save final JSON report\n"
+msgstr "      --report FILE         최종 JSON 보고서 저장\n"
+
+#: src/npcli/args.py:153
 msgid "repeat for more verbose loggings\n"
 msgstr "반복하면 로그가 더 자세해진다\n"
 
-#: src/netpoisson.py:86
+#: src/npcli/args.py:155
 msgid "show less logging messages\n"
 msgstr "로그 메시지를 줄인다\n"
 
-#: src/netpoisson.py:88
+#: src/npcli/args.py:157
 msgid "display this help and exit\n"
 msgstr "이 도움말을 표시하고 종료한다\n"
 
-#: src/netpoisson.py:90
+#: src/npcli/args.py:159
 msgid "output version information and exit\n"
 msgstr "버전 정보를 출력하고 종료한다\n"
 
-#: src/netpoisson.py:94
+#: src/npcli/args.py:163
 msgid ""
-"ECHO responses are the request bytes. STATUS responses carry the server\n"
-"timeline and queues. Req/Resp lines scroll right: newest slices on the left.\n"
-msgstr ""
-"ECHO 응답은 요청 바이트 그대로다. STATUS는 서버 시간선과 대기열을 담는다.\n"
-"Req/Resp는 오른쪽으로 흐르고, 최신 구간은 왼쪽이다.\n"
+"TCP/UDP use a length-prefixed binary PDU. SSH stdio uses @nPoi NDJSON "
+"lines.\n"
+"When stdout is not a TTY, live UI is suppressed and NDJSON events are "
+"emitted.\n"
+msgstr "TCP/UDP는 길이 접두 이진 PDU를 씁니다. SSH stdio는 @nPoi NDJSON 줄을 씁니다.\nstdout이 TTY가 아니면 실시간 UI는 끄고 NDJSON 이벤트를 냅니다.\n"
 
-#: src/netpoisson.py:99
+#: src/npcli/args.py:168
+#, python-brace-format
 msgid "Report bugs to: <{email}>\n"
 msgstr "버그 보고: <{email}>\n"
 
-#: src/netpoisson.py:104
+#: src/npcli/args.py:173
+#, python-brace-format
 msgid "Copyright (C) {year} {author}\n"
 msgstr "Copyright (C) {year} {author}\n"
 
-#: src/netpoisson.py:105
-msgid "License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
-msgstr "라이선스 AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+#: src/npcli/args.py:174
+msgid ""
+"License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgstr ""
+"라이선스 AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
 
-#: src/netpoisson.py:106
+#: src/npcli/args.py:175
 msgid "This is free software: you are free to change and redistribute it.\n"
 msgstr "이것은 자유 소프트웨어입니다. 고치고 재배포할 수 있습니다.\n"
 
-#: src/netpoisson.py:107
+#: src/npcli/args.py:176
 msgid "This project opposes AI exploitation and AI hegemony.\n"
 msgstr "이 프로젝트는 AI 착취와 AI 패권에 반대합니다.\n"
 
-#: src/netpoisson.py:110
-msgid "This project rejects mindless MIT-style licensing and politically naive BSD-style licensing.\n"
-msgstr "이 프로젝트는 무심한 MIT식 라이선스와 정치적으로 순진한 BSD식 라이선스를 거부합니다.\n"
+#: src/npcli/args.py:179
+msgid ""
+"This project rejects mindless MIT-style licensing and politically naive BSD-"
+"style licensing.\n"
+msgstr ""
+"이 프로젝트는 무심한 MIT식 라이선스와 정치적으로 순진한 BSD식 라이선스를 거부"
+"합니다.\n"
 
-#: src/netpoisson.py:114
+#: src/npcli/args.py:183
 msgid "There is NO WARRANTY, to the extent permitted by law.\n"
 msgstr "법이 허용하는 한도에서 어떤 보증도 없습니다.\n"
 
-#: src/netpoisson.py:133
+#: src/npcli/args.py:218
 #, python-brace-format
 msgid "{prog}: missing argument for {opt}\n"
 msgstr "{prog}: {opt}의 인자가 없습니다\n"
 
-#: src/netpoisson.py:141 src/netpoisson.py:151
+#: src/npcli/args.py:226 src/npcli/args.py:236
 #, python-brace-format
 msgid "{prog}: invalid number: {text}\n"
 msgstr "{prog}: 잘못된 숫자: {text}\n"
 
-#: src/netpoisson.py:143 src/netpoisson.py:228
+#: src/npcli/args.py:228
 #, python-brace-format
 msgid "{prog}: port out of range\n"
 msgstr "{prog}: 포트가 범위를 벗어났습니다\n"
 
-#: src/netpoisson.py:154
+#: src/npcli/args.py:239
 #, python-brace-format
 msgid "{prog}: lambda must be positive\n"
 msgstr "{prog}: lambda는 양수여야 합니다\n"
 
-#: src/netpoisson.py:155
+#: src/npcli/args.py:240
 #, python-brace-format
 msgid "{prog}: duration must be positive\n"
 msgstr "{prog}: 시간은 양수여야 합니다\n"
 
-#: src/netpoisson.py:199 src/netpoisson.py:207
+#: src/npcli/args.py:247
+#, python-brace-format
+msgid "{prog}: unknown profile {name}\n"
+msgstr "{prog}: 알 수 없는 프로필 {name}\n"
+
+#: src/npcli/args.py:331 src/npcli/args.py:339
 #, python-brace-format
 msgid "{prog}: unknown option {opt}\n"
 msgstr "{prog}: 알 수 없는 옵션 {opt}\n"
 
-#: src/netpoisson.py:230
+#: src/npcli/args.py:403
 #, python-brace-format
 msgid "{prog}: unexpected argument {text}\n"
 msgstr "{prog}: 예기치 않은 인자 {text}\n"
 
-#: src/netpoisson.py:234
+#: src/npcli/args.py:409
 #, python-brace-format
 msgid "{prog}: do not combine --daemon with SERVER\n"
 msgstr "{prog}: --daemon과 서버를 함께 쓸 수 없습니다\n"
 
-#: src/netpoisson.py:242 src/netpoisson.py:249
+#: src/npcli/args.py:411
+#, python-brace-format
+msgid "{prog}: --stdio-server is exclusive\n"
+msgstr "{prog}: --stdio-server는 단독으로만 쓸 수 있습니다\n"
+
+#: src/npcli/args.py:413
+#, python-brace-format
+msgid "{prog}: --udp cannot combine with --ssh\n"
+msgstr "{prog}: --udp는 --ssh와 함께 쓸 수 없습니다\n"
+
+#: src/npcli/args.py:415
+#, python-brace-format
+msgid "{prog}: UDP --tls requires --psk\n"
+msgstr "{prog}: UDP --tls에는 --psk가 필요합니다\n"
+
+#: src/npcli/args.py:417
+#, python-brace-format
+msgid "{prog}: --cert and --key must be used together\n"
+msgstr "{prog}: --cert와 --key는 함께 써야 합니다\n"
+
+#: src/npcli/args.py:419
+#, python-brace-format
+msgid "{prog}: choose --install or --remove\n"
+msgstr "{prog}: --install 또는 --remove를 선택하세요\n"
+
+#: src/npcli/args.py:427 src/npcli/args.py:434
 #, python-brace-format
 msgid "{prog}: invalid server address\n"
 msgstr "{prog}: 서버 주소가 잘못되었습니다\n"
 
-#: src/netpoisson.py:292
+#: src/npcli/main.py:93
+#, python-brace-format
+msgid "{prog}: wrote {path}"
+msgstr "{prog}: 씀 {path}"
+
+#: src/npcli/main.py:94
+#, python-brace-format
+msgid ""
+"{prog}: run: systemctl --user daemon-reload && systemctl --user enable --now "
+"netpoisson"
+msgstr "{prog}: 실행: systemctl --user daemon-reload && systemctl --user enable --now netpoisson"
+
+#: src/npcli/main.py:102
+#, python-brace-format
+msgid "{prog}: removed {path}"
+msgstr "{prog}: 제거함 {path}"
+
+#: src/npcli/main.py:104
+#, python-brace-format
+msgid "{prog}: no unit at {path}"
+msgstr "{prog}: {path}에 유닛 없음"
+
+#: src/npcli/main.py:139 src/npcli/main.py:152
 #, python-brace-format
 msgid "{prog}: {message}\n"
 msgstr "{prog}: {message}\n"
 
-#: src/netpoisson.py:294
+#: src/npcli/main.py:154
 #, python-brace-format
 msgid "{prog}: dashboard {url}"
 msgstr "{prog}: 대시보드 {url}"
 
-#: src/netpoisson.py:324
+#: src/npcli/main.py:225
 #, python-brace-format
 msgid "{prog}: --lambda applies to the client; ignoring it"
 msgstr "{prog}: --lambda는 클라이언트용이라 무시합니다"
 
-#: src/netpoisson.py:333 src/netpoisson.py:367
+#: src/npcli/main.py:242 src/npcli/main.py:325
 #, python-brace-format
 msgid "{prog}: {message}"
 msgstr "{prog}: {message}"
 
-#: src/netpoisson.py:337
+#: src/npcli/main.py:249
 #, python-brace-format
 msgid "{prog}: listening on {proto}://{endpoint}"
 msgstr "{prog}: {proto}://{endpoint} 에서 수신 대기"
 
-#: src/netpoisson.py:357
+#: src/npcli/main.py:291
 #, python-brace-format
 msgid "{prog}: --host is the listen address; the target is SERVER"
 msgstr "{prog}: --host는 수신 주소이고, 대상은 SERVER입니다"
 
-#: src/netpoisson.py:371
+#: src/npcli/main.py:330
 #, python-brace-format
 msgid "{prog}: connected {proto} {endpoint} at {lam} req/s"
 msgstr "{prog}: {proto} {endpoint} 에 연결, {lam} 요청/초"
 
-#: src/netpoisson.py:382
-msgid "Req counts local arrivals per slice (newest on the left). The center number has not left this host."
-msgstr "Req는 이 호스트의 시간 조각별 도착 수다(최신이 왼쪽). 가운데 숫자는 아직 망을 떠나지 않았다."
+#~ msgid ""
+#~ "Offer a Poisson stream of requests to SERVER, or listen for them when\n"
+#~ "SERVER is omitted.\n"
+#~ msgstr ""
+#~ "SERVER에 푸아송 과정으로 요청을 보낸다. SERVER를 생략하면 수신 대기한다.\n"
 
-#: src/netpoisson.py:389
-msgid "Resp counts server replies per slice. Left of the arrow: requests not yet read. Next: replies not yet sent."
-msgstr "Resp는 서버의 시간 조각별 응답 수다. 화살표 왼쪽은 아직 읽거나 분석하지 않은 요청, 그다음은 아직 나가지 않은 응답이다."
+#~ msgid ""
+#~ "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
+#~ msgstr "  -d, --daemon       수신 대기 (서버를 생략했을 때의 기본값)\n"
+
+#~ msgid "  -H, --host HOST    address to bind (default 0.0.0.0)\n"
+#~ msgstr "  -H, --host HOST    바인드 주소 (기본값 0.0.0.0)\n"
+
+#~ msgid "  -p, --port PORT    port to bind or connect to (default 1871)\n"
+#~ msgstr "  -p, --port PORT    바인드 또는 접속 포트 (기본값 1871)\n"
+
+#~ msgid "  -u, --udp          use UDP (default is TCP)\n"
+#~ msgstr "  -u, --udp          UDP 사용 (기본값은 TCP)\n"
+
+#~ msgid "  -l, --lambda N     offered requests per second (default 100)\n"
+#~ msgstr "  -l, --lambda N     초당 제공 요청 수 (기본값 100)\n"
+
+#~ msgid ""
+#~ "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
+#~ msgstr "  -s, --stats SECS   SECS초 동안 실행한 뒤 JSON 보고서를 출력\n"
+
+#~ msgid "  -w, --web          serve a live dashboard and open a browser\n"
+#~ msgstr "  -w, --web          실시간 대시보드를 제공하고 브라우저를 연다\n"
+
+#~ msgid "      --web-host H   dashboard address (default 127.0.0.1)\n"
+#~ msgstr "      --web-host H   대시보드 주소 (기본값 127.0.0.1)\n"
+
+#~ msgid "      --web-port N   dashboard port (default 8711)\n"
+#~ msgstr "      --web-port N   대시보드 포트 (기본값 8711)\n"
+
+#~ msgid ""
+#~ "ECHO responses are the request bytes. STATUS responses carry the server\n"
+#~ "timeline and queues. Req/Resp lines scroll right: newest slices on the "
+#~ "left.\n"
+#~ msgstr ""
+#~ "ECHO 응답은 요청 바이트 그대로다. STATUS는 서버 시간선과 대기열을 담는"
+#~ "다.\n"
+#~ "Req/Resp는 오른쪽으로 흐르고, 최신 구간은 왼쪽이다.\n"
+
+#~ msgid ""
+#~ "Req counts local arrivals per slice (newest on the left). The center "
+#~ "number has not left this host."
+#~ msgstr ""
+#~ "Req는 이 호스트의 시간 조각별 도착 수다(최신이 왼쪽). 가운데 숫자는 아직 "
+#~ "망을 떠나지 않았다."
+
+#~ msgid ""
+#~ "Resp counts server replies per slice. Left of the arrow: requests not yet "
+#~ "read. Next: replies not yet sent."
+#~ msgstr ""
+#~ "Resp는 서버의 시간 조각별 응답 수다. 화살표 왼쪽은 아직 읽거나 분석하지 않"
+#~ "은 요청, 그다음은 아직 나가지 않은 응답이다."

@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: netpoisson 3b1f339-dirty\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-21 13:26+0800\n"
+"Report-Msgid-Bugs-To: netpoisson@bodz.net\n"
+"POT-Creation-Date: 2026-09-21 21:03+0800\n"
 "PO-Revision-Date: 2026-04-24 22:31+0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -17,190 +17,399 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/netpoisson.py:66
+#: src/npcli/args.py:109
 msgid "Usage: netpoisson [OPTION]... [SERVER]\n"
 msgstr "Kullanım: netpoisson [SEÇENEK]... [SUNUCU]\n"
 
-#: src/netpoisson.py:69
+#: src/npcli/args.py:112
 msgid ""
-"Offer a Poisson stream of requests to SERVER, or listen for them when\n"
-"SERVER is omitted.\n"
-msgstr "SUNUCU'ya Poisson akışıyla istek gönderir; SUNUCU verilmezse dinler.\n"
+"Offer a Poisson stream of requests to SERVER, or listen when SERVER is "
+"omitted.\n"
+msgstr "SERVER’a Poisson istek akışı sunun; SERVER yoksa dinleyin.\n"
 
-#: src/netpoisson.py:74
-msgid "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
-msgstr "  -d, --daemon       dinle (SUNUCU yoksa varsayılan da budur)\n"
+#: src/npcli/args.py:116
+msgid "Modes:\n"
+msgstr "Kip:\n"
 
-#: src/netpoisson.py:75
-msgid "  -H, --host HOST    address to bind (default 0.0.0.0)\n"
-msgstr "  -H, --host HOST    bağlanılacak adres (varsayılan 0.0.0.0)\n"
+#: src/npcli/args.py:117
+msgid ""
+"  -d, --daemon              listen (also the default when SERVER is "
+"omitted)\n"
+msgstr "  -d, --daemon              dinle (SERVER yokken de varsayılan)\n"
 
-#: src/netpoisson.py:76
-msgid "  -p, --port PORT    port to bind or connect to (default 1871)\n"
-msgstr "  -p, --port PORT    bağlanılacak veya bağlanacak kapı (varsayılan 1871)\n"
+#: src/npcli/args.py:118
+msgid ""
+"      --stdio-server        serve NDJSON @nPoi protocol on stdin/stdout\n"
+msgstr "      --stdio-server        stdin/stdout üzerinde NDJSON @nPoi protokolü sun\n"
 
-#: src/netpoisson.py:77
-msgid "  -u, --udp          use UDP (default is TCP)\n"
-msgstr "  -u, --udp          UDP kullan (varsayılan TCP)\n"
+#: src/npcli/args.py:119
+msgid "      --ssh TARGET          run client over SSH stdio to TARGET\n"
+msgstr "      --ssh TARGET          SSH stdio ile TARGET’a istemci çalıştır\n"
 
-#: src/netpoisson.py:78
-msgid "  -l, --lambda N     offered requests per second (default 100)\n"
-msgstr "  -l, --lambda N     saniye başına sunulan istek (varsayılan 100)\n"
+#: src/npcli/args.py:120
+msgid "      --install/--remove    manage a systemd user service unit\n"
+msgstr "      --install/--remove    bir systemd kullanıcı hizmet birimini yönet\n"
 
-#: src/netpoisson.py:79
-msgid "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
-msgstr "  -s, --stats SECS   SECS saniye çalış, sonra bir JSON raporu yaz\n"
+#: src/npcli/args.py:122
+msgid "Transport:\n"
+msgstr "Taşıma:\n"
 
-#: src/netpoisson.py:80
-msgid "  -w, --web          serve a live dashboard and open a browser\n"
-msgstr "  -w, --web          canlı panoyu sun ve bir tarayıcı aç\n"
+#: src/npcli/args.py:123
+msgid "  -H, --host HOST           bind host (default 0.0.0.0)\n"
+msgstr "  -H, --host HOST           bağlama makinesi (varsayılan 0.0.0.0)\n"
 
-#: src/netpoisson.py:81
-msgid "      --web-host H   dashboard address (default 127.0.0.1)\n"
-msgstr "      --web-host H   pano adresi (varsayılan 127.0.0.1)\n"
+#: src/npcli/args.py:124
+msgid "  -p, --port PORT           port (default 1871)\n"
+msgstr "  -p, --port PORT           bağlantı noktası (varsayılan 1871)\n"
 
-#: src/netpoisson.py:82
-msgid "      --web-port N   dashboard port (default 8711)\n"
-msgstr "      --web-port N   pano kapısı (varsayılan 8711)\n"
+#: src/npcli/args.py:125
+msgid "  -u, --udp                 UDP; default TCP\n"
+msgstr "  -u, --udp                 UDP; varsayılan TCP\n"
 
-#: src/netpoisson.py:84
+#: src/npcli/args.py:126
+msgid "      --tls                 TLS on TCP; PSK seal on UDP (needs --psk)\n"
+msgstr "      --tls                 TCP’de TLS; UDP’de PSK mühür (--psk gerekir)\n"
+
+#: src/npcli/args.py:127
+msgid "      --psk TEXT            pre-shared key for UDP seal\n"
+msgstr "      --psk TEXT            UDP mühürü için önceden paylaşılan anahtar\n"
+
+#: src/npcli/args.py:128
+msgid "      --cert/--key PATH     TLS server certificate and key (PEM)\n"
+msgstr "      --cert/--key PATH     TLS sunucu sertifikası ve anahtarı (PEM)\n"
+
+#: src/npcli/args.py:129
+msgid "      --tls-ca PATH         TLS client CA file\n"
+msgstr "      --tls-ca PATH         TLS istemci CA dosyası\n"
+
+#: src/npcli/args.py:130
+msgid "      --tls-insecure        TLS client: skip certificate verify\n"
+msgstr "      --tls-insecure        TLS istemcisi: sertifika doğrulamayı atla\n"
+
+#: src/npcli/args.py:131
+msgid "      --ssh-command PATH    ssh binary (default ssh)\n"
+msgstr "      --ssh-command PATH    ssh ikilisi (varsayılan ssh)\n"
+
+#: src/npcli/args.py:132
+msgid "      --remote-command CMD  remote stdio server command\n"
+msgstr "      --remote-command CMD  uzak stdio sunucu komutu\n"
+
+#: src/npcli/args.py:133
+msgid "      --ssh-option KEY=VAL  extra -o option (repeatable)\n"
+msgstr "      --ssh-option KEY=VAL  ekstra -o seçeneği (tekrarlanabilir)\n"
+
+#: src/npcli/args.py:135
+msgid "Traffic:\n"
+msgstr "Trafik:\n"
+
+#: src/npcli/args.py:136
+msgid "  -l, --lambda RATE         mean requests/s (default 100)\n"
+msgstr "  -l, --lambda RATE         ortalama istek/sn (varsayılan 100)\n"
+
+#: src/npcli/args.py:137
+msgid "      --payload SIZE        payload size (default 64B)\n"
+msgstr "      --payload SIZE        yük boyutu (varsayılan 64B)\n"
+
+#: src/npcli/args.py:138
+msgid "      --connections N       parallel TCP connections (default 1)\n"
+msgstr "      --connections N       paralel TCP bağlantıları (varsayılan 1)\n"
+
+#: src/npcli/args.py:139
+msgid "      --max-pending N       client pending queue limit\n"
+msgstr "      --max-pending N       istemci bekleyen kuyruk sınırı\n"
+
+#: src/npcli/args.py:140
+msgid "      --status-interval D   STATUS interval (default 100ms)\n"
+msgstr "      --status-interval D   STATUS aralığı (varsayılan 100ms)\n"
+
+#: src/npcli/args.py:141
+msgid "      --bucket D            timeline bucket (default 100ms)\n"
+msgstr "      --bucket D            zaman çizelgesi kovası (varsayılan 100ms)\n"
+
+#: src/npcli/args.py:142
+msgid ""
+"      --window D            visible window (default auto; or e.g. 12s)\n"
+msgstr "      --window D            görünür pencere (varsayılan auto; örn. 12s)\n"
+
+#: src/npcli/args.py:143
+msgid "      --seed N              reproducible RNG seed\n"
+msgstr "      --seed N              yeniden üretilebilir RNG tohumu\n"
+
+#: src/npcli/args.py:144
+msgid "      --profile NAME        ssh-interactive | ssh-bulk\n"
+msgstr "      --profile NAME        ssh-interactive | ssh-bulk\n"
+
+#: src/npcli/args.py:146
+msgid "Execution:\n"
+msgstr "Çalıştırma:\n"
+
+#: src/npcli/args.py:147
+msgid "  -s, --stats D             run for D then print a final report\n"
+msgstr "  -s, --stats D             D süre çalıştırıp son bir rapor yazdır\n"
+
+#: src/npcli/args.py:148
+msgid "  -w, --web[=ADDR]          start Web UI (default 127.0.0.1:3871)\n"
+msgstr "  -w, --web[=ADDR]          Web arayüzünü başlat (varsayılan 127.0.0.1:3871)\n"
+
+#: src/npcli/args.py:149
+msgid "      --no-open             do not open a browser\n"
+msgstr "      --no-open             tarayıcı açma\n"
+
+#: src/npcli/args.py:150
+msgid "      --json                force NDJSON event output\n"
+msgstr "      --json                NDJSON olay çıktısını zorla\n"
+
+#: src/npcli/args.py:151
+msgid "      --report FILE         save final JSON report\n"
+msgstr "      --report FILE         son JSON raporunu kaydet\n"
+
+#: src/npcli/args.py:153
 msgid "repeat for more verbose loggings\n"
 msgstr "daha ayrıntılı günlük için yineleyin\n"
 
-#: src/netpoisson.py:86
+#: src/npcli/args.py:155
 msgid "show less logging messages\n"
 msgstr "daha az günlük iletisi göster\n"
 
-#: src/netpoisson.py:88
+#: src/npcli/args.py:157
 msgid "display this help and exit\n"
 msgstr "bu yardımı göster ve çık\n"
 
-#: src/netpoisson.py:90
+#: src/npcli/args.py:159
 msgid "output version information and exit\n"
 msgstr "sürüm bilgisini yaz ve çık\n"
 
-#: src/netpoisson.py:94
+#: src/npcli/args.py:163
 msgid ""
-"ECHO responses are the request bytes. STATUS responses carry the server\n"
-"timeline and queues. Req/Resp lines scroll right: newest slices on the left.\n"
-msgstr ""
-"ECHO yanıtı isteğin baytlarıdır. STATUS zaman çizelgesini ve kuyrukları taşır.\n"
-"Req/Resp sağa kayar: en yeni dilimler soldadır.\n"
+"TCP/UDP use a length-prefixed binary PDU. SSH stdio uses @nPoi NDJSON "
+"lines.\n"
+"When stdout is not a TTY, live UI is suppressed and NDJSON events are "
+"emitted.\n"
+msgstr "TCP/UDP uzunluk önekli ikili PDU kullanır. SSH stdio @nPoi NDJSON satırları kullanır.\nstdout bir TTY değilse canlı arayüz bastırılır ve NDJSON olayları üretilir.\n"
 
-#: src/netpoisson.py:99
+#: src/npcli/args.py:168
 #, python-brace-format
 msgid "Report bugs to: <{email}>\n"
 msgstr "Hataları bildirin: <{email}>\n"
 
-#: src/netpoisson.py:104
+#: src/npcli/args.py:173
 #, python-brace-format
 msgid "Copyright (C) {year} {author}\n"
 msgstr "Telif hakkı (C) {year} {author}\n"
 
-#: src/netpoisson.py:105
-msgid "License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
-msgstr "Lisans AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+#: src/npcli/args.py:174
+msgid ""
+"License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgstr ""
+"Lisans AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
 
-#: src/netpoisson.py:106
+#: src/npcli/args.py:175
 msgid "This is free software: you are free to change and redistribute it.\n"
 msgstr "Bu özgür yazılımdır: değiştirip yeniden dağıtabilirsiniz.\n"
 
-#: src/netpoisson.py:107
+#: src/npcli/args.py:176
 msgid "This project opposes AI exploitation and AI hegemony.\n"
 msgstr "Bu proje yapay zekâ sömürüsüne ve yapay zekâ hegemonyasına karşıdır.\n"
 
-#: src/netpoisson.py:110
-msgid "This project rejects mindless MIT-style licensing and politically naive BSD-style licensing.\n"
-msgstr "Bu proje düşüncesiz MIT tarzı lisansları ve siyaseten saf BSD tarzı lisansları reddeder.\n"
+#: src/npcli/args.py:179
+msgid ""
+"This project rejects mindless MIT-style licensing and politically naive BSD-"
+"style licensing.\n"
+msgstr ""
+"Bu proje düşüncesiz MIT tarzı lisansları ve siyaseten saf BSD tarzı "
+"lisansları reddeder.\n"
 
-#: src/netpoisson.py:114
+#: src/npcli/args.py:183
 msgid "There is NO WARRANTY, to the extent permitted by law.\n"
 msgstr "Yasanın izin verdiği ölçüde HİÇBİR GARANTİ yoktur.\n"
 
-#: src/netpoisson.py:133
+#: src/npcli/args.py:218
 #, python-brace-format
 msgid "{prog}: missing argument for {opt}\n"
 msgstr "{prog}: {opt} için argüman eksik\n"
 
-#: src/netpoisson.py:141 src/netpoisson.py:151
+#: src/npcli/args.py:226 src/npcli/args.py:236
 #, python-brace-format
 msgid "{prog}: invalid number: {text}\n"
 msgstr "{prog}: geçersiz sayı: {text}\n"
 
-#: src/netpoisson.py:143 src/netpoisson.py:228
+#: src/npcli/args.py:228
 #, python-brace-format
 msgid "{prog}: port out of range\n"
 msgstr "{prog}: kapı aralık dışında\n"
 
-#: src/netpoisson.py:154
+#: src/npcli/args.py:239
 #, python-brace-format
 msgid "{prog}: lambda must be positive\n"
 msgstr "{prog}: lambda pozitif olmalı\n"
 
-#: src/netpoisson.py:155
+#: src/npcli/args.py:240
 #, python-brace-format
 msgid "{prog}: duration must be positive\n"
 msgstr "{prog}: süre pozitif olmalı\n"
 
-#: src/netpoisson.py:199 src/netpoisson.py:207
+#: src/npcli/args.py:247
+#, python-brace-format
+msgid "{prog}: unknown profile {name}\n"
+msgstr "{prog}: bilinmeyen profil {name}\n"
+
+#: src/npcli/args.py:331 src/npcli/args.py:339
 #, python-brace-format
 msgid "{prog}: unknown option {opt}\n"
 msgstr "{prog}: bilinmeyen seçenek {opt}\n"
 
-#: src/netpoisson.py:230
+#: src/npcli/args.py:403
 #, python-brace-format
 msgid "{prog}: unexpected argument {text}\n"
 msgstr "{prog}: beklenmeyen argüman {text}\n"
 
-#: src/netpoisson.py:234
+#: src/npcli/args.py:409
 #, python-brace-format
 msgid "{prog}: do not combine --daemon with SERVER\n"
 msgstr "{prog}: --daemon ile SUNUCU'yu birlikte vermeyin\n"
 
-#: src/netpoisson.py:242 src/netpoisson.py:249
+#: src/npcli/args.py:411
+#, python-brace-format
+msgid "{prog}: --stdio-server is exclusive\n"
+msgstr "{prog}: --stdio-server tektir\n"
+
+#: src/npcli/args.py:413
+#, python-brace-format
+msgid "{prog}: --udp cannot combine with --ssh\n"
+msgstr "{prog}: --udp, --ssh ile birleştirilemez\n"
+
+#: src/npcli/args.py:415
+#, python-brace-format
+msgid "{prog}: UDP --tls requires --psk\n"
+msgstr "{prog}: UDP --tls için --psk gerekir\n"
+
+#: src/npcli/args.py:417
+#, python-brace-format
+msgid "{prog}: --cert and --key must be used together\n"
+msgstr "{prog}: --cert ve --key birlikte kullanılmalı\n"
+
+#: src/npcli/args.py:419
+#, python-brace-format
+msgid "{prog}: choose --install or --remove\n"
+msgstr "{prog}: --install veya --remove seçin\n"
+
+#: src/npcli/args.py:427 src/npcli/args.py:434
 #, python-brace-format
 msgid "{prog}: invalid server address\n"
 msgstr "{prog}: geçersiz sunucu adresi\n"
 
-#: src/netpoisson.py:292
+#: src/npcli/main.py:93
+#, python-brace-format
+msgid "{prog}: wrote {path}"
+msgstr "{prog}: yazıldı {path}"
+
+#: src/npcli/main.py:94
+#, python-brace-format
+msgid ""
+"{prog}: run: systemctl --user daemon-reload && systemctl --user enable --now "
+"netpoisson"
+msgstr "{prog}: çalıştırın: systemctl --user daemon-reload && systemctl --user enable --now netpoisson"
+
+#: src/npcli/main.py:102
+#, python-brace-format
+msgid "{prog}: removed {path}"
+msgstr "{prog}: kaldırıldı {path}"
+
+#: src/npcli/main.py:104
+#, python-brace-format
+msgid "{prog}: no unit at {path}"
+msgstr "{prog}: {path} konumunda birim yok"
+
+#: src/npcli/main.py:139 src/npcli/main.py:152
 #, python-brace-format
 msgid "{prog}: {message}\n"
 msgstr "{prog}: {message}\n"
 
-#: src/netpoisson.py:294
+#: src/npcli/main.py:154
 #, python-brace-format
 msgid "{prog}: dashboard {url}"
 msgstr "{prog}: pano {url}"
 
-#: src/netpoisson.py:324
+#: src/npcli/main.py:225
 #, python-brace-format
 msgid "{prog}: --lambda applies to the client; ignoring it"
 msgstr "{prog}: --lambda istemciye aittir; yok sayılıyor"
 
-#: src/netpoisson.py:333 src/netpoisson.py:367
+#: src/npcli/main.py:242 src/npcli/main.py:325
 #, python-brace-format
 msgid "{prog}: {message}"
 msgstr "{prog}: {message}"
 
-#: src/netpoisson.py:337
+#: src/npcli/main.py:249
 #, python-brace-format
 msgid "{prog}: listening on {proto}://{endpoint}"
 msgstr "{prog}: dinleniyor {proto}://{endpoint}"
 
-#: src/netpoisson.py:357
+#: src/npcli/main.py:291
 #, python-brace-format
 msgid "{prog}: --host is the listen address; the target is SERVER"
 msgstr "{prog}: --host dinleme adresidir; hedef SUNUCU'dur"
 
-#: src/netpoisson.py:371
+#: src/npcli/main.py:330
 #, python-brace-format
 msgid "{prog}: connected {proto} {endpoint} at {lam} req/s"
 msgstr "{prog}: bağlandı {proto} {endpoint}, {lam} istek/sn"
 
-#: src/netpoisson.py:382
-msgid "Req counts local arrivals per slice (newest on the left). The center number has not left this host."
-msgstr "Req bu makinedeki dilim başına varışları sayar (en yeni solda). Ortadaki sayı henüz ağdan çıkmadı."
+#~ msgid ""
+#~ "Offer a Poisson stream of requests to SERVER, or listen for them when\n"
+#~ "SERVER is omitted.\n"
+#~ msgstr ""
+#~ "SUNUCU'ya Poisson akışıyla istek gönderir; SUNUCU verilmezse dinler.\n"
 
-#: src/netpoisson.py:389
-msgid "Resp counts server replies per slice. Left of the arrow: requests not yet read. Next: replies not yet sent."
-msgstr "Resp sunucunun dilim başına yanıtlarını sayar. Okun solu: henüz okunmamış istekler. Sonraki: henüz gönderilmemiş yanıtlar."
+#~ msgid ""
+#~ "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
+#~ msgstr "  -d, --daemon       dinle (SUNUCU yoksa varsayılan da budur)\n"
+
+#~ msgid "  -H, --host HOST    address to bind (default 0.0.0.0)\n"
+#~ msgstr "  -H, --host HOST    bağlanılacak adres (varsayılan 0.0.0.0)\n"
+
+#~ msgid "  -p, --port PORT    port to bind or connect to (default 1871)\n"
+#~ msgstr ""
+#~ "  -p, --port PORT    bağlanılacak veya bağlanacak kapı (varsayılan 1871)\n"
+
+#~ msgid "  -u, --udp          use UDP (default is TCP)\n"
+#~ msgstr "  -u, --udp          UDP kullan (varsayılan TCP)\n"
+
+#~ msgid "  -l, --lambda N     offered requests per second (default 100)\n"
+#~ msgstr "  -l, --lambda N     saniye başına sunulan istek (varsayılan 100)\n"
+
+#~ msgid ""
+#~ "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
+#~ msgstr "  -s, --stats SECS   SECS saniye çalış, sonra bir JSON raporu yaz\n"
+
+#~ msgid "  -w, --web          serve a live dashboard and open a browser\n"
+#~ msgstr "  -w, --web          canlı panoyu sun ve bir tarayıcı aç\n"
+
+#~ msgid "      --web-host H   dashboard address (default 127.0.0.1)\n"
+#~ msgstr "      --web-host H   pano adresi (varsayılan 127.0.0.1)\n"
+
+#~ msgid "      --web-port N   dashboard port (default 8711)\n"
+#~ msgstr "      --web-port N   pano kapısı (varsayılan 8711)\n"
+
+#~ msgid ""
+#~ "ECHO responses are the request bytes. STATUS responses carry the server\n"
+#~ "timeline and queues. Req/Resp lines scroll right: newest slices on the "
+#~ "left.\n"
+#~ msgstr ""
+#~ "ECHO yanıtı isteğin baytlarıdır. STATUS zaman çizelgesini ve kuyrukları "
+#~ "taşır.\n"
+#~ "Req/Resp sağa kayar: en yeni dilimler soldadır.\n"
+
+#~ msgid ""
+#~ "Req counts local arrivals per slice (newest on the left). The center "
+#~ "number has not left this host."
+#~ msgstr ""
+#~ "Req bu makinedeki dilim başına varışları sayar (en yeni solda). Ortadaki "
+#~ "sayı henüz ağdan çıkmadı."
+
+#~ msgid ""
+#~ "Resp counts server replies per slice. Left of the arrow: requests not yet "
+#~ "read. Next: replies not yet sent."
+#~ msgstr ""
+#~ "Resp sunucunun dilim başına yanıtlarını sayar. Okun solu: henüz okunmamış "
+#~ "istekler. Sonraki: henüz gönderilmemiş yanıtlar."

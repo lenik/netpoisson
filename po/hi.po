@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: netpoisson 3b1f339-dirty\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-21 13:26+0800\n"
+"Report-Msgid-Bugs-To: netpoisson@bodz.net\n"
+"POT-Creation-Date: 2026-09-21 21:03+0800\n"
 "PO-Revision-Date: 2026-04-24 22:31+0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -16,190 +16,396 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/netpoisson.py:66
+#: src/npcli/args.py:109
 msgid "Usage: netpoisson [OPTION]... [SERVER]\n"
 msgstr "उपयोग: netpoisson [विकल्प]... [सर्वर]\n"
 
-#: src/netpoisson.py:69
+#: src/npcli/args.py:112
 msgid ""
-"Offer a Poisson stream of requests to SERVER, or listen for them when\n"
-"SERVER is omitted.\n"
-msgstr "SERVER को पॉइसन प्रवाह में अनुरोध भेजें, या SERVER न होने पर सुनें।\n"
+"Offer a Poisson stream of requests to SERVER, or listen when SERVER is "
+"omitted.\n"
+msgstr "SERVER को प्वासों अनुरोध धारा भेजें, या SERVER छोड़ने पर सुनें।\n"
 
-#: src/netpoisson.py:74
-msgid "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
-msgstr "  -d, --daemon       सुनें (SERVER छोड़ने पर भी यही डिफ़ॉल्ट है)\n"
+#: src/npcli/args.py:116
+msgid "Modes:\n"
+msgstr "मोड:\n"
 
-#: src/netpoisson.py:75
-msgid "  -H, --host HOST    address to bind (default 0.0.0.0)\n"
-msgstr "  -H, --host HOST    बाइंड पता (डिफ़ॉल्ट 0.0.0.0)\n"
+#: src/npcli/args.py:117
+msgid ""
+"  -d, --daemon              listen (also the default when SERVER is "
+"omitted)\n"
+msgstr "  -d, --daemon              सुनें (SERVER छोड़ने पर भी यही डिफ़ॉल्ट है)\n"
 
-#: src/netpoisson.py:76
-msgid "  -p, --port PORT    port to bind or connect to (default 1871)\n"
-msgstr "  -p, --port PORT    बाइंड या कनेक्ट पोर्ट (डिफ़ॉल्ट 1871)\n"
+#: src/npcli/args.py:118
+msgid ""
+"      --stdio-server        serve NDJSON @nPoi protocol on stdin/stdout\n"
+msgstr "      --stdio-server        stdin/stdout पर NDJSON @nPoi प्रोटोकॉल दें\n"
 
-#: src/netpoisson.py:77
-msgid "  -u, --udp          use UDP (default is TCP)\n"
-msgstr "  -u, --udp          UDP उपयोग करें (डिफ़ॉल्ट TCP)\n"
+#: src/npcli/args.py:119
+msgid "      --ssh TARGET          run client over SSH stdio to TARGET\n"
+msgstr "      --ssh TARGET          TARGET पर SSH stdio से क्लाइंट चलाएँ\n"
 
-#: src/netpoisson.py:78
-msgid "  -l, --lambda N     offered requests per second (default 100)\n"
-msgstr "  -l, --lambda N     प्रति सेकंड प्रस्तावित अनुरोध (डिफ़ॉल्ट 100)\n"
+#: src/npcli/args.py:120
+msgid "      --install/--remove    manage a systemd user service unit\n"
+msgstr "      --install/--remove    systemd उपयोगकर्ता सेवा इकाई प्रबंधित करें\n"
 
-#: src/netpoisson.py:79
-msgid "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
-msgstr "  -s, --stats SECS   SECS सेकंड चलाकर JSON रिपोर्ट छापें\n"
+#: src/npcli/args.py:122
+msgid "Transport:\n"
+msgstr "ट्रांसपोर्ट:\n"
 
-#: src/netpoisson.py:80
-msgid "  -w, --web          serve a live dashboard and open a browser\n"
-msgstr "  -w, --web          लाइव डैशबोर्ड परोसें और ब्राउज़र खोलें\n"
+#: src/npcli/args.py:123
+msgid "  -H, --host HOST           bind host (default 0.0.0.0)\n"
+msgstr "  -H, --host HOST           बाइंड होस्ट (डिफ़ॉल्ट 0.0.0.0)\n"
 
-#: src/netpoisson.py:81
-msgid "      --web-host H   dashboard address (default 127.0.0.1)\n"
-msgstr "      --web-host H   डैशबोर्ड पता (डिफ़ॉल्ट 127.0.0.1)\n"
+#: src/npcli/args.py:124
+msgid "  -p, --port PORT           port (default 1871)\n"
+msgstr "  -p, --port PORT           पोर्ट (डिफ़ॉल्ट 1871)\n"
 
-#: src/netpoisson.py:82
-msgid "      --web-port N   dashboard port (default 8711)\n"
-msgstr "      --web-port N   डैशबोर्ड पोर्ट (डिफ़ॉल्ट 8711)\n"
+#: src/npcli/args.py:125
+msgid "  -u, --udp                 UDP; default TCP\n"
+msgstr "  -u, --udp                 UDP; डिफ़ॉल्ट TCP\n"
 
-#: src/netpoisson.py:84
+#: src/npcli/args.py:126
+msgid "      --tls                 TLS on TCP; PSK seal on UDP (needs --psk)\n"
+msgstr "      --tls                 TCP पर TLS; UDP पर PSK सील (--psk चाहिए)\n"
+
+#: src/npcli/args.py:127
+msgid "      --psk TEXT            pre-shared key for UDP seal\n"
+msgstr "      --psk TEXT            UDP सील के लिए पूर्व-साझा कुंजी\n"
+
+#: src/npcli/args.py:128
+msgid "      --cert/--key PATH     TLS server certificate and key (PEM)\n"
+msgstr "      --cert/--key PATH     TLS सर्वर प्रमाणपत्र और कुंजी (PEM)\n"
+
+#: src/npcli/args.py:129
+msgid "      --tls-ca PATH         TLS client CA file\n"
+msgstr "      --tls-ca PATH         TLS क्लाइंट CA फ़ाइल\n"
+
+#: src/npcli/args.py:130
+msgid "      --tls-insecure        TLS client: skip certificate verify\n"
+msgstr "      --tls-insecure        TLS क्लाइंट: प्रमाणपत्र सत्यापन छोड़ें\n"
+
+#: src/npcli/args.py:131
+msgid "      --ssh-command PATH    ssh binary (default ssh)\n"
+msgstr "      --ssh-command PATH    ssh बाइनरी (डिफ़ॉल्ट ssh)\n"
+
+#: src/npcli/args.py:132
+msgid "      --remote-command CMD  remote stdio server command\n"
+msgstr "      --remote-command CMD  दूरस्थ stdio सर्वर कमांड\n"
+
+#: src/npcli/args.py:133
+msgid "      --ssh-option KEY=VAL  extra -o option (repeatable)\n"
+msgstr "      --ssh-option KEY=VAL  अतिरिक्त -o विकल्प (दोहराया जा सकता है)\n"
+
+#: src/npcli/args.py:135
+msgid "Traffic:\n"
+msgstr "ट्रैफ़िक:\n"
+
+#: src/npcli/args.py:136
+msgid "  -l, --lambda RATE         mean requests/s (default 100)\n"
+msgstr "  -l, --lambda RATE         औसत अनुरोध/से (डिफ़ॉल्ट 100)\n"
+
+#: src/npcli/args.py:137
+msgid "      --payload SIZE        payload size (default 64B)\n"
+msgstr "      --payload SIZE        पेलोड आकार (डिफ़ॉल्ट 64B)\n"
+
+#: src/npcli/args.py:138
+msgid "      --connections N       parallel TCP connections (default 1)\n"
+msgstr "      --connections N       समानांतर TCP कनेक्शन (डिफ़ॉल्ट 1)\n"
+
+#: src/npcli/args.py:139
+msgid "      --max-pending N       client pending queue limit\n"
+msgstr "      --max-pending N       क्लाइंट लंबित कतार सीमा\n"
+
+#: src/npcli/args.py:140
+msgid "      --status-interval D   STATUS interval (default 100ms)\n"
+msgstr "      --status-interval D   STATUS अंतराल (डिफ़ॉल्ट 100ms)\n"
+
+#: src/npcli/args.py:141
+msgid "      --bucket D            timeline bucket (default 100ms)\n"
+msgstr "      --bucket D            टाइमलाइन बकेट (डिफ़ॉल्ट 100ms)\n"
+
+#: src/npcli/args.py:142
+msgid ""
+"      --window D            visible window (default auto; or e.g. 12s)\n"
+msgstr "      --window D            दृश्यमान विंडो (डिफ़ॉल्ट auto; या जैसे 12s)\n"
+
+#: src/npcli/args.py:143
+msgid "      --seed N              reproducible RNG seed\n"
+msgstr "      --seed N              पुनरुत्पादनीय RNG बीज\n"
+
+#: src/npcli/args.py:144
+msgid "      --profile NAME        ssh-interactive | ssh-bulk\n"
+msgstr "      --profile NAME        ssh-interactive | ssh-bulk\n"
+
+#: src/npcli/args.py:146
+msgid "Execution:\n"
+msgstr "निष्पादन:\n"
+
+#: src/npcli/args.py:147
+msgid "  -s, --stats D             run for D then print a final report\n"
+msgstr "  -s, --stats D             D तक चलाएँ फिर अंतिम रिपोर्ट छापें\n"
+
+#: src/npcli/args.py:148
+msgid "  -w, --web[=ADDR]          start Web UI (default 127.0.0.1:3871)\n"
+msgstr "  -w, --web[=ADDR]          वेब UI शुरू करें (डिफ़ॉल्ट 127.0.0.1:3871)\n"
+
+#: src/npcli/args.py:149
+msgid "      --no-open             do not open a browser\n"
+msgstr "      --no-open             ब्राउज़र न खोलें\n"
+
+#: src/npcli/args.py:150
+msgid "      --json                force NDJSON event output\n"
+msgstr "      --json                NDJSON इवेंट आउटपुट बाध्य करें\n"
+
+#: src/npcli/args.py:151
+msgid "      --report FILE         save final JSON report\n"
+msgstr "      --report FILE         अंतिम JSON रिपोर्ट सहेजें\n"
+
+#: src/npcli/args.py:153
 msgid "repeat for more verbose loggings\n"
 msgstr "अधिक विस्तृत लॉग के लिए दोहराएँ\n"
 
-#: src/netpoisson.py:86
+#: src/npcli/args.py:155
 msgid "show less logging messages\n"
 msgstr "कम लॉग संदेश दिखाएँ\n"
 
-#: src/netpoisson.py:88
+#: src/npcli/args.py:157
 msgid "display this help and exit\n"
 msgstr "यह सहायता दिखाकर निकलें\n"
 
-#: src/netpoisson.py:90
+#: src/npcli/args.py:159
 msgid "output version information and exit\n"
 msgstr "संस्करण जानकारी दिखाकर निकलें\n"
 
-#: src/netpoisson.py:94
+#: src/npcli/args.py:163
 msgid ""
-"ECHO responses are the request bytes. STATUS responses carry the server\n"
-"timeline and queues. Req/Resp lines scroll right: newest slices on the left.\n"
-msgstr ""
-"ECHO उत्तर अनुरोध के बाइट हैं। STATUS समयरेखा और कतारें लाता है।\n"
-"Req/Resp दाएँ खिसकते हैं: नवीनतम स्लाइस बाएँ।\n"
+"TCP/UDP use a length-prefixed binary PDU. SSH stdio uses @nPoi NDJSON "
+"lines.\n"
+"When stdout is not a TTY, live UI is suppressed and NDJSON events are "
+"emitted.\n"
+msgstr "TCP/UDP लंबाई-उपसर्ग वाली द्विआधारी PDU उपयोग करते हैं। SSH stdio @nPoi NDJSON पंक्तियाँ उपयोग करता है।\nstdout TTY न होने पर लाइव UI बंद रहता है और NDJSON इवेंट निकलते हैं।\n"
 
-#: src/netpoisson.py:99
+#: src/npcli/args.py:168
 #, python-brace-format
 msgid "Report bugs to: <{email}>\n"
 msgstr "त्रुटियाँ भेजें: <{email}>\n"
 
-#: src/netpoisson.py:104
+#: src/npcli/args.py:173
 #, python-brace-format
 msgid "Copyright (C) {year} {author}\n"
 msgstr "कॉपीराइट (C) {year} {author}\n"
 
-#: src/netpoisson.py:105
-msgid "License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
-msgstr "लाइसेंस AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+#: src/npcli/args.py:174
+msgid ""
+"License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgstr ""
+"लाइसेंस AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
 
-#: src/netpoisson.py:106
+#: src/npcli/args.py:175
 msgid "This is free software: you are free to change and redistribute it.\n"
 msgstr "यह मुक्त सॉफ़्टवेयर है: आप इसे बदल और बाँट सकते हैं।\n"
 
-#: src/netpoisson.py:107
+#: src/npcli/args.py:176
 msgid "This project opposes AI exploitation and AI hegemony.\n"
 msgstr "यह परियोजना एआई शोषण और एआई वर्चस्व का विरोध करती है।\n"
 
-#: src/netpoisson.py:110
-msgid "This project rejects mindless MIT-style licensing and politically naive BSD-style licensing.\n"
-msgstr "यह परियोजना बिना सोचे MIT-शैली और राजनीतिक रूप से भोले BSD-शैली लाइसेंस को अस्वीकार करती है।\n"
+#: src/npcli/args.py:179
+msgid ""
+"This project rejects mindless MIT-style licensing and politically naive BSD-"
+"style licensing.\n"
+msgstr ""
+"यह परियोजना बिना सोचे MIT-शैली और राजनीतिक रूप से भोले BSD-शैली लाइसेंस को अस्वीकार "
+"करती है।\n"
 
-#: src/netpoisson.py:114
+#: src/npcli/args.py:183
 msgid "There is NO WARRANTY, to the extent permitted by law.\n"
 msgstr "कानून द्वारा अनुमत सीमा तक कोई वारंटी नहीं है।\n"
 
-#: src/netpoisson.py:133
+#: src/npcli/args.py:218
 #, python-brace-format
 msgid "{prog}: missing argument for {opt}\n"
 msgstr "{prog}: {opt} के लिए तर्क नहीं है\n"
 
-#: src/netpoisson.py:141 src/netpoisson.py:151
+#: src/npcli/args.py:226 src/npcli/args.py:236
 #, python-brace-format
 msgid "{prog}: invalid number: {text}\n"
 msgstr "{prog}: अमान्य संख्या: {text}\n"
 
-#: src/netpoisson.py:143 src/netpoisson.py:228
+#: src/npcli/args.py:228
 #, python-brace-format
 msgid "{prog}: port out of range\n"
 msgstr "{prog}: पोर्ट सीमा से बाहर\n"
 
-#: src/netpoisson.py:154
+#: src/npcli/args.py:239
 #, python-brace-format
 msgid "{prog}: lambda must be positive\n"
 msgstr "{prog}: lambda धनात्मक होना चाहिए\n"
 
-#: src/netpoisson.py:155
+#: src/npcli/args.py:240
 #, python-brace-format
 msgid "{prog}: duration must be positive\n"
 msgstr "{prog}: अवधि धनात्मक होनी चाहिए\n"
 
-#: src/netpoisson.py:199 src/netpoisson.py:207
+#: src/npcli/args.py:247
+#, python-brace-format
+msgid "{prog}: unknown profile {name}\n"
+msgstr "{prog}: अज्ञात प्रोफ़ाइल {name}\n"
+
+#: src/npcli/args.py:331 src/npcli/args.py:339
 #, python-brace-format
 msgid "{prog}: unknown option {opt}\n"
 msgstr "{prog}: अज्ञात विकल्प {opt}\n"
 
-#: src/netpoisson.py:230
+#: src/npcli/args.py:403
 #, python-brace-format
 msgid "{prog}: unexpected argument {text}\n"
 msgstr "{prog}: अप्रत्याशित तर्क {text}\n"
 
-#: src/netpoisson.py:234
+#: src/npcli/args.py:409
 #, python-brace-format
 msgid "{prog}: do not combine --daemon with SERVER\n"
 msgstr "{prog}: --daemon को SERVER के साथ न जोड़ें\n"
 
-#: src/netpoisson.py:242 src/netpoisson.py:249
+#: src/npcli/args.py:411
+#, python-brace-format
+msgid "{prog}: --stdio-server is exclusive\n"
+msgstr "{prog}: --stdio-server अनन्य है\n"
+
+#: src/npcli/args.py:413
+#, python-brace-format
+msgid "{prog}: --udp cannot combine with --ssh\n"
+msgstr "{prog}: --udp को --ssh के साथ नहीं मिलाया जा सकता\n"
+
+#: src/npcli/args.py:415
+#, python-brace-format
+msgid "{prog}: UDP --tls requires --psk\n"
+msgstr "{prog}: UDP --tls के लिए --psk चाहिए\n"
+
+#: src/npcli/args.py:417
+#, python-brace-format
+msgid "{prog}: --cert and --key must be used together\n"
+msgstr "{prog}: --cert और --key साथ में उपयोग करें\n"
+
+#: src/npcli/args.py:419
+#, python-brace-format
+msgid "{prog}: choose --install or --remove\n"
+msgstr "{prog}: --install या --remove चुनें\n"
+
+#: src/npcli/args.py:427 src/npcli/args.py:434
 #, python-brace-format
 msgid "{prog}: invalid server address\n"
 msgstr "{prog}: सर्वर पता अमान्य है\n"
 
-#: src/netpoisson.py:292
+#: src/npcli/main.py:93
+#, python-brace-format
+msgid "{prog}: wrote {path}"
+msgstr "{prog}: लिखा {path}"
+
+#: src/npcli/main.py:94
+#, python-brace-format
+msgid ""
+"{prog}: run: systemctl --user daemon-reload && systemctl --user enable --now "
+"netpoisson"
+msgstr "{prog}: चलाएँ: systemctl --user daemon-reload && systemctl --user enable --now netpoisson"
+
+#: src/npcli/main.py:102
+#, python-brace-format
+msgid "{prog}: removed {path}"
+msgstr "{prog}: हटाया {path}"
+
+#: src/npcli/main.py:104
+#, python-brace-format
+msgid "{prog}: no unit at {path}"
+msgstr "{prog}: {path} पर कोई इकाई नहीं"
+
+#: src/npcli/main.py:139 src/npcli/main.py:152
 #, python-brace-format
 msgid "{prog}: {message}\n"
 msgstr "{prog}: {message}\n"
 
-#: src/netpoisson.py:294
+#: src/npcli/main.py:154
 #, python-brace-format
 msgid "{prog}: dashboard {url}"
 msgstr "{prog}: डैशबोर्ड {url}"
 
-#: src/netpoisson.py:324
+#: src/npcli/main.py:225
 #, python-brace-format
 msgid "{prog}: --lambda applies to the client; ignoring it"
 msgstr "{prog}: --lambda क्लाइंट के लिए है; अनदेखा किया गया"
 
-#: src/netpoisson.py:333 src/netpoisson.py:367
+#: src/npcli/main.py:242 src/npcli/main.py:325
 #, python-brace-format
 msgid "{prog}: {message}"
 msgstr "{prog}: {message}"
 
-#: src/netpoisson.py:337
+#: src/npcli/main.py:249
 #, python-brace-format
 msgid "{prog}: listening on {proto}://{endpoint}"
 msgstr "{prog}: {proto}://{endpoint} पर सुन रहा है"
 
-#: src/netpoisson.py:357
+#: src/npcli/main.py:291
 #, python-brace-format
 msgid "{prog}: --host is the listen address; the target is SERVER"
 msgstr "{prog}: --host सुनने का पता है; लक्ष्य SERVER है"
 
-#: src/netpoisson.py:371
+#: src/npcli/main.py:330
 #, python-brace-format
 msgid "{prog}: connected {proto} {endpoint} at {lam} req/s"
 msgstr "{prog}: {proto} {endpoint} से जुड़ा, {lam} अनुरोध/से"
 
-#: src/netpoisson.py:382
-msgid "Req counts local arrivals per slice (newest on the left). The center number has not left this host."
-msgstr "Req इस होस्ट पर हर समय-खंड की आगमन संख्या है (नया बाएँ)। बीच की संख्या अभी नेट से नहीं निकली।"
+#~ msgid ""
+#~ "Offer a Poisson stream of requests to SERVER, or listen for them when\n"
+#~ "SERVER is omitted.\n"
+#~ msgstr "SERVER को पॉइसन प्रवाह में अनुरोध भेजें, या SERVER न होने पर सुनें।\n"
 
-#: src/netpoisson.py:389
-msgid "Resp counts server replies per slice. Left of the arrow: requests not yet read. Next: replies not yet sent."
-msgstr "Resp सर्वर के हर समय-खंड के उत्तर हैं। तीर के बाएँ: अभी न पढ़े अनुरोध। उसके बाद: अभी न भेजे उत्तर।"
+#~ msgid ""
+#~ "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
+#~ msgstr "  -d, --daemon       सुनें (SERVER छोड़ने पर भी यही डिफ़ॉल्ट है)\n"
+
+#~ msgid "  -H, --host HOST    address to bind (default 0.0.0.0)\n"
+#~ msgstr "  -H, --host HOST    बाइंड पता (डिफ़ॉल्ट 0.0.0.0)\n"
+
+#~ msgid "  -p, --port PORT    port to bind or connect to (default 1871)\n"
+#~ msgstr "  -p, --port PORT    बाइंड या कनेक्ट पोर्ट (डिफ़ॉल्ट 1871)\n"
+
+#~ msgid "  -u, --udp          use UDP (default is TCP)\n"
+#~ msgstr "  -u, --udp          UDP उपयोग करें (डिफ़ॉल्ट TCP)\n"
+
+#~ msgid "  -l, --lambda N     offered requests per second (default 100)\n"
+#~ msgstr "  -l, --lambda N     प्रति सेकंड प्रस्तावित अनुरोध (डिफ़ॉल्ट 100)\n"
+
+#~ msgid ""
+#~ "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
+#~ msgstr "  -s, --stats SECS   SECS सेकंड चलाकर JSON रिपोर्ट छापें\n"
+
+#~ msgid "  -w, --web          serve a live dashboard and open a browser\n"
+#~ msgstr "  -w, --web          लाइव डैशबोर्ड परोसें और ब्राउज़र खोलें\n"
+
+#~ msgid "      --web-host H   dashboard address (default 127.0.0.1)\n"
+#~ msgstr "      --web-host H   डैशबोर्ड पता (डिफ़ॉल्ट 127.0.0.1)\n"
+
+#~ msgid "      --web-port N   dashboard port (default 8711)\n"
+#~ msgstr "      --web-port N   डैशबोर्ड पोर्ट (डिफ़ॉल्ट 8711)\n"
+
+#~ msgid ""
+#~ "ECHO responses are the request bytes. STATUS responses carry the server\n"
+#~ "timeline and queues. Req/Resp lines scroll right: newest slices on the "
+#~ "left.\n"
+#~ msgstr ""
+#~ "ECHO उत्तर अनुरोध के बाइट हैं। STATUS समयरेखा और कतारें लाता है।\n"
+#~ "Req/Resp दाएँ खिसकते हैं: नवीनतम स्लाइस बाएँ।\n"
+
+#~ msgid ""
+#~ "Req counts local arrivals per slice (newest on the left). The center "
+#~ "number has not left this host."
+#~ msgstr ""
+#~ "Req इस होस्ट पर हर समय-खंड की आगमन संख्या है (नया बाएँ)। बीच की संख्या अभी नेट से "
+#~ "नहीं निकली।"
+
+#~ msgid ""
+#~ "Resp counts server replies per slice. Left of the arrow: requests not yet "
+#~ "read. Next: replies not yet sent."
+#~ msgstr ""
+#~ "Resp सर्वर के हर समय-खंड के उत्तर हैं। तीर के बाएँ: अभी न पढ़े अनुरोध। उसके बाद: अभी न "
+#~ "भेजे उत्तर।"

@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: netpoisson\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-21 13:26+0800\n"
+"Report-Msgid-Bugs-To: netpoisson@bodz.net\n"
+"POT-Creation-Date: 2026-09-21 21:03+0800\n"
 "PO-Revision-Date: 2026-09-21 13:26+0800\n"
 "Last-Translator: Lenik <netpoisson@bodz.net>\n"
 "Language-Team: \n"
@@ -12,188 +12,407 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/netpoisson.py:66
+#: src/npcli/args.py:109
 msgid "Usage: netpoisson [OPTION]... [SERVER]\n"
 msgstr "Uso: netpoisson [OPZIONE]... [SERVER]\n"
 
-#: src/netpoisson.py:69
+#: src/npcli/args.py:112
 msgid ""
-"Offer a Poisson stream of requests to SERVER, or listen for them when\n"
-"SERVER is omitted.\n"
-msgstr "Invia un flusso di Poisson di richieste a SERVER, oppure ascolta se SERVER è omesso.\n"
+"Offer a Poisson stream of requests to SERVER, or listen when SERVER is "
+"omitted.\n"
+msgstr "Offri un flusso Poisson di richieste a SERVER, oppure ascolta se SERVER è omesso.\n"
 
-#: src/netpoisson.py:74
-msgid "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
-msgstr "  -d, --daemon       ascolta (anche predefinito se SERVER è omesso)\n"
+#: src/npcli/args.py:116
+msgid "Modes:\n"
+msgstr "Modalità:\n"
 
-#: src/netpoisson.py:75
-msgid "  -H, --host HOST    address to bind (default 0.0.0.0)\n"
-msgstr "  -H, --host HOST    indirizzo di bind (predefinito 0.0.0.0)\n"
+#: src/npcli/args.py:117
+msgid ""
+"  -d, --daemon              listen (also the default when SERVER is "
+"omitted)\n"
+msgstr "  -d, --daemon              ascolta (anche predefinito se SERVER è omesso)\n"
 
-#: src/netpoisson.py:76
-msgid "  -p, --port PORT    port to bind or connect to (default 1871)\n"
-msgstr "  -p, --port PORT    porta di bind o connessione (predefinito 1871)\n"
+#: src/npcli/args.py:118
+msgid ""
+"      --stdio-server        serve NDJSON @nPoi protocol on stdin/stdout\n"
+msgstr "      --stdio-server        servi il protocollo NDJSON @nPoi su stdin/stdout\n"
 
-#: src/netpoisson.py:77
-msgid "  -u, --udp          use UDP (default is TCP)\n"
-msgstr "  -u, --udp          usa UDP (il predefinito è TCP)\n"
+#: src/npcli/args.py:119
+msgid "      --ssh TARGET          run client over SSH stdio to TARGET\n"
+msgstr "      --ssh TARGET          esegui il client via SSH stdio verso TARGET\n"
 
-#: src/netpoisson.py:78
-msgid "  -l, --lambda N     offered requests per second (default 100)\n"
-msgstr "  -l, --lambda N     richieste offerte al secondo (predefinito 100)\n"
+#: src/npcli/args.py:120
+msgid "      --install/--remove    manage a systemd user service unit\n"
+msgstr "      --install/--remove    gestisci un’unità di servizio utente systemd\n"
 
-#: src/netpoisson.py:79
-msgid "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
-msgstr "  -s, --stats SECS   esegui per SECS secondi, poi stampa un rapporto JSON\n"
+#: src/npcli/args.py:122
+msgid "Transport:\n"
+msgstr "Trasporto:\n"
 
-#: src/netpoisson.py:80
-msgid "  -w, --web          serve a live dashboard and open a browser\n"
-msgstr "  -w, --web          servi una dashboard dal vivo e apri un browser\n"
+#: src/npcli/args.py:123
+msgid "  -H, --host HOST           bind host (default 0.0.0.0)\n"
+msgstr "  -H, --host HOST           host di bind (predefinito 0.0.0.0)\n"
 
-#: src/netpoisson.py:81
-msgid "      --web-host H   dashboard address (default 127.0.0.1)\n"
-msgstr "      --web-host H   indirizzo della dashboard (predefinito 127.0.0.1)\n"
+#: src/npcli/args.py:124
+msgid "  -p, --port PORT           port (default 1871)\n"
+msgstr "  -p, --port PORT           porta (predefinita 1871)\n"
 
-#: src/netpoisson.py:82
-msgid "      --web-port N   dashboard port (default 8711)\n"
-msgstr "      --web-port N   porta della dashboard (predefinito 8711)\n"
+#: src/npcli/args.py:125
+msgid "  -u, --udp                 UDP; default TCP\n"
+msgstr "  -u, --udp                 UDP; predefinito TCP\n"
 
-#: src/netpoisson.py:84
+#: src/npcli/args.py:126
+msgid "      --tls                 TLS on TCP; PSK seal on UDP (needs --psk)\n"
+msgstr "      --tls                 TLS su TCP; sigillo PSK su UDP (serve --psk)\n"
+
+#: src/npcli/args.py:127
+msgid "      --psk TEXT            pre-shared key for UDP seal\n"
+msgstr "      --psk TEXT            chiave precondivisa per il sigillo UDP\n"
+
+#: src/npcli/args.py:128
+msgid "      --cert/--key PATH     TLS server certificate and key (PEM)\n"
+msgstr "      --cert/--key PATH     certificato e chiave del server TLS (PEM)\n"
+
+#: src/npcli/args.py:129
+msgid "      --tls-ca PATH         TLS client CA file\n"
+msgstr "      --tls-ca PATH         file CA del client TLS\n"
+
+#: src/npcli/args.py:130
+msgid "      --tls-insecure        TLS client: skip certificate verify\n"
+msgstr "      --tls-insecure        client TLS: salta la verifica del certificato\n"
+
+#: src/npcli/args.py:131
+msgid "      --ssh-command PATH    ssh binary (default ssh)\n"
+msgstr "      --ssh-command PATH    binario ssh (predefinito ssh)\n"
+
+#: src/npcli/args.py:132
+msgid "      --remote-command CMD  remote stdio server command\n"
+msgstr "      --remote-command CMD  comando del server stdio remoto\n"
+
+#: src/npcli/args.py:133
+msgid "      --ssh-option KEY=VAL  extra -o option (repeatable)\n"
+msgstr "      --ssh-option KEY=VAL  opzione -o extra (ripetibile)\n"
+
+#: src/npcli/args.py:135
+msgid "Traffic:\n"
+msgstr "Traffico:\n"
+
+#: src/npcli/args.py:136
+msgid "  -l, --lambda RATE         mean requests/s (default 100)\n"
+msgstr "  -l, --lambda RATE         media richieste/s (predefinita 100)\n"
+
+#: src/npcli/args.py:137
+msgid "      --payload SIZE        payload size (default 64B)\n"
+msgstr "      --payload SIZE        dimensione del payload (predefinita 64B)\n"
+
+#: src/npcli/args.py:138
+msgid "      --connections N       parallel TCP connections (default 1)\n"
+msgstr "      --connections N       connessioni TCP parallele (predefinita 1)\n"
+
+#: src/npcli/args.py:139
+msgid "      --max-pending N       client pending queue limit\n"
+msgstr "      --max-pending N       limite della coda in sospeso del client\n"
+
+#: src/npcli/args.py:140
+msgid "      --status-interval D   STATUS interval (default 100ms)\n"
+msgstr "      --status-interval D   intervallo STATUS (predefinito 100ms)\n"
+
+#: src/npcli/args.py:141
+msgid "      --bucket D            timeline bucket (default 100ms)\n"
+msgstr "      --bucket D            bucket della timeline (predefinito 100ms)\n"
+
+#: src/npcli/args.py:142
+msgid ""
+"      --window D            visible window (default auto; or e.g. 12s)\n"
+msgstr "      --window D            finestra visibile (predefinita auto; o es. 12s)\n"
+
+#: src/npcli/args.py:143
+msgid "      --seed N              reproducible RNG seed\n"
+msgstr "      --seed N              seme RNG riproducibile\n"
+
+#: src/npcli/args.py:144
+msgid "      --profile NAME        ssh-interactive | ssh-bulk\n"
+msgstr "      --profile NAME        ssh-interactive | ssh-bulk\n"
+
+#: src/npcli/args.py:146
+msgid "Execution:\n"
+msgstr "Esecuzione:\n"
+
+#: src/npcli/args.py:147
+msgid "  -s, --stats D             run for D then print a final report\n"
+msgstr "  -s, --stats D             esegui per D poi stampa un rapporto finale\n"
+
+#: src/npcli/args.py:148
+msgid "  -w, --web[=ADDR]          start Web UI (default 127.0.0.1:3871)\n"
+msgstr "  -w, --web[=ADDR]          avvia l’interfaccia Web (predefinita 127.0.0.1:3871)\n"
+
+#: src/npcli/args.py:149
+msgid "      --no-open             do not open a browser\n"
+msgstr "      --no-open             non aprire un browser\n"
+
+#: src/npcli/args.py:150
+msgid "      --json                force NDJSON event output\n"
+msgstr "      --json                forza l’output di eventi NDJSON\n"
+
+#: src/npcli/args.py:151
+msgid "      --report FILE         save final JSON report\n"
+msgstr "      --report FILE         salva il rapporto JSON finale\n"
+
+#: src/npcli/args.py:153
 msgid "repeat for more verbose loggings\n"
 msgstr "ripetere per registri più dettagliati\n"
 
-#: src/netpoisson.py:86
+#: src/npcli/args.py:155
 msgid "show less logging messages\n"
 msgstr "mostra meno messaggi di registro\n"
 
-#: src/netpoisson.py:88
+#: src/npcli/args.py:157
 msgid "display this help and exit\n"
 msgstr "mostra questo aiuto ed esci\n"
 
-#: src/netpoisson.py:90
+#: src/npcli/args.py:159
 msgid "output version information and exit\n"
 msgstr "mostra le informazioni di versione ed esci\n"
 
-#: src/netpoisson.py:94
+#: src/npcli/args.py:163
 msgid ""
-"ECHO responses are the request bytes. STATUS responses carry the server\n"
-"timeline and queues. Req/Resp lines scroll right: newest slices on the left.\n"
-msgstr ""
-"Le risposte ECHO sono i byte della richiesta. STATUS porta la sequenza temporale e le code.\n"
-"Req/Resp scorrono a destra: le fette più recenti sono a sinistra.\n"
+"TCP/UDP use a length-prefixed binary PDU. SSH stdio uses @nPoi NDJSON "
+"lines.\n"
+"When stdout is not a TTY, live UI is suppressed and NDJSON events are "
+"emitted.\n"
+msgstr "TCP/UDP usano una PDU binaria con prefisso di lunghezza. SSH stdio usa righe NDJSON @nPoi.\nSe stdout non è un TTY, la UI dal vivo è soppressa e vengono emessi eventi NDJSON.\n"
 
-#: src/netpoisson.py:99
+#: src/npcli/args.py:168
+#, python-brace-format
 msgid "Report bugs to: <{email}>\n"
 msgstr "Segnalare i bug a: <{email}>\n"
 
-#: src/netpoisson.py:104
+#: src/npcli/args.py:173
+#, python-brace-format
 msgid "Copyright (C) {year} {author}\n"
 msgstr "Copyright (C) {year} {author}\n"
 
-#: src/netpoisson.py:105
-msgid "License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
-msgstr "Licenza AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+#: src/npcli/args.py:174
+msgid ""
+"License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgstr ""
+"Licenza AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
 
-#: src/netpoisson.py:106
+#: src/npcli/args.py:175
 msgid "This is free software: you are free to change and redistribute it.\n"
-msgstr "Questo è software libero: sei libero di modificarlo e ridistribuirlo.\n"
+msgstr ""
+"Questo è software libero: sei libero di modificarlo e ridistribuirlo.\n"
 
-#: src/netpoisson.py:107
+#: src/npcli/args.py:176
 msgid "This project opposes AI exploitation and AI hegemony.\n"
 msgstr "Questo progetto si oppone allo sfruttamento e all'egemonia dell'IA.\n"
 
-#: src/netpoisson.py:110
-msgid "This project rejects mindless MIT-style licensing and politically naive BSD-style licensing.\n"
-msgstr "Questo progetto rifiuta le licenze stile MIT avventate e le licenze stile BSD politicamente ingenue.\n"
+#: src/npcli/args.py:179
+msgid ""
+"This project rejects mindless MIT-style licensing and politically naive BSD-"
+"style licensing.\n"
+msgstr ""
+"Questo progetto rifiuta le licenze stile MIT avventate e le licenze stile "
+"BSD politicamente ingenue.\n"
 
-#: src/netpoisson.py:114
+#: src/npcli/args.py:183
 msgid "There is NO WARRANTY, to the extent permitted by law.\n"
 msgstr "NON C'È ALCUNA GARANZIA, nei limiti consentiti dalla legge.\n"
 
-#: src/netpoisson.py:133
+#: src/npcli/args.py:218
 #, python-brace-format
 msgid "{prog}: missing argument for {opt}\n"
 msgstr "{prog}: argomento mancante per {opt}\n"
 
-#: src/netpoisson.py:141 src/netpoisson.py:151
+#: src/npcli/args.py:226 src/npcli/args.py:236
 #, python-brace-format
 msgid "{prog}: invalid number: {text}\n"
 msgstr "{prog}: numero non valido: {text}\n"
 
-#: src/netpoisson.py:143 src/netpoisson.py:228
+#: src/npcli/args.py:228
 #, python-brace-format
 msgid "{prog}: port out of range\n"
 msgstr "{prog}: porta fuori intervallo\n"
 
-#: src/netpoisson.py:154
+#: src/npcli/args.py:239
 #, python-brace-format
 msgid "{prog}: lambda must be positive\n"
 msgstr "{prog}: lambda deve essere positivo\n"
 
-#: src/netpoisson.py:155
+#: src/npcli/args.py:240
 #, python-brace-format
 msgid "{prog}: duration must be positive\n"
 msgstr "{prog}: la durata deve essere positiva\n"
 
-#: src/netpoisson.py:199 src/netpoisson.py:207
+#: src/npcli/args.py:247
+#, python-brace-format
+msgid "{prog}: unknown profile {name}\n"
+msgstr "{prog}: profilo sconosciuto {name}\n"
+
+#: src/npcli/args.py:331 src/npcli/args.py:339
 #, python-brace-format
 msgid "{prog}: unknown option {opt}\n"
 msgstr "{prog}: opzione sconosciuta {opt}\n"
 
-#: src/netpoisson.py:230
+#: src/npcli/args.py:403
 #, python-brace-format
 msgid "{prog}: unexpected argument {text}\n"
 msgstr "{prog}: argomento inatteso {text}\n"
 
-#: src/netpoisson.py:234
+#: src/npcli/args.py:409
 #, python-brace-format
 msgid "{prog}: do not combine --daemon with SERVER\n"
 msgstr "{prog}: non combinare --daemon con SERVER\n"
 
-#: src/netpoisson.py:242 src/netpoisson.py:249
+#: src/npcli/args.py:411
+#, python-brace-format
+msgid "{prog}: --stdio-server is exclusive\n"
+msgstr "{prog}: --stdio-server è esclusivo\n"
+
+#: src/npcli/args.py:413
+#, python-brace-format
+msgid "{prog}: --udp cannot combine with --ssh\n"
+msgstr "{prog}: --udp non si può combinare con --ssh\n"
+
+#: src/npcli/args.py:415
+#, python-brace-format
+msgid "{prog}: UDP --tls requires --psk\n"
+msgstr "{prog}: UDP --tls richiede --psk\n"
+
+#: src/npcli/args.py:417
+#, python-brace-format
+msgid "{prog}: --cert and --key must be used together\n"
+msgstr "{prog}: --cert e --key vanno usati insieme\n"
+
+#: src/npcli/args.py:419
+#, python-brace-format
+msgid "{prog}: choose --install or --remove\n"
+msgstr "{prog}: scegli --install o --remove\n"
+
+#: src/npcli/args.py:427 src/npcli/args.py:434
 #, python-brace-format
 msgid "{prog}: invalid server address\n"
 msgstr "{prog}: indirizzo del server non valido\n"
 
-#: src/netpoisson.py:292
+#: src/npcli/main.py:93
+#, python-brace-format
+msgid "{prog}: wrote {path}"
+msgstr "{prog}: scritto {path}"
+
+#: src/npcli/main.py:94
+#, python-brace-format
+msgid ""
+"{prog}: run: systemctl --user daemon-reload && systemctl --user enable --now "
+"netpoisson"
+msgstr "{prog}: esegui: systemctl --user daemon-reload && systemctl --user enable --now netpoisson"
+
+#: src/npcli/main.py:102
+#, python-brace-format
+msgid "{prog}: removed {path}"
+msgstr "{prog}: rimosso {path}"
+
+#: src/npcli/main.py:104
+#, python-brace-format
+msgid "{prog}: no unit at {path}"
+msgstr "{prog}: nessuna unità in {path}"
+
+#: src/npcli/main.py:139 src/npcli/main.py:152
 #, python-brace-format
 msgid "{prog}: {message}\n"
 msgstr "{prog}: {message}\n"
 
-#: src/netpoisson.py:294
+#: src/npcli/main.py:154
 #, python-brace-format
 msgid "{prog}: dashboard {url}"
 msgstr "{prog}: cruscotto {url}"
 
-#: src/netpoisson.py:324
+#: src/npcli/main.py:225
 #, python-brace-format
 msgid "{prog}: --lambda applies to the client; ignoring it"
 msgstr "{prog}: --lambda vale per il client; ignorato"
 
-#: src/netpoisson.py:333 src/netpoisson.py:367
+#: src/npcli/main.py:242 src/npcli/main.py:325
 #, python-brace-format
 msgid "{prog}: {message}"
 msgstr "{prog}: {message}"
 
-#: src/netpoisson.py:337
+#: src/npcli/main.py:249
 #, python-brace-format
 msgid "{prog}: listening on {proto}://{endpoint}"
 msgstr "{prog}: in ascolto su {proto}://{endpoint}"
 
-#: src/netpoisson.py:357
+#: src/npcli/main.py:291
 #, python-brace-format
 msgid "{prog}: --host is the listen address; the target is SERVER"
 msgstr "{prog}: --host è l'indirizzo di ascolto; il bersaglio è SERVER"
 
-#: src/netpoisson.py:371
+#: src/npcli/main.py:330
 #, python-brace-format
 msgid "{prog}: connected {proto} {endpoint} at {lam} req/s"
 msgstr "{prog}: connesso a {proto} {endpoint} a {lam} rich./s"
 
-#: src/netpoisson.py:382
-msgid "Req counts local arrivals per slice (newest on the left). The center number has not left this host."
-msgstr "Req conta gli arrivi locali per intervallo (i più recenti a sinistra). Il numero al centro non ha ancora lasciato questo host."
+#~ msgid ""
+#~ "Offer a Poisson stream of requests to SERVER, or listen for them when\n"
+#~ "SERVER is omitted.\n"
+#~ msgstr ""
+#~ "Invia un flusso di Poisson di richieste a SERVER, oppure ascolta se "
+#~ "SERVER è omesso.\n"
 
-#: src/netpoisson.py:389
-msgid "Resp counts server replies per slice. Left of the arrow: requests not yet read. Next: replies not yet sent."
-msgstr "Resp conta le risposte del server per intervallo. A sinistra della freccia: richieste non ancora lette. Poi: risposte non ancora inviate."
+#~ msgid ""
+#~ "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
+#~ msgstr ""
+#~ "  -d, --daemon       ascolta (anche predefinito se SERVER è omesso)\n"
+
+#~ msgid "  -H, --host HOST    address to bind (default 0.0.0.0)\n"
+#~ msgstr "  -H, --host HOST    indirizzo di bind (predefinito 0.0.0.0)\n"
+
+#~ msgid "  -p, --port PORT    port to bind or connect to (default 1871)\n"
+#~ msgstr ""
+#~ "  -p, --port PORT    porta di bind o connessione (predefinito 1871)\n"
+
+#~ msgid "  -u, --udp          use UDP (default is TCP)\n"
+#~ msgstr "  -u, --udp          usa UDP (il predefinito è TCP)\n"
+
+#~ msgid "  -l, --lambda N     offered requests per second (default 100)\n"
+#~ msgstr ""
+#~ "  -l, --lambda N     richieste offerte al secondo (predefinito 100)\n"
+
+#~ msgid ""
+#~ "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
+#~ msgstr ""
+#~ "  -s, --stats SECS   esegui per SECS secondi, poi stampa un rapporto "
+#~ "JSON\n"
+
+#~ msgid "  -w, --web          serve a live dashboard and open a browser\n"
+#~ msgstr ""
+#~ "  -w, --web          servi una dashboard dal vivo e apri un browser\n"
+
+#~ msgid "      --web-host H   dashboard address (default 127.0.0.1)\n"
+#~ msgstr ""
+#~ "      --web-host H   indirizzo della dashboard (predefinito 127.0.0.1)\n"
+
+#~ msgid "      --web-port N   dashboard port (default 8711)\n"
+#~ msgstr "      --web-port N   porta della dashboard (predefinito 8711)\n"
+
+#~ msgid ""
+#~ "ECHO responses are the request bytes. STATUS responses carry the server\n"
+#~ "timeline and queues. Req/Resp lines scroll right: newest slices on the "
+#~ "left.\n"
+#~ msgstr ""
+#~ "Le risposte ECHO sono i byte della richiesta. STATUS porta la sequenza "
+#~ "temporale e le code.\n"
+#~ "Req/Resp scorrono a destra: le fette più recenti sono a sinistra.\n"
+
+#~ msgid ""
+#~ "Req counts local arrivals per slice (newest on the left). The center "
+#~ "number has not left this host."
+#~ msgstr ""
+#~ "Req conta gli arrivi locali per intervallo (i più recenti a sinistra). Il "
+#~ "numero al centro non ha ancora lasciato questo host."
+
+#~ msgid ""
+#~ "Resp counts server replies per slice. Left of the arrow: requests not yet "
+#~ "read. Next: replies not yet sent."
+#~ msgstr ""
+#~ "Resp conta le risposte del server per intervallo. A sinistra della "
+#~ "freccia: richieste non ancora lette. Poi: risposte non ancora inviate."

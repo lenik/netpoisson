@@ -1,2 +1,11 @@
-src/netpoisson.py
-src/i18nutil.py
+src/netio_sock.py
+src/npcli/args.py
+src/npcli/main.py
+src/peer_client/client.py
+src/peer_client/stdio_io.py
+src/peer_server.py
+src/traffic/analysis.py
+src/traffic/book.py
+src/traffic/display.py
+src/traffic/timing.py
+src/webui.py
