@@ -16,9 +16,7 @@ msgid "Usage: netpoisson [OPTION]... [SERVER]\n"
 msgstr "Aufruf: netpoisson [OPTION]... [SERVER]\n"
 
 #: src/npcli/args.py:112
-msgid ""
-"Offer a Poisson stream of requests to SERVER, or listen when SERVER is "
-"omitted.\n"
+msgid "Offer a Poisson stream of requests to SERVER, or listen when SERVER is omitted.\n"
 msgstr "Biete einen Poisson-Anforderungsstrom an SERVER an, oder lausche, wenn SERVER weggelassen wird.\n"
 
 #: src/npcli/args.py:116
@@ -26,14 +24,11 @@ msgid "Modes:\n"
 msgstr "Modi:\n"
 
 #: src/npcli/args.py:117
-msgid ""
-"  -d, --daemon              listen (also the default when SERVER is "
-"omitted)\n"
+msgid "  -d, --daemon              listen (also the default when SERVER is omitted)\n"
 msgstr "  -d, --daemon              lauschen (auch Standard, wenn SERVER weggelassen wird)\n"
 
 #: src/npcli/args.py:118
-msgid ""
-"      --stdio-server        serve NDJSON @nPoi protocol on stdin/stdout\n"
+msgid "      --stdio-server        serve NDJSON @nPoi protocol on stdin/stdout\n"
 msgstr "      --stdio-server        NDJSON-@nPoi-Protokoll auf stdin/stdout bedienen\n"
 
 #: src/npcli/args.py:119
@@ -46,7 +41,7 @@ msgstr "      --install/--remove    eine systemd-Benutzerdienstunit verwalten\n"
 
 #: src/npcli/args.py:122
 msgid "Transport:\n"
-msgstr "Transport:\n"
+msgstr "Übertragung:\n"
 
 #: src/npcli/args.py:123
 msgid "  -H, --host HOST           bind host (default 0.0.0.0)\n"
@@ -121,8 +116,7 @@ msgid "      --bucket D            timeline bucket (default 100ms)\n"
 msgstr "      --bucket D            Zeitachsen-Eimer (Standard 100ms)\n"
 
 #: src/npcli/args.py:142
-msgid ""
-"      --window D            visible window (default auto; or e.g. 12s)\n"
+msgid "      --window D            visible window (default auto; or e.g. 12s)\n"
 msgstr "      --window D            sichtbares Fenster (Standard auto; oder z. B. 12s)\n"
 
 #: src/npcli/args.py:143
@@ -175,11 +169,11 @@ msgstr "Versionsinformation ausgeben und beenden\n"
 
 #: src/npcli/args.py:163
 msgid ""
-"TCP/UDP use a length-prefixed binary PDU. SSH stdio uses @nPoi NDJSON "
-"lines.\n"
-"When stdout is not a TTY, live UI is suppressed and NDJSON events are "
-"emitted.\n"
-msgstr "TCP/UDP nutzen eine längenvorangestellte binäre PDU. SSH-stdio nutzt @nPoi-NDJSON-Zeilen.\nIst stdout kein TTY, wird die Live-UI unterdrückt und NDJSON-Ereignisse ausgegeben.\n"
+"TCP/UDP use a length-prefixed binary PDU. SSH stdio uses @nPoi NDJSON lines.\n"
+"When stdout is not a TTY, live UI is suppressed and NDJSON events are emitted.\n"
+msgstr ""
+"TCP/UDP nutzen eine längenvorangestellte binäre PDU. SSH-stdio nutzt @nPoi-NDJSON-Zeilen.\n"
+"Ist stdout kein TTY, wird die Live-UI unterdrückt und NDJSON-Ereignisse ausgegeben.\n"
 
 #: src/npcli/args.py:168
 #, python-brace-format
@@ -192,10 +186,8 @@ msgid "Copyright (C) {year} {author}\n"
 msgstr "Copyright (C) {year} {author}\n"
 
 #: src/npcli/args.py:174
-msgid ""
-"License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
-msgstr ""
-"Lizenz AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgid "License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgstr "Lizenz AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
 
 #: src/npcli/args.py:175
 msgid "This is free software: you are free to change and redistribute it.\n"
@@ -206,12 +198,8 @@ msgid "This project opposes AI exploitation and AI hegemony.\n"
 msgstr "Dieses Projekt lehnt KI-Ausbeutung und KI-Hegemonie ab.\n"
 
 #: src/npcli/args.py:179
-msgid ""
-"This project rejects mindless MIT-style licensing and politically naive BSD-"
-"style licensing.\n"
-msgstr ""
-"Dieses Projekt lehnt gedankenlose MIT-Lizenzen und politisch naive BSD-"
-"Lizenzen ab.\n"
+msgid "This project rejects mindless MIT-style licensing and politically naive BSD-style licensing.\n"
+msgstr "Dieses Projekt lehnt gedankenlose MIT-Lizenzen und politisch naive BSD-Lizenzen ab.\n"
 
 #: src/npcli/args.py:183
 msgid "There is NO WARRANTY, to the extent permitted by law.\n"
@@ -299,9 +287,7 @@ msgstr "{prog}: geschrieben {path}"
 
 #: src/npcli/main.py:94
 #, python-brace-format
-msgid ""
-"{prog}: run: systemctl --user daemon-reload && systemctl --user enable --now "
-"netpoisson"
+msgid "{prog}: run: systemctl --user daemon-reload && systemctl --user enable --now netpoisson"
 msgstr "{prog}: ausführen: systemctl --user daemon-reload && systemctl --user enable --now netpoisson"
 
 #: src/npcli/main.py:102
@@ -353,38 +339,29 @@ msgstr "{prog}: verbunden mit {proto} {endpoint} bei {lam} Anfr./s"
 #~ "Offer a Poisson stream of requests to SERVER, or listen for them when\n"
 #~ "SERVER is omitted.\n"
 #~ msgstr ""
-#~ "Sende einen Poisson-Strom von Anfragen an SERVER oder warte auf "
-#~ "Anfragen,\n"
+#~ "Sende einen Poisson-Strom von Anfragen an SERVER oder warte auf Anfragen,\n"
 #~ "wenn SERVER fehlt.\n"
 
-#~ msgid ""
-#~ "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
-#~ msgstr ""
-#~ "  -d, --daemon       auf Anfragen warten (Vorgabe, wenn SERVER fehlt)\n"
+#~ msgid "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
+#~ msgstr "  -d, --daemon       auf Anfragen warten (Vorgabe, wenn SERVER fehlt)\n"
 
 #~ msgid "  -H, --host HOST    address to bind (default 0.0.0.0)\n"
 #~ msgstr "  -H, --host HOST    Bind-Adresse (Vorgabe 0.0.0.0)\n"
 
 #~ msgid "  -p, --port PORT    port to bind or connect to (default 1871)\n"
-#~ msgstr ""
-#~ "  -p, --port PORT    Port zum Binden oder Verbinden (Vorgabe 1871)\n"
+#~ msgstr "  -p, --port PORT    Port zum Binden oder Verbinden (Vorgabe 1871)\n"
 
 #~ msgid "  -u, --udp          use UDP (default is TCP)\n"
 #~ msgstr "  -u, --udp          UDP verwenden (Vorgabe ist TCP)\n"
 
 #~ msgid "  -l, --lambda N     offered requests per second (default 100)\n"
-#~ msgstr ""
-#~ "  -l, --lambda N     angebotene Anfragen pro Sekunde (Vorgabe 100)\n"
+#~ msgstr "  -l, --lambda N     angebotene Anfragen pro Sekunde (Vorgabe 100)\n"
 
-#~ msgid ""
-#~ "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
-#~ msgstr ""
-#~ "  -s, --stats SECS   SECS Sekunden laufen, dann einen JSON-Bericht "
-#~ "drucken\n"
+#~ msgid "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
+#~ msgstr "  -s, --stats SECS   SECS Sekunden laufen, dann einen JSON-Bericht drucken\n"
 
 #~ msgid "  -w, --web          serve a live dashboard and open a browser\n"
-#~ msgstr ""
-#~ "  -w, --web          Live-Übersicht anbieten und einen Browser öffnen\n"
+#~ msgstr "  -w, --web          Live-Übersicht anbieten und einen Browser öffnen\n"
 
 #~ msgid "      --web-host H   dashboard address (default 127.0.0.1)\n"
 #~ msgstr "      --web-host H   Adresse der Übersicht (Vorgabe 127.0.0.1)\n"
@@ -394,23 +371,13 @@ msgstr "{prog}: verbunden mit {proto} {endpoint} bei {lam} Anfr./s"
 
 #~ msgid ""
 #~ "ECHO responses are the request bytes. STATUS responses carry the server\n"
-#~ "timeline and queues. Req/Resp lines scroll right: newest slices on the "
-#~ "left.\n"
+#~ "timeline and queues. Req/Resp lines scroll right: newest slices on the left.\n"
 #~ msgstr ""
-#~ "ECHO-Antworten sind die Anfragebytes. STATUS trägt Zeitlinie und "
-#~ "Warteschlangen.\n"
+#~ "ECHO-Antworten sind die Anfragebytes. STATUS trägt Zeitlinie und Warteschlangen.\n"
 #~ "Req/Resp laufen nach rechts: die neuesten Scheiben stehen links.\n"
 
-#~ msgid ""
-#~ "Req counts local arrivals per slice (newest on the left). The center "
-#~ "number has not left this host."
-#~ msgstr ""
-#~ "Req zählt lokale Ankünfte je Zeitscheibe (das Neueste links). Die "
-#~ "mittlere Zahl hat diesen Rechner noch nicht verlassen."
+#~ msgid "Req counts local arrivals per slice (newest on the left). The center number has not left this host."
+#~ msgstr "Req zählt lokale Ankünfte je Zeitscheibe (das Neueste links). Die mittlere Zahl hat diesen Rechner noch nicht verlassen."
 
-#~ msgid ""
-#~ "Resp counts server replies per slice. Left of the arrow: requests not yet "
-#~ "read. Next: replies not yet sent."
-#~ msgstr ""
-#~ "Resp zählt Server-Antworten je Zeitscheibe. Links vom Pfeil: noch nicht "
-#~ "gelesene Anfragen. Danach: noch nicht gesendete Antworten."
+#~ msgid "Resp counts server replies per slice. Left of the arrow: requests not yet read. Next: replies not yet sent."
+#~ msgstr "Resp zählt Server-Antworten je Zeitscheibe. Links vom Pfeil: noch nicht gelesene Anfragen. Danach: noch nicht gesendete Antworten."

@@ -16,9 +16,7 @@ msgid "Usage: netpoisson [OPTION]... [SERVER]\n"
 msgstr "사용법: netpoisson [옵션]... [서버]\n"
 
 #: src/npcli/args.py:112
-msgid ""
-"Offer a Poisson stream of requests to SERVER, or listen when SERVER is "
-"omitted.\n"
+msgid "Offer a Poisson stream of requests to SERVER, or listen when SERVER is omitted.\n"
 msgstr "SERVER에 포아송 요청 스트림을 보내거나, SERVER를 생략하면 수신합니다.\n"
 
 #: src/npcli/args.py:116
@@ -26,14 +24,11 @@ msgid "Modes:\n"
 msgstr "모드:\n"
 
 #: src/npcli/args.py:117
-msgid ""
-"  -d, --daemon              listen (also the default when SERVER is "
-"omitted)\n"
+msgid "  -d, --daemon              listen (also the default when SERVER is omitted)\n"
 msgstr "  -d, --daemon              수신 (SERVER 생략 시 기본값이기도 함)\n"
 
 #: src/npcli/args.py:118
-msgid ""
-"      --stdio-server        serve NDJSON @nPoi protocol on stdin/stdout\n"
+msgid "      --stdio-server        serve NDJSON @nPoi protocol on stdin/stdout\n"
 msgstr "      --stdio-server        stdin/stdout에서 NDJSON @nPoi 프로토콜 제공\n"
 
 #: src/npcli/args.py:119
@@ -121,8 +116,7 @@ msgid "      --bucket D            timeline bucket (default 100ms)\n"
 msgstr "      --bucket D            타임라인 버킷 (기본 100ms)\n"
 
 #: src/npcli/args.py:142
-msgid ""
-"      --window D            visible window (default auto; or e.g. 12s)\n"
+msgid "      --window D            visible window (default auto; or e.g. 12s)\n"
 msgstr "      --window D            표시 창 (기본 auto; 예: 12s)\n"
 
 #: src/npcli/args.py:143
@@ -175,11 +169,11 @@ msgstr "버전 정보를 출력하고 종료한다\n"
 
 #: src/npcli/args.py:163
 msgid ""
-"TCP/UDP use a length-prefixed binary PDU. SSH stdio uses @nPoi NDJSON "
-"lines.\n"
-"When stdout is not a TTY, live UI is suppressed and NDJSON events are "
-"emitted.\n"
-msgstr "TCP/UDP는 길이 접두 이진 PDU를 씁니다. SSH stdio는 @nPoi NDJSON 줄을 씁니다.\nstdout이 TTY가 아니면 실시간 UI는 끄고 NDJSON 이벤트를 냅니다.\n"
+"TCP/UDP use a length-prefixed binary PDU. SSH stdio uses @nPoi NDJSON lines.\n"
+"When stdout is not a TTY, live UI is suppressed and NDJSON events are emitted.\n"
+msgstr ""
+"TCP/UDP는 길이 접두 이진 PDU를 씁니다. SSH stdio는 @nPoi NDJSON 줄을 씁니다.\n"
+"stdout이 TTY가 아니면 실시간 UI는 끄고 NDJSON 이벤트를 냅니다.\n"
 
 #: src/npcli/args.py:168
 #, python-brace-format
@@ -192,10 +186,8 @@ msgid "Copyright (C) {year} {author}\n"
 msgstr "Copyright (C) {year} {author}\n"
 
 #: src/npcli/args.py:174
-msgid ""
-"License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
-msgstr ""
-"라이선스 AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgid "License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgstr "라이선스 AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
 
 #: src/npcli/args.py:175
 msgid "This is free software: you are free to change and redistribute it.\n"
@@ -206,12 +198,8 @@ msgid "This project opposes AI exploitation and AI hegemony.\n"
 msgstr "이 프로젝트는 AI 착취와 AI 패권에 반대합니다.\n"
 
 #: src/npcli/args.py:179
-msgid ""
-"This project rejects mindless MIT-style licensing and politically naive BSD-"
-"style licensing.\n"
-msgstr ""
-"이 프로젝트는 무심한 MIT식 라이선스와 정치적으로 순진한 BSD식 라이선스를 거부"
-"합니다.\n"
+msgid "This project rejects mindless MIT-style licensing and politically naive BSD-style licensing.\n"
+msgstr "이 프로젝트는 무심한 MIT식 라이선스와 정치적으로 순진한 BSD식 라이선스를 거부합니다.\n"
 
 #: src/npcli/args.py:183
 msgid "There is NO WARRANTY, to the extent permitted by law.\n"
@@ -299,9 +287,7 @@ msgstr "{prog}: 씀 {path}"
 
 #: src/npcli/main.py:94
 #, python-brace-format
-msgid ""
-"{prog}: run: systemctl --user daemon-reload && systemctl --user enable --now "
-"netpoisson"
+msgid "{prog}: run: systemctl --user daemon-reload && systemctl --user enable --now netpoisson"
 msgstr "{prog}: 실행: systemctl --user daemon-reload && systemctl --user enable --now netpoisson"
 
 #: src/npcli/main.py:102
@@ -352,11 +338,9 @@ msgstr "{prog}: {proto} {endpoint} 에 연결, {lam} 요청/초"
 #~ msgid ""
 #~ "Offer a Poisson stream of requests to SERVER, or listen for them when\n"
 #~ "SERVER is omitted.\n"
-#~ msgstr ""
-#~ "SERVER에 푸아송 과정으로 요청을 보낸다. SERVER를 생략하면 수신 대기한다.\n"
+#~ msgstr "SERVER에 푸아송 과정으로 요청을 보낸다. SERVER를 생략하면 수신 대기한다.\n"
 
-#~ msgid ""
-#~ "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
+#~ msgid "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
 #~ msgstr "  -d, --daemon       수신 대기 (서버를 생략했을 때의 기본값)\n"
 
 #~ msgid "  -H, --host HOST    address to bind (default 0.0.0.0)\n"
@@ -371,8 +355,7 @@ msgstr "{prog}: {proto} {endpoint} 에 연결, {lam} 요청/초"
 #~ msgid "  -l, --lambda N     offered requests per second (default 100)\n"
 #~ msgstr "  -l, --lambda N     초당 제공 요청 수 (기본값 100)\n"
 
-#~ msgid ""
-#~ "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
+#~ msgid "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
 #~ msgstr "  -s, --stats SECS   SECS초 동안 실행한 뒤 JSON 보고서를 출력\n"
 
 #~ msgid "  -w, --web          serve a live dashboard and open a browser\n"
@@ -386,23 +369,13 @@ msgstr "{prog}: {proto} {endpoint} 에 연결, {lam} 요청/초"
 
 #~ msgid ""
 #~ "ECHO responses are the request bytes. STATUS responses carry the server\n"
-#~ "timeline and queues. Req/Resp lines scroll right: newest slices on the "
-#~ "left.\n"
+#~ "timeline and queues. Req/Resp lines scroll right: newest slices on the left.\n"
 #~ msgstr ""
-#~ "ECHO 응답은 요청 바이트 그대로다. STATUS는 서버 시간선과 대기열을 담는"
-#~ "다.\n"
+#~ "ECHO 응답은 요청 바이트 그대로다. STATUS는 서버 시간선과 대기열을 담는다.\n"
 #~ "Req/Resp는 오른쪽으로 흐르고, 최신 구간은 왼쪽이다.\n"
 
-#~ msgid ""
-#~ "Req counts local arrivals per slice (newest on the left). The center "
-#~ "number has not left this host."
-#~ msgstr ""
-#~ "Req는 이 호스트의 시간 조각별 도착 수다(최신이 왼쪽). 가운데 숫자는 아직 "
-#~ "망을 떠나지 않았다."
+#~ msgid "Req counts local arrivals per slice (newest on the left). The center number has not left this host."
+#~ msgstr "Req는 이 호스트의 시간 조각별 도착 수다(최신이 왼쪽). 가운데 숫자는 아직 망을 떠나지 않았다."
 
-#~ msgid ""
-#~ "Resp counts server replies per slice. Left of the arrow: requests not yet "
-#~ "read. Next: replies not yet sent."
-#~ msgstr ""
-#~ "Resp는 서버의 시간 조각별 응답 수다. 화살표 왼쪽은 아직 읽거나 분석하지 않"
-#~ "은 요청, 그다음은 아직 나가지 않은 응답이다."
+#~ msgid "Resp counts server replies per slice. Left of the arrow: requests not yet read. Next: replies not yet sent."
+#~ msgstr "Resp는 서버의 시간 조각별 응답 수다. 화살표 왼쪽은 아직 읽거나 분석하지 않은 요청, 그다음은 아직 나가지 않은 응답이다."

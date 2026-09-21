@@ -16,9 +16,7 @@ msgid "Usage: netpoisson [OPTION]... [SERVER]\n"
 msgstr "用法：netpoisson [選項]... [伺服器]\n"
 
 #: src/npcli/args.py:112
-msgid ""
-"Offer a Poisson stream of requests to SERVER, or listen when SERVER is "
-"omitted.\n"
+msgid "Offer a Poisson stream of requests to SERVER, or listen when SERVER is omitted.\n"
 msgstr "依泊松過程向伺服器發送請求；若省略伺服器，則改為監聽。\n"
 
 #: src/npcli/args.py:116
@@ -26,14 +24,11 @@ msgid "Modes:\n"
 msgstr "模式：\n"
 
 #: src/npcli/args.py:117
-msgid ""
-"  -d, --daemon              listen (also the default when SERVER is "
-"omitted)\n"
+msgid "  -d, --daemon              listen (also the default when SERVER is omitted)\n"
 msgstr "  -d, --daemon              監聽（省略伺服器時也是預設行為）\n"
 
 #: src/npcli/args.py:118
-msgid ""
-"      --stdio-server        serve NDJSON @nPoi protocol on stdin/stdout\n"
+msgid "      --stdio-server        serve NDJSON @nPoi protocol on stdin/stdout\n"
 msgstr "      --stdio-server        在 stdin/stdout 上提供 NDJSON @nPoi 協定\n"
 
 #: src/npcli/args.py:119
@@ -121,8 +116,7 @@ msgid "      --bucket D            timeline bucket (default 100ms)\n"
 msgstr "      --bucket D            時間軸分桶（預設 100ms）\n"
 
 #: src/npcli/args.py:142
-msgid ""
-"      --window D            visible window (default auto; or e.g. 12s)\n"
+msgid "      --window D            visible window (default auto; or e.g. 12s)\n"
 msgstr "      --window D            可見視窗（預設 auto；或如 12s）\n"
 
 #: src/npcli/args.py:143
@@ -175,11 +169,11 @@ msgstr "輸出版本資訊並離開\n"
 
 #: src/npcli/args.py:163
 msgid ""
-"TCP/UDP use a length-prefixed binary PDU. SSH stdio uses @nPoi NDJSON "
-"lines.\n"
-"When stdout is not a TTY, live UI is suppressed and NDJSON events are "
-"emitted.\n"
-msgstr "TCP/UDP 使用帶長度前綴的二進位 PDU。SSH stdio 使用 @nPoi 的 NDJSON 行。\n當 stdout 不是 TTY 時，不顯示即時介面，改為輸出 NDJSON 事件。\n"
+"TCP/UDP use a length-prefixed binary PDU. SSH stdio uses @nPoi NDJSON lines.\n"
+"When stdout is not a TTY, live UI is suppressed and NDJSON events are emitted.\n"
+msgstr ""
+"TCP/UDP 使用帶長度前綴的二進位 PDU。SSH stdio 使用 @nPoi 的 NDJSON 行。\n"
+"當 stdout 不是 TTY 時，不顯示即時介面，改為輸出 NDJSON 事件。\n"
 
 #: src/npcli/args.py:168
 #, python-brace-format
@@ -192,10 +186,8 @@ msgid "Copyright (C) {year} {author}\n"
 msgstr "著作權所有 (C) {year} {author}\n"
 
 #: src/npcli/args.py:174
-msgid ""
-"License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
-msgstr ""
-"授權條款 AGPL-3.0-or-later：<https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgid "License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgstr "授權條款 AGPL-3.0-or-later：<https://www.gnu.org/licenses/agpl-3.0.html>\n"
 
 #: src/npcli/args.py:175
 msgid "This is free software: you are free to change and redistribute it.\n"
@@ -206,9 +198,7 @@ msgid "This project opposes AI exploitation and AI hegemony.\n"
 msgstr "本專案反對 AI 剝削與 AI 霸權。\n"
 
 #: src/npcli/args.py:179
-msgid ""
-"This project rejects mindless MIT-style licensing and politically naive BSD-"
-"style licensing.\n"
+msgid "This project rejects mindless MIT-style licensing and politically naive BSD-style licensing.\n"
 msgstr "本專案反對無腦 MIT 式授權和政治愚蠢的 BSD 式授權。\n"
 
 #: src/npcli/args.py:183
@@ -297,9 +287,7 @@ msgstr "{prog}: 已寫入 {path}"
 
 #: src/npcli/main.py:94
 #, python-brace-format
-msgid ""
-"{prog}: run: systemctl --user daemon-reload && systemctl --user enable --now "
-"netpoisson"
+msgid "{prog}: run: systemctl --user daemon-reload && systemctl --user enable --now netpoisson"
 msgstr "{prog}: 請執行: systemctl --user daemon-reload && systemctl --user enable --now netpoisson"
 
 #: src/npcli/main.py:102
@@ -352,8 +340,7 @@ msgstr "{prog}：已連線 {proto} {endpoint}，{lam} 請求/秒"
 #~ "SERVER is omitted.\n"
 #~ msgstr "依卜瓦松過程向伺服器送出請求；若省略伺服器，則改為聆聽。\n"
 
-#~ msgid ""
-#~ "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
+#~ msgid "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
 #~ msgstr "  -d, --daemon       聆聽（省略伺服器時也是預設行為）\n"
 
 #~ msgid "  -H, --host HOST    address to bind (default 0.0.0.0)\n"
@@ -368,8 +355,7 @@ msgstr "{prog}：已連線 {proto} {endpoint}，{lam} 請求/秒"
 #~ msgid "  -l, --lambda N     offered requests per second (default 100)\n"
 #~ msgstr "  -l, --lambda N     每秒送出的請求數（預設 100）\n"
 
-#~ msgid ""
-#~ "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
+#~ msgid "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
 #~ msgstr "  -s, --stats SECS   執行 SECS 秒，然後印出 JSON 報告\n"
 
 #~ msgid "  -w, --web          serve a live dashboard and open a browser\n"
@@ -383,21 +369,13 @@ msgstr "{prog}：已連線 {proto} {endpoint}，{lam} 請求/秒"
 
 #~ msgid ""
 #~ "ECHO responses are the request bytes. STATUS responses carry the server\n"
-#~ "timeline and queues. Req/Resp lines scroll right: newest slices on the "
-#~ "left.\n"
+#~ "timeline and queues. Req/Resp lines scroll right: newest slices on the left.\n"
 #~ msgstr ""
 #~ "ECHO 的回應就是請求位元組。STATUS 帶回伺服器時間線與佇列。\n"
 #~ "Req/Resp 向右捲動：最新的時間片在左邊。\n"
 
-#~ msgid ""
-#~ "Req counts local arrivals per slice (newest on the left). The center "
-#~ "number has not left this host."
-#~ msgstr ""
-#~ "Req 是本機每個時間片的到達數（最新在左）。中間的數字還沒離開本機網口。"
+#~ msgid "Req counts local arrivals per slice (newest on the left). The center number has not left this host."
+#~ msgstr "Req 是本機每個時間片的到達數（最新在左）。中間的數字還沒離開本機網口。"
 
-#~ msgid ""
-#~ "Resp counts server replies per slice. Left of the arrow: requests not yet "
-#~ "read. Next: replies not yet sent."
-#~ msgstr ""
-#~ "Resp 是伺服器每個時間片的回應數。箭頭左邊：還沒被讀取/分析的請求。其後：還"
-#~ "沒離開網口的回應。"
+#~ msgid "Resp counts server replies per slice. Left of the arrow: requests not yet read. Next: replies not yet sent."
+#~ msgstr "Resp 是伺服器每個時間片的回應數。箭頭左邊：還沒被讀取/分析的請求。其後：還沒離開網口的回應。"

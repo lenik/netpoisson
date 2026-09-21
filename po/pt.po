@@ -22,9 +22,7 @@ msgid "Usage: netpoisson [OPTION]... [SERVER]\n"
 msgstr "Uso: netpoisson [OPÇÃO]... [SERVIDOR]\n"
 
 #: src/npcli/args.py:112
-msgid ""
-"Offer a Poisson stream of requests to SERVER, or listen when SERVER is "
-"omitted.\n"
+msgid "Offer a Poisson stream of requests to SERVER, or listen when SERVER is omitted.\n"
 msgstr "Oferece um fluxo Poisson de pedidos a SERVER, ou escuta se SERVER for omitido.\n"
 
 #: src/npcli/args.py:116
@@ -32,14 +30,11 @@ msgid "Modes:\n"
 msgstr "Modos:\n"
 
 #: src/npcli/args.py:117
-msgid ""
-"  -d, --daemon              listen (also the default when SERVER is "
-"omitted)\n"
+msgid "  -d, --daemon              listen (also the default when SERVER is omitted)\n"
 msgstr "  -d, --daemon              escutar (também o padrão se SERVER for omitido)\n"
 
 #: src/npcli/args.py:118
-msgid ""
-"      --stdio-server        serve NDJSON @nPoi protocol on stdin/stdout\n"
+msgid "      --stdio-server        serve NDJSON @nPoi protocol on stdin/stdout\n"
 msgstr "      --stdio-server        servir o protocolo NDJSON @nPoi em stdin/stdout\n"
 
 #: src/npcli/args.py:119
@@ -127,8 +122,7 @@ msgid "      --bucket D            timeline bucket (default 100ms)\n"
 msgstr "      --bucket D            balde da linha temporal (predefinição 100ms)\n"
 
 #: src/npcli/args.py:142
-msgid ""
-"      --window D            visible window (default auto; or e.g. 12s)\n"
+msgid "      --window D            visible window (default auto; or e.g. 12s)\n"
 msgstr "      --window D            janela visível (predefinição auto; ou p.ex. 12s)\n"
 
 #: src/npcli/args.py:143
@@ -181,11 +175,11 @@ msgstr "mostrar a versão e sair\n"
 
 #: src/npcli/args.py:163
 msgid ""
-"TCP/UDP use a length-prefixed binary PDU. SSH stdio uses @nPoi NDJSON "
-"lines.\n"
-"When stdout is not a TTY, live UI is suppressed and NDJSON events are "
-"emitted.\n"
-msgstr "TCP/UDP usam uma PDU binária com prefixo de comprimento. SSH stdio usa linhas NDJSON @nPoi.\nSe stdout não for um TTY, a IU ao vivo é suprimida e emitem-se eventos NDJSON.\n"
+"TCP/UDP use a length-prefixed binary PDU. SSH stdio uses @nPoi NDJSON lines.\n"
+"When stdout is not a TTY, live UI is suppressed and NDJSON events are emitted.\n"
+msgstr ""
+"TCP/UDP usam uma PDU binária com prefixo de comprimento. SSH stdio usa linhas NDJSON @nPoi.\n"
+"Se stdout não for um TTY, a IU ao vivo é suprimida e emitem-se eventos NDJSON.\n"
 
 #: src/npcli/args.py:168
 #, python-brace-format
@@ -198,10 +192,8 @@ msgid "Copyright (C) {year} {author}\n"
 msgstr "Copyright (C) {year} {author}\n"
 
 #: src/npcli/args.py:174
-msgid ""
-"License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
-msgstr ""
-"Licença AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgid "License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgstr "Licença AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
 
 #: src/npcli/args.py:175
 msgid "This is free software: you are free to change and redistribute it.\n"
@@ -212,12 +204,8 @@ msgid "This project opposes AI exploitation and AI hegemony.\n"
 msgstr "Este projeto opõe-se à exploração e à hegemonia da IA.\n"
 
 #: src/npcli/args.py:179
-msgid ""
-"This project rejects mindless MIT-style licensing and politically naive BSD-"
-"style licensing.\n"
-msgstr ""
-"Este projeto rejeita o licenciamento irrefletido ao estilo MIT e o "
-"licenciamento BSD politicamente ingénuo.\n"
+msgid "This project rejects mindless MIT-style licensing and politically naive BSD-style licensing.\n"
+msgstr "Este projeto rejeita o licenciamento irrefletido ao estilo MIT e o licenciamento BSD politicamente ingénuo.\n"
 
 #: src/npcli/args.py:183
 msgid "There is NO WARRANTY, to the extent permitted by law.\n"
@@ -305,9 +293,7 @@ msgstr "{prog}: escreveu {path}"
 
 #: src/npcli/main.py:94
 #, python-brace-format
-msgid ""
-"{prog}: run: systemctl --user daemon-reload && systemctl --user enable --now "
-"netpoisson"
+msgid "{prog}: run: systemctl --user daemon-reload && systemctl --user enable --now netpoisson"
 msgstr "{prog}: execute: systemctl --user daemon-reload && systemctl --user enable --now netpoisson"
 
 #: src/npcli/main.py:102
@@ -358,14 +344,10 @@ msgstr "{prog}: ligado a {proto} {endpoint} a {lam} ped./s"
 #~ msgid ""
 #~ "Offer a Poisson stream of requests to SERVER, or listen for them when\n"
 #~ "SERVER is omitted.\n"
-#~ msgstr ""
-#~ "Envia um fluxo de Poisson de pedidos a SERVIDOR, ou escuta se SERVIDOR "
-#~ "for omitido.\n"
+#~ msgstr "Envia um fluxo de Poisson de pedidos a SERVIDOR, ou escuta se SERVIDOR for omitido.\n"
 
-#~ msgid ""
-#~ "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
-#~ msgstr ""
-#~ "  -d, --daemon       escutar (também a omissão quando SERVIDOR falta)\n"
+#~ msgid "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
+#~ msgstr "  -d, --daemon       escutar (também a omissão quando SERVIDOR falta)\n"
 
 #~ msgid "  -H, --host HOST    address to bind (default 0.0.0.0)\n"
 #~ msgstr "  -H, --host HOST    endereço de escuta (omissão 0.0.0.0)\n"
@@ -379,15 +361,11 @@ msgstr "{prog}: ligado a {proto} {endpoint} a {lam} ped./s"
 #~ msgid "  -l, --lambda N     offered requests per second (default 100)\n"
 #~ msgstr "  -l, --lambda N     pedidos oferecidos por segundo (omissão 100)\n"
 
-#~ msgid ""
-#~ "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
-#~ msgstr ""
-#~ "  -s, --stats SECS   correr SECS segundos e depois imprimir um relatório "
-#~ "JSON\n"
+#~ msgid "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
+#~ msgstr "  -s, --stats SECS   correr SECS segundos e depois imprimir um relatório JSON\n"
 
 #~ msgid "  -w, --web          serve a live dashboard and open a browser\n"
-#~ msgstr ""
-#~ "  -w, --web          servir um painel ao vivo e abrir um navegador\n"
+#~ msgstr "  -w, --web          servir um painel ao vivo e abrir um navegador\n"
 
 #~ msgid "      --web-host H   dashboard address (default 127.0.0.1)\n"
 #~ msgstr "      --web-host H   endereço do painel (omissão 127.0.0.1)\n"
@@ -397,23 +375,13 @@ msgstr "{prog}: ligado a {proto} {endpoint} a {lam} ped./s"
 
 #~ msgid ""
 #~ "ECHO responses are the request bytes. STATUS responses carry the server\n"
-#~ "timeline and queues. Req/Resp lines scroll right: newest slices on the "
-#~ "left.\n"
+#~ "timeline and queues. Req/Resp lines scroll right: newest slices on the left.\n"
 #~ msgstr ""
-#~ "As respostas ECHO são os bytes do pedido. STATUS traz a linha temporal e "
-#~ "as filas.\n"
+#~ "As respostas ECHO são os bytes do pedido. STATUS traz a linha temporal e as filas.\n"
 #~ "Req/Resp deslocam-se para a direita: as fatias novas ficam à esquerda.\n"
 
-#~ msgid ""
-#~ "Req counts local arrivals per slice (newest on the left). The center "
-#~ "number has not left this host."
-#~ msgstr ""
-#~ "Req conta as chegadas locais por fatia (as mais recentes à esquerda). O "
-#~ "número ao centro ainda não saiu deste anfitrião."
+#~ msgid "Req counts local arrivals per slice (newest on the left). The center number has not left this host."
+#~ msgstr "Req conta as chegadas locais por fatia (as mais recentes à esquerda). O número ao centro ainda não saiu deste anfitrião."
 
-#~ msgid ""
-#~ "Resp counts server replies per slice. Left of the arrow: requests not yet "
-#~ "read. Next: replies not yet sent."
-#~ msgstr ""
-#~ "Resp conta as respostas do servidor por fatia. À esquerda da seta: "
-#~ "pedidos ainda não lidos. A seguir: respostas ainda não enviadas."
+#~ msgid "Resp counts server replies per slice. Left of the arrow: requests not yet read. Next: replies not yet sent."
+#~ msgstr "Resp conta as respostas do servidor por fatia. À esquerda da seta: pedidos ainda não lidos. A seguir: respostas ainda não enviadas."

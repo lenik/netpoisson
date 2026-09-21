@@ -16,9 +16,7 @@ msgid "Usage: netpoisson [OPTION]... [SERVER]\n"
 msgstr "Utilisation : netpoisson [OPTION]... [SERVEUR]\n"
 
 #: src/npcli/args.py:112
-msgid ""
-"Offer a Poisson stream of requests to SERVER, or listen when SERVER is "
-"omitted.\n"
+msgid "Offer a Poisson stream of requests to SERVER, or listen when SERVER is omitted.\n"
 msgstr "Propose un flux Poisson de requêtes à SERVER, ou écoute si SERVER est omis.\n"
 
 #: src/npcli/args.py:116
@@ -26,14 +24,11 @@ msgid "Modes:\n"
 msgstr "Modes :\n"
 
 #: src/npcli/args.py:117
-msgid ""
-"  -d, --daemon              listen (also the default when SERVER is "
-"omitted)\n"
+msgid "  -d, --daemon              listen (also the default when SERVER is omitted)\n"
 msgstr "  -d, --daemon              écouter (aussi la valeur par défaut si SERVER est omis)\n"
 
 #: src/npcli/args.py:118
-msgid ""
-"      --stdio-server        serve NDJSON @nPoi protocol on stdin/stdout\n"
+msgid "      --stdio-server        serve NDJSON @nPoi protocol on stdin/stdout\n"
 msgstr "      --stdio-server        servir le protocole NDJSON @nPoi sur stdin/stdout\n"
 
 #: src/npcli/args.py:119
@@ -121,8 +116,7 @@ msgid "      --bucket D            timeline bucket (default 100ms)\n"
 msgstr "      --bucket D            seau de la chronologie (défaut 100ms)\n"
 
 #: src/npcli/args.py:142
-msgid ""
-"      --window D            visible window (default auto; or e.g. 12s)\n"
+msgid "      --window D            visible window (default auto; or e.g. 12s)\n"
 msgstr "      --window D            fenêtre visible (défaut auto ; ou p.ex. 12s)\n"
 
 #: src/npcli/args.py:143
@@ -175,11 +169,11 @@ msgstr "afficher la version et quitter\n"
 
 #: src/npcli/args.py:163
 msgid ""
-"TCP/UDP use a length-prefixed binary PDU. SSH stdio uses @nPoi NDJSON "
-"lines.\n"
-"When stdout is not a TTY, live UI is suppressed and NDJSON events are "
-"emitted.\n"
-msgstr "TCP/UDP utilisent une PDU binaire préfixée en longueur. SSH stdio utilise des lignes NDJSON @nPoi.\nSi stdout n’est pas un TTY, l’IU live est supprimée et des événements NDJSON sont émis.\n"
+"TCP/UDP use a length-prefixed binary PDU. SSH stdio uses @nPoi NDJSON lines.\n"
+"When stdout is not a TTY, live UI is suppressed and NDJSON events are emitted.\n"
+msgstr ""
+"TCP/UDP utilisent une PDU binaire préfixée en longueur. SSH stdio utilise des lignes NDJSON @nPoi.\n"
+"Si stdout n’est pas un TTY, l’IU live est supprimée et des événements NDJSON sont émis.\n"
 
 #: src/npcli/args.py:168
 #, python-brace-format
@@ -192,27 +186,20 @@ msgid "Copyright (C) {year} {author}\n"
 msgstr "Copyright (C) {year} {author}\n"
 
 #: src/npcli/args.py:174
-msgid ""
-"License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
-msgstr ""
-"Licence AGPL-3.0-or-later : <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgid "License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgstr "Licence AGPL-3.0-or-later : <https://www.gnu.org/licenses/agpl-3.0.html>\n"
 
 #: src/npcli/args.py:175
 msgid "This is free software: you are free to change and redistribute it.\n"
-msgstr ""
-"Ceci est un logiciel libre : vous pouvez le modifier et le redistribuer.\n"
+msgstr "Ceci est un logiciel libre : vous pouvez le modifier et le redistribuer.\n"
 
 #: src/npcli/args.py:176
 msgid "This project opposes AI exploitation and AI hegemony.\n"
 msgstr "Ce projet s'oppose à l'exploitation et à l'hégémonie de l'IA.\n"
 
 #: src/npcli/args.py:179
-msgid ""
-"This project rejects mindless MIT-style licensing and politically naive BSD-"
-"style licensing.\n"
-msgstr ""
-"Ce projet rejette les licences MIT irréfléchies et les licences BSD "
-"politiquement naïves.\n"
+msgid "This project rejects mindless MIT-style licensing and politically naive BSD-style licensing.\n"
+msgstr "Ce projet rejette les licences MIT irréfléchies et les licences BSD politiquement naïves.\n"
 
 #: src/npcli/args.py:183
 msgid "There is NO WARRANTY, to the extent permitted by law.\n"
@@ -300,9 +287,7 @@ msgstr "{prog} : écrit {path}"
 
 #: src/npcli/main.py:94
 #, python-brace-format
-msgid ""
-"{prog}: run: systemctl --user daemon-reload && systemctl --user enable --now "
-"netpoisson"
+msgid "{prog}: run: systemctl --user daemon-reload && systemctl --user enable --now netpoisson"
 msgstr "{prog} : exécutez : systemctl --user daemon-reload && systemctl --user enable --now netpoisson"
 
 #: src/npcli/main.py:102
@@ -353,14 +338,10 @@ msgstr "{prog} : connecté à {proto} {endpoint} à {lam} req/s"
 #~ msgid ""
 #~ "Offer a Poisson stream of requests to SERVER, or listen for them when\n"
 #~ "SERVER is omitted.\n"
-#~ msgstr ""
-#~ "Envoie un flux de Poisson de requêtes à SERVEUR, ou écoute si SERVEUR est "
-#~ "omis.\n"
+#~ msgstr "Envoie un flux de Poisson de requêtes à SERVEUR, ou écoute si SERVEUR est omis.\n"
 
-#~ msgid ""
-#~ "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
-#~ msgstr ""
-#~ "  -d, --daemon       écouter (aussi le défaut si SERVEUR est omis)\n"
+#~ msgid "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
+#~ msgstr "  -d, --daemon       écouter (aussi le défaut si SERVEUR est omis)\n"
 
 #~ msgid "  -H, --host HOST    address to bind (default 0.0.0.0)\n"
 #~ msgstr "  -H, --host HOST    adresse d'écoute (défaut 0.0.0.0)\n"
@@ -374,42 +355,27 @@ msgstr "{prog} : connecté à {proto} {endpoint} à {lam} req/s"
 #~ msgid "  -l, --lambda N     offered requests per second (default 100)\n"
 #~ msgstr "  -l, --lambda N     requêtes offertes par seconde (défaut 100)\n"
 
-#~ msgid ""
-#~ "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
-#~ msgstr ""
-#~ "  -s, --stats SECS   tourner SECS secondes, puis afficher un rapport "
-#~ "JSON\n"
+#~ msgid "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
+#~ msgstr "  -s, --stats SECS   tourner SECS secondes, puis afficher un rapport JSON\n"
 
 #~ msgid "  -w, --web          serve a live dashboard and open a browser\n"
-#~ msgstr ""
-#~ "  -w, --web          servir un tableau de bord et ouvrir un navigateur\n"
+#~ msgstr "  -w, --web          servir un tableau de bord et ouvrir un navigateur\n"
 
 #~ msgid "      --web-host H   dashboard address (default 127.0.0.1)\n"
-#~ msgstr ""
-#~ "      --web-host H   adresse du tableau de bord (défaut 127.0.0.1)\n"
+#~ msgstr "      --web-host H   adresse du tableau de bord (défaut 127.0.0.1)\n"
 
 #~ msgid "      --web-port N   dashboard port (default 8711)\n"
 #~ msgstr "      --web-port N   port du tableau de bord (défaut 8711)\n"
 
 #~ msgid ""
 #~ "ECHO responses are the request bytes. STATUS responses carry the server\n"
-#~ "timeline and queues. Req/Resp lines scroll right: newest slices on the "
-#~ "left.\n"
+#~ "timeline and queues. Req/Resp lines scroll right: newest slices on the left.\n"
 #~ msgstr ""
-#~ "Les réponses ECHO sont les octets de la requête. STATUS porte la "
-#~ "chronologie et les files.\n"
+#~ "Les réponses ECHO sont les octets de la requête. STATUS porte la chronologie et les files.\n"
 #~ "Req/Resp défilent vers la droite : les tranches récentes sont à gauche.\n"
 
-#~ msgid ""
-#~ "Req counts local arrivals per slice (newest on the left). The center "
-#~ "number has not left this host."
-#~ msgstr ""
-#~ "Req compte les arrivées locales par tranche (les plus récentes à gauche). "
-#~ "Le nombre central n'a pas encore quitté cet hôte."
+#~ msgid "Req counts local arrivals per slice (newest on the left). The center number has not left this host."
+#~ msgstr "Req compte les arrivées locales par tranche (les plus récentes à gauche). Le nombre central n'a pas encore quitté cet hôte."
 
-#~ msgid ""
-#~ "Resp counts server replies per slice. Left of the arrow: requests not yet "
-#~ "read. Next: replies not yet sent."
-#~ msgstr ""
-#~ "Resp compte les réponses du serveur par tranche. À gauche de la flèche : "
-#~ "requêtes pas encore lues. Ensuite : réponses pas encore envoyées."
+#~ msgid "Resp counts server replies per slice. Left of the arrow: requests not yet read. Next: replies not yet sent."
+#~ msgstr "Resp compte les réponses du serveur par tranche. À gauche de la flèche : requêtes pas encore lues. Ensuite : réponses pas encore envoyées."

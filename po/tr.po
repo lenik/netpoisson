@@ -22,9 +22,7 @@ msgid "Usage: netpoisson [OPTION]... [SERVER]\n"
 msgstr "Kullanım: netpoisson [SEÇENEK]... [SUNUCU]\n"
 
 #: src/npcli/args.py:112
-msgid ""
-"Offer a Poisson stream of requests to SERVER, or listen when SERVER is "
-"omitted.\n"
+msgid "Offer a Poisson stream of requests to SERVER, or listen when SERVER is omitted.\n"
 msgstr "SERVER’a Poisson istek akışı sunun; SERVER yoksa dinleyin.\n"
 
 #: src/npcli/args.py:116
@@ -32,14 +30,11 @@ msgid "Modes:\n"
 msgstr "Kip:\n"
 
 #: src/npcli/args.py:117
-msgid ""
-"  -d, --daemon              listen (also the default when SERVER is "
-"omitted)\n"
+msgid "  -d, --daemon              listen (also the default when SERVER is omitted)\n"
 msgstr "  -d, --daemon              dinle (SERVER yokken de varsayılan)\n"
 
 #: src/npcli/args.py:118
-msgid ""
-"      --stdio-server        serve NDJSON @nPoi protocol on stdin/stdout\n"
+msgid "      --stdio-server        serve NDJSON @nPoi protocol on stdin/stdout\n"
 msgstr "      --stdio-server        stdin/stdout üzerinde NDJSON @nPoi protokolü sun\n"
 
 #: src/npcli/args.py:119
@@ -127,8 +122,7 @@ msgid "      --bucket D            timeline bucket (default 100ms)\n"
 msgstr "      --bucket D            zaman çizelgesi kovası (varsayılan 100ms)\n"
 
 #: src/npcli/args.py:142
-msgid ""
-"      --window D            visible window (default auto; or e.g. 12s)\n"
+msgid "      --window D            visible window (default auto; or e.g. 12s)\n"
 msgstr "      --window D            görünür pencere (varsayılan auto; örn. 12s)\n"
 
 #: src/npcli/args.py:143
@@ -181,11 +175,11 @@ msgstr "sürüm bilgisini yaz ve çık\n"
 
 #: src/npcli/args.py:163
 msgid ""
-"TCP/UDP use a length-prefixed binary PDU. SSH stdio uses @nPoi NDJSON "
-"lines.\n"
-"When stdout is not a TTY, live UI is suppressed and NDJSON events are "
-"emitted.\n"
-msgstr "TCP/UDP uzunluk önekli ikili PDU kullanır. SSH stdio @nPoi NDJSON satırları kullanır.\nstdout bir TTY değilse canlı arayüz bastırılır ve NDJSON olayları üretilir.\n"
+"TCP/UDP use a length-prefixed binary PDU. SSH stdio uses @nPoi NDJSON lines.\n"
+"When stdout is not a TTY, live UI is suppressed and NDJSON events are emitted.\n"
+msgstr ""
+"TCP/UDP uzunluk önekli ikili PDU kullanır. SSH stdio @nPoi NDJSON satırları kullanır.\n"
+"stdout bir TTY değilse canlı arayüz bastırılır ve NDJSON olayları üretilir.\n"
 
 #: src/npcli/args.py:168
 #, python-brace-format
@@ -198,10 +192,8 @@ msgid "Copyright (C) {year} {author}\n"
 msgstr "Telif hakkı (C) {year} {author}\n"
 
 #: src/npcli/args.py:174
-msgid ""
-"License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
-msgstr ""
-"Lisans AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgid "License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgstr "Lisans AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
 
 #: src/npcli/args.py:175
 msgid "This is free software: you are free to change and redistribute it.\n"
@@ -212,12 +204,8 @@ msgid "This project opposes AI exploitation and AI hegemony.\n"
 msgstr "Bu proje yapay zekâ sömürüsüne ve yapay zekâ hegemonyasına karşıdır.\n"
 
 #: src/npcli/args.py:179
-msgid ""
-"This project rejects mindless MIT-style licensing and politically naive BSD-"
-"style licensing.\n"
-msgstr ""
-"Bu proje düşüncesiz MIT tarzı lisansları ve siyaseten saf BSD tarzı "
-"lisansları reddeder.\n"
+msgid "This project rejects mindless MIT-style licensing and politically naive BSD-style licensing.\n"
+msgstr "Bu proje düşüncesiz MIT tarzı lisansları ve siyaseten saf BSD tarzı lisansları reddeder.\n"
 
 #: src/npcli/args.py:183
 msgid "There is NO WARRANTY, to the extent permitted by law.\n"
@@ -305,9 +293,7 @@ msgstr "{prog}: yazıldı {path}"
 
 #: src/npcli/main.py:94
 #, python-brace-format
-msgid ""
-"{prog}: run: systemctl --user daemon-reload && systemctl --user enable --now "
-"netpoisson"
+msgid "{prog}: run: systemctl --user daemon-reload && systemctl --user enable --now netpoisson"
 msgstr "{prog}: çalıştırın: systemctl --user daemon-reload && systemctl --user enable --now netpoisson"
 
 #: src/npcli/main.py:102
@@ -358,19 +344,16 @@ msgstr "{prog}: bağlandı {proto} {endpoint}, {lam} istek/sn"
 #~ msgid ""
 #~ "Offer a Poisson stream of requests to SERVER, or listen for them when\n"
 #~ "SERVER is omitted.\n"
-#~ msgstr ""
-#~ "SUNUCU'ya Poisson akışıyla istek gönderir; SUNUCU verilmezse dinler.\n"
+#~ msgstr "SUNUCU'ya Poisson akışıyla istek gönderir; SUNUCU verilmezse dinler.\n"
 
-#~ msgid ""
-#~ "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
+#~ msgid "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
 #~ msgstr "  -d, --daemon       dinle (SUNUCU yoksa varsayılan da budur)\n"
 
 #~ msgid "  -H, --host HOST    address to bind (default 0.0.0.0)\n"
 #~ msgstr "  -H, --host HOST    bağlanılacak adres (varsayılan 0.0.0.0)\n"
 
 #~ msgid "  -p, --port PORT    port to bind or connect to (default 1871)\n"
-#~ msgstr ""
-#~ "  -p, --port PORT    bağlanılacak veya bağlanacak kapı (varsayılan 1871)\n"
+#~ msgstr "  -p, --port PORT    bağlanılacak veya bağlanacak kapı (varsayılan 1871)\n"
 
 #~ msgid "  -u, --udp          use UDP (default is TCP)\n"
 #~ msgstr "  -u, --udp          UDP kullan (varsayılan TCP)\n"
@@ -378,8 +361,7 @@ msgstr "{prog}: bağlandı {proto} {endpoint}, {lam} istek/sn"
 #~ msgid "  -l, --lambda N     offered requests per second (default 100)\n"
 #~ msgstr "  -l, --lambda N     saniye başına sunulan istek (varsayılan 100)\n"
 
-#~ msgid ""
-#~ "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
+#~ msgid "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
 #~ msgstr "  -s, --stats SECS   SECS saniye çalış, sonra bir JSON raporu yaz\n"
 
 #~ msgid "  -w, --web          serve a live dashboard and open a browser\n"
@@ -393,23 +375,13 @@ msgstr "{prog}: bağlandı {proto} {endpoint}, {lam} istek/sn"
 
 #~ msgid ""
 #~ "ECHO responses are the request bytes. STATUS responses carry the server\n"
-#~ "timeline and queues. Req/Resp lines scroll right: newest slices on the "
-#~ "left.\n"
+#~ "timeline and queues. Req/Resp lines scroll right: newest slices on the left.\n"
 #~ msgstr ""
-#~ "ECHO yanıtı isteğin baytlarıdır. STATUS zaman çizelgesini ve kuyrukları "
-#~ "taşır.\n"
+#~ "ECHO yanıtı isteğin baytlarıdır. STATUS zaman çizelgesini ve kuyrukları taşır.\n"
 #~ "Req/Resp sağa kayar: en yeni dilimler soldadır.\n"
 
-#~ msgid ""
-#~ "Req counts local arrivals per slice (newest on the left). The center "
-#~ "number has not left this host."
-#~ msgstr ""
-#~ "Req bu makinedeki dilim başına varışları sayar (en yeni solda). Ortadaki "
-#~ "sayı henüz ağdan çıkmadı."
+#~ msgid "Req counts local arrivals per slice (newest on the left). The center number has not left this host."
+#~ msgstr "Req bu makinedeki dilim başına varışları sayar (en yeni solda). Ortadaki sayı henüz ağdan çıkmadı."
 
-#~ msgid ""
-#~ "Resp counts server replies per slice. Left of the arrow: requests not yet "
-#~ "read. Next: replies not yet sent."
-#~ msgstr ""
-#~ "Resp sunucunun dilim başına yanıtlarını sayar. Okun solu: henüz okunmamış "
-#~ "istekler. Sonraki: henüz gönderilmemiş yanıtlar."
+#~ msgid "Resp counts server replies per slice. Left of the arrow: requests not yet read. Next: replies not yet sent."
+#~ msgstr "Resp sunucunun dilim başına yanıtlarını sayar. Okun solu: henüz okunmamış istekler. Sonraki: henüz gönderilmemiş yanıtlar."

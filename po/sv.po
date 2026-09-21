@@ -22,9 +22,7 @@ msgid "Usage: netpoisson [OPTION]... [SERVER]\n"
 msgstr "Användning: netpoisson [FLAGGA]... [SERVER]\n"
 
 #: src/npcli/args.py:112
-msgid ""
-"Offer a Poisson stream of requests to SERVER, or listen when SERVER is "
-"omitted.\n"
+msgid "Offer a Poisson stream of requests to SERVER, or listen when SERVER is omitted.\n"
 msgstr "Erbjud en Poisson-ström av förfrågningar till SERVER, eller lyssna när SERVER utelämnas.\n"
 
 #: src/npcli/args.py:116
@@ -32,14 +30,11 @@ msgid "Modes:\n"
 msgstr "Lägen:\n"
 
 #: src/npcli/args.py:117
-msgid ""
-"  -d, --daemon              listen (also the default when SERVER is "
-"omitted)\n"
+msgid "  -d, --daemon              listen (also the default when SERVER is omitted)\n"
 msgstr "  -d, --daemon              lyssna (även standard när SERVER utelämnas)\n"
 
 #: src/npcli/args.py:118
-msgid ""
-"      --stdio-server        serve NDJSON @nPoi protocol on stdin/stdout\n"
+msgid "      --stdio-server        serve NDJSON @nPoi protocol on stdin/stdout\n"
 msgstr "      --stdio-server        servera NDJSON-@nPoi-protokoll på stdin/stdout\n"
 
 #: src/npcli/args.py:119
@@ -52,7 +47,7 @@ msgstr "      --install/--remove    hantera en systemd-användartjänstenhet\n"
 
 #: src/npcli/args.py:122
 msgid "Transport:\n"
-msgstr "Transport:\n"
+msgstr "Överföring:\n"
 
 #: src/npcli/args.py:123
 msgid "  -H, --host HOST           bind host (default 0.0.0.0)\n"
@@ -127,8 +122,7 @@ msgid "      --bucket D            timeline bucket (default 100ms)\n"
 msgstr "      --bucket D            tidslinjefack (standard 100ms)\n"
 
 #: src/npcli/args.py:142
-msgid ""
-"      --window D            visible window (default auto; or e.g. 12s)\n"
+msgid "      --window D            visible window (default auto; or e.g. 12s)\n"
 msgstr "      --window D            synligt fönster (standard auto; eller t.ex. 12s)\n"
 
 #: src/npcli/args.py:143
@@ -181,11 +175,11 @@ msgstr "skriv versionsinformation och avsluta\n"
 
 #: src/npcli/args.py:163
 msgid ""
-"TCP/UDP use a length-prefixed binary PDU. SSH stdio uses @nPoi NDJSON "
-"lines.\n"
-"When stdout is not a TTY, live UI is suppressed and NDJSON events are "
-"emitted.\n"
-msgstr "TCP/UDP använder en längdprefixad binär PDU. SSH-stdio använder @nPoi-NDJSON-rader.\nNär stdout inte är en TTY undertrycks live-UI och NDJSON-händelser skrivs ut.\n"
+"TCP/UDP use a length-prefixed binary PDU. SSH stdio uses @nPoi NDJSON lines.\n"
+"When stdout is not a TTY, live UI is suppressed and NDJSON events are emitted.\n"
+msgstr ""
+"TCP/UDP använder en längdprefixad binär PDU. SSH-stdio använder @nPoi-NDJSON-rader.\n"
+"När stdout inte är en TTY undertrycks live-UI och NDJSON-händelser skrivs ut.\n"
 
 #: src/npcli/args.py:168
 #, python-brace-format
@@ -198,10 +192,8 @@ msgid "Copyright (C) {year} {author}\n"
 msgstr "Copyright (C) {year} {author}\n"
 
 #: src/npcli/args.py:174
-msgid ""
-"License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
-msgstr ""
-"Licens AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgid "License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgstr "Licens AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
 
 #: src/npcli/args.py:175
 msgid "This is free software: you are free to change and redistribute it.\n"
@@ -212,12 +204,8 @@ msgid "This project opposes AI exploitation and AI hegemony.\n"
 msgstr "Detta projekt motsätter sig AI-exploatering och AI-hegemoni.\n"
 
 #: src/npcli/args.py:179
-msgid ""
-"This project rejects mindless MIT-style licensing and politically naive BSD-"
-"style licensing.\n"
-msgstr ""
-"Detta projekt avvisar tanklösa MIT-licenser och politiskt naiva BSD-"
-"licenser.\n"
+msgid "This project rejects mindless MIT-style licensing and politically naive BSD-style licensing.\n"
+msgstr "Detta projekt avvisar tanklösa MIT-licenser och politiskt naiva BSD-licenser.\n"
 
 #: src/npcli/args.py:183
 msgid "There is NO WARRANTY, to the extent permitted by law.\n"
@@ -305,9 +293,7 @@ msgstr "{prog}: skrev {path}"
 
 #: src/npcli/main.py:94
 #, python-brace-format
-msgid ""
-"{prog}: run: systemctl --user daemon-reload && systemctl --user enable --now "
-"netpoisson"
+msgid "{prog}: run: systemctl --user daemon-reload && systemctl --user enable --now netpoisson"
 msgstr "{prog}: kör: systemctl --user daemon-reload && systemctl --user enable --now netpoisson"
 
 #: src/npcli/main.py:102
@@ -358,32 +344,25 @@ msgstr "{prog}: ansluten till {proto} {endpoint} med {lam} förfr./s"
 #~ msgid ""
 #~ "Offer a Poisson stream of requests to SERVER, or listen for them when\n"
 #~ "SERVER is omitted.\n"
-#~ msgstr ""
-#~ "Skicka en Poisson-ström av förfrågningar till SERVER, eller lyssna om "
-#~ "SERVER utelämnas.\n"
+#~ msgstr "Skicka en Poisson-ström av förfrågningar till SERVER, eller lyssna om SERVER utelämnas.\n"
 
-#~ msgid ""
-#~ "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
+#~ msgid "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
 #~ msgstr "  -d, --daemon       lyssna (även standard om SERVER utelämnas)\n"
 
 #~ msgid "  -H, --host HOST    address to bind (default 0.0.0.0)\n"
 #~ msgstr "  -H, --host HOST    adress att binda (standard 0.0.0.0)\n"
 
 #~ msgid "  -p, --port PORT    port to bind or connect to (default 1871)\n"
-#~ msgstr ""
-#~ "  -p, --port PORT    port att binda eller ansluta till (standard 1871)\n"
+#~ msgstr "  -p, --port PORT    port att binda eller ansluta till (standard 1871)\n"
 
 #~ msgid "  -u, --udp          use UDP (default is TCP)\n"
 #~ msgstr "  -u, --udp          använd UDP (standard är TCP)\n"
 
 #~ msgid "  -l, --lambda N     offered requests per second (default 100)\n"
-#~ msgstr ""
-#~ "  -l, --lambda N     erbjudna förfrågningar per sekund (standard 100)\n"
+#~ msgstr "  -l, --lambda N     erbjudna förfrågningar per sekund (standard 100)\n"
 
-#~ msgid ""
-#~ "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
-#~ msgstr ""
-#~ "  -s, --stats SECS   kör i SECS sekunder och skriv sedan en JSON-rapport\n"
+#~ msgid "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
+#~ msgstr "  -s, --stats SECS   kör i SECS sekunder och skriv sedan en JSON-rapport\n"
 
 #~ msgid "  -w, --web          serve a live dashboard and open a browser\n"
 #~ msgstr "  -w, --web          serva en livepanel och öppna en webbläsare\n"
@@ -396,22 +375,13 @@ msgstr "{prog}: ansluten till {proto} {endpoint} med {lam} förfr./s"
 
 #~ msgid ""
 #~ "ECHO responses are the request bytes. STATUS responses carry the server\n"
-#~ "timeline and queues. Req/Resp lines scroll right: newest slices on the "
-#~ "left.\n"
+#~ "timeline and queues. Req/Resp lines scroll right: newest slices on the left.\n"
 #~ msgstr ""
 #~ "ECHO-svar är förfrågans byte. STATUS bär serverns tidslinje och köer.\n"
 #~ "Req/Resp rullar åt höger: nyaste intervallen står till vänster.\n"
 
-#~ msgid ""
-#~ "Req counts local arrivals per slice (newest on the left). The center "
-#~ "number has not left this host."
-#~ msgstr ""
-#~ "Req räknar lokala ankomster per intervall (nyast till vänster). Talet i "
-#~ "mitten har inte lämnat den här värden."
+#~ msgid "Req counts local arrivals per slice (newest on the left). The center number has not left this host."
+#~ msgstr "Req räknar lokala ankomster per intervall (nyast till vänster). Talet i mitten har inte lämnat den här värden."
 
-#~ msgid ""
-#~ "Resp counts server replies per slice. Left of the arrow: requests not yet "
-#~ "read. Next: replies not yet sent."
-#~ msgstr ""
-#~ "Resp räknar serverns svar per intervall. Vänster om pilen: förfrågningar "
-#~ "som inte lästs. Nästa: svar som inte skickats."
+#~ msgid "Resp counts server replies per slice. Left of the arrow: requests not yet read. Next: replies not yet sent."
+#~ msgstr "Resp räknar serverns svar per intervall. Vänster om pilen: förfrågningar som inte lästs. Nästa: svar som inte skickats."

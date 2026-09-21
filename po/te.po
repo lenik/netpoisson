@@ -21,9 +21,7 @@ msgid "Usage: netpoisson [OPTION]... [SERVER]\n"
 msgstr "వాడుక: netpoisson [ఎంపిక]... [సర్వర్]\n"
 
 #: src/npcli/args.py:112
-msgid ""
-"Offer a Poisson stream of requests to SERVER, or listen when SERVER is "
-"omitted.\n"
+msgid "Offer a Poisson stream of requests to SERVER, or listen when SERVER is omitted.\n"
 msgstr "SERVERకు పాయిజన్ అభ్యర్థన ప్రవాహం పంపండి; SERVER లేకపోతే వినండి.\n"
 
 #: src/npcli/args.py:116
@@ -31,14 +29,11 @@ msgid "Modes:\n"
 msgstr "మోడ్‌లు:\n"
 
 #: src/npcli/args.py:117
-msgid ""
-"  -d, --daemon              listen (also the default when SERVER is "
-"omitted)\n"
+msgid "  -d, --daemon              listen (also the default when SERVER is omitted)\n"
 msgstr "  -d, --daemon              వినండి (SERVER లేనప్పుడు కూడా ఇదే అప్రమేయం)\n"
 
 #: src/npcli/args.py:118
-msgid ""
-"      --stdio-server        serve NDJSON @nPoi protocol on stdin/stdout\n"
+msgid "      --stdio-server        serve NDJSON @nPoi protocol on stdin/stdout\n"
 msgstr "      --stdio-server        stdin/stdoutలో NDJSON @nPoi ప్రోటోకాల్ అందించండి\n"
 
 #: src/npcli/args.py:119
@@ -126,8 +121,7 @@ msgid "      --bucket D            timeline bucket (default 100ms)\n"
 msgstr "      --bucket D            టైమ్‌లైన్ బకెట్ (అప్రమేయం 100ms)\n"
 
 #: src/npcli/args.py:142
-msgid ""
-"      --window D            visible window (default auto; or e.g. 12s)\n"
+msgid "      --window D            visible window (default auto; or e.g. 12s)\n"
 msgstr "      --window D            కనిపించే విండో (అప్రమేయం auto; లేదా ఉదా. 12s)\n"
 
 #: src/npcli/args.py:143
@@ -180,11 +174,11 @@ msgstr "సంస్కరణ సమాచారం చూపి నిష్క
 
 #: src/npcli/args.py:163
 msgid ""
-"TCP/UDP use a length-prefixed binary PDU. SSH stdio uses @nPoi NDJSON "
-"lines.\n"
-"When stdout is not a TTY, live UI is suppressed and NDJSON events are "
-"emitted.\n"
-msgstr "TCP/UDP పొడవు-ఉపసర్గ బైనరీ PDU ఉపయోగిస్తాయి. SSH stdio @nPoi NDJSON పంక్తులు ఉపయోగిస్తుంది.\nstdout TTY కాకపోతే ప్రత్యక్ష UI అణచబడి NDJSON ఈవెంట్లు వెలువడతాయి.\n"
+"TCP/UDP use a length-prefixed binary PDU. SSH stdio uses @nPoi NDJSON lines.\n"
+"When stdout is not a TTY, live UI is suppressed and NDJSON events are emitted.\n"
+msgstr ""
+"TCP/UDP పొడవు-ఉపసర్గ బైనరీ PDU ఉపయోగిస్తాయి. SSH stdio @nPoi NDJSON పంక్తులు ఉపయోగిస్తుంది.\n"
+"stdout TTY కాకపోతే ప్రత్యక్ష UI అణచబడి NDJSON ఈవెంట్లు వెలువడతాయి.\n"
 
 #: src/npcli/args.py:168
 #, python-brace-format
@@ -197,8 +191,7 @@ msgid "Copyright (C) {year} {author}\n"
 msgstr "కాపీరైట్ (C) {year} {author}\n"
 
 #: src/npcli/args.py:174
-msgid ""
-"License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgid "License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
 msgstr "లైసెన్స్ AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
 
 #: src/npcli/args.py:175
@@ -210,9 +203,7 @@ msgid "This project opposes AI exploitation and AI hegemony.\n"
 msgstr "ఈ ప్రాజెక్టు AI దోపిడీని AI ఆధిపత్యాన్ని వ్యతిరేకిస్తుంది.\n"
 
 #: src/npcli/args.py:179
-msgid ""
-"This project rejects mindless MIT-style licensing and politically naive BSD-"
-"style licensing.\n"
+msgid "This project rejects mindless MIT-style licensing and politically naive BSD-style licensing.\n"
 msgstr "ఈ ప్రాజెక్టు ఆలోచనలేని MIT శైలి లైసెన్స్‌ను, రాజకీయంగా అమాయక BSD శైలి లైసెన్స్‌ను తిరస్కరిస్తుంది.\n"
 
 #: src/npcli/args.py:183
@@ -301,9 +292,7 @@ msgstr "{prog}: రాశారు {path}"
 
 #: src/npcli/main.py:94
 #, python-brace-format
-msgid ""
-"{prog}: run: systemctl --user daemon-reload && systemctl --user enable --now "
-"netpoisson"
+msgid "{prog}: run: systemctl --user daemon-reload && systemctl --user enable --now netpoisson"
 msgstr "{prog}: నడపండి: systemctl --user daemon-reload && systemctl --user enable --now netpoisson"
 
 #: src/npcli/main.py:102
@@ -356,8 +345,7 @@ msgstr "{prog}: కనెక్ట్ {proto} {endpoint}, {lam} అభ్యర�
 #~ "SERVER is omitted.\n"
 #~ msgstr "SERVERకు పాయిజన్ ప్రవాహంలో అభ్యర్థనలు పంపుతుంది; SERVER లేకపోతే వింటుంది.\n"
 
-#~ msgid ""
-#~ "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
+#~ msgid "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
 #~ msgstr "  -d, --daemon       విను (సర్వర్ లేకపోతే ఇదే అప్రమేయం)\n"
 
 #~ msgid "  -H, --host HOST    address to bind (default 0.0.0.0)\n"
@@ -372,8 +360,7 @@ msgstr "{prog}: కనెక్ట్ {proto} {endpoint}, {lam} అభ్యర�
 #~ msgid "  -l, --lambda N     offered requests per second (default 100)\n"
 #~ msgstr "  -l, --lambda N     సెకనుకు అందించే అభ్యర్థనలు (అప్రమేయం 100)\n"
 
-#~ msgid ""
-#~ "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
+#~ msgid "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
 #~ msgstr "  -s, --stats SECS   SECS సెకన్లు నడిపి JSON నివేదిక ముద్రించు\n"
 
 #~ msgid "  -w, --web          serve a live dashboard and open a browser\n"
@@ -387,21 +374,13 @@ msgstr "{prog}: కనెక్ట్ {proto} {endpoint}, {lam} అభ్యర�
 
 #~ msgid ""
 #~ "ECHO responses are the request bytes. STATUS responses carry the server\n"
-#~ "timeline and queues. Req/Resp lines scroll right: newest slices on the "
-#~ "left.\n"
+#~ "timeline and queues. Req/Resp lines scroll right: newest slices on the left.\n"
 #~ msgstr ""
 #~ "ECHO స్పందన అభ్యర్థన బైట్లే. STATUS కాలరేఖను వరుసలను తెస్తుంది.\n"
 #~ "Req/Resp కుడికి జరుగుతాయి: కొత్త ముక్కలు ఎడమ.\n"
 
-#~ msgid ""
-#~ "Req counts local arrivals per slice (newest on the left). The center "
-#~ "number has not left this host."
-#~ msgstr ""
-#~ "Req ఈ హోస్ట్‌పై ముక్కకు వచ్చినవి (కొత్తవి ఎడమ). మధ్య సంఖ్య ఇంకా నెట్ నుంచి బయటకు రాలేదు."
+#~ msgid "Req counts local arrivals per slice (newest on the left). The center number has not left this host."
+#~ msgstr "Req ఈ హోస్ట్‌పై ముక్కకు వచ్చినవి (కొత్తవి ఎడమ). మధ్య సంఖ్య ఇంకా నెట్ నుంచి బయటకు రాలేదు."
 
-#~ msgid ""
-#~ "Resp counts server replies per slice. Left of the arrow: requests not yet "
-#~ "read. Next: replies not yet sent."
-#~ msgstr ""
-#~ "Resp సర్వర్ ముక్కకు స్పందనలు. బాణానికి ఎడమ: ఇంకా చదవని అభ్యర్థనలు. తర్వాత: ఇంకా పంపని "
-#~ "స్పందనలు."
+#~ msgid "Resp counts server replies per slice. Left of the arrow: requests not yet read. Next: replies not yet sent."
+#~ msgstr "Resp సర్వర్ ముక్కకు స్పందనలు. బాణానికి ఎడమ: ఇంకా చదవని అభ్యర్థనలు. తర్వాత: ఇంకా పంపని స్పందనలు."

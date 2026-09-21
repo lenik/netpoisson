@@ -16,9 +16,7 @@ msgid "Usage: netpoisson [OPTION]... [SERVER]\n"
 msgstr "使い方: netpoisson [オプション]... [サーバー]\n"
 
 #: src/npcli/args.py:112
-msgid ""
-"Offer a Poisson stream of requests to SERVER, or listen when SERVER is "
-"omitted.\n"
+msgid "Offer a Poisson stream of requests to SERVER, or listen when SERVER is omitted.\n"
 msgstr "SERVER にポアソン過程のリクエストを送ります。SERVER を省略すると待ち受けます。\n"
 
 #: src/npcli/args.py:116
@@ -26,14 +24,11 @@ msgid "Modes:\n"
 msgstr "モード:\n"
 
 #: src/npcli/args.py:117
-msgid ""
-"  -d, --daemon              listen (also the default when SERVER is "
-"omitted)\n"
+msgid "  -d, --daemon              listen (also the default when SERVER is omitted)\n"
 msgstr "  -d, --daemon              待ち受け（SERVER 省略時の既定でもある）\n"
 
 #: src/npcli/args.py:118
-msgid ""
-"      --stdio-server        serve NDJSON @nPoi protocol on stdin/stdout\n"
+msgid "      --stdio-server        serve NDJSON @nPoi protocol on stdin/stdout\n"
 msgstr "      --stdio-server        stdin/stdout で NDJSON @nPoi プロトコルを提供\n"
 
 #: src/npcli/args.py:119
@@ -121,8 +116,7 @@ msgid "      --bucket D            timeline bucket (default 100ms)\n"
 msgstr "      --bucket D            タイムラインのバケット（既定 100ms）\n"
 
 #: src/npcli/args.py:142
-msgid ""
-"      --window D            visible window (default auto; or e.g. 12s)\n"
+msgid "      --window D            visible window (default auto; or e.g. 12s)\n"
 msgstr "      --window D            表示ウィンドウ（既定 auto；例: 12s）\n"
 
 #: src/npcli/args.py:143
@@ -175,11 +169,11 @@ msgstr "バージョンを表示して終了する\n"
 
 #: src/npcli/args.py:163
 msgid ""
-"TCP/UDP use a length-prefixed binary PDU. SSH stdio uses @nPoi NDJSON "
-"lines.\n"
-"When stdout is not a TTY, live UI is suppressed and NDJSON events are "
-"emitted.\n"
-msgstr "TCP/UDP は長さ付きバイナリ PDU を使います。SSH stdio は @nPoi の NDJSON 行です。\nstdout が TTY でない場合、ライブ UI は出さず NDJSON イベントを出します。\n"
+"TCP/UDP use a length-prefixed binary PDU. SSH stdio uses @nPoi NDJSON lines.\n"
+"When stdout is not a TTY, live UI is suppressed and NDJSON events are emitted.\n"
+msgstr ""
+"TCP/UDP は長さ付きバイナリ PDU を使います。SSH stdio は @nPoi の NDJSON 行です。\n"
+"stdout が TTY でない場合、ライブ UI は出さず NDJSON イベントを出します。\n"
 
 #: src/npcli/args.py:168
 #, python-brace-format
@@ -192,10 +186,8 @@ msgid "Copyright (C) {year} {author}\n"
 msgstr "Copyright (C) {year} {author}\n"
 
 #: src/npcli/args.py:174
-msgid ""
-"License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
-msgstr ""
-"ライセンス AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgid "License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgstr "ライセンス AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
 
 #: src/npcli/args.py:175
 msgid "This is free software: you are free to change and redistribute it.\n"
@@ -206,12 +198,8 @@ msgid "This project opposes AI exploitation and AI hegemony.\n"
 msgstr "このプロジェクトは AI による搾取と AI 覇権に反対します。\n"
 
 #: src/npcli/args.py:179
-msgid ""
-"This project rejects mindless MIT-style licensing and politically naive BSD-"
-"style licensing.\n"
-msgstr ""
-"このプロジェクトは思考停止の MIT 型ライセンスと、政治的に無邪気な BSD 型ライ"
-"センスを拒みます。\n"
+msgid "This project rejects mindless MIT-style licensing and politically naive BSD-style licensing.\n"
+msgstr "このプロジェクトは思考停止の MIT 型ライセンスと、政治的に無邪気な BSD 型ライセンスを拒みます。\n"
 
 #: src/npcli/args.py:183
 msgid "There is NO WARRANTY, to the extent permitted by law.\n"
@@ -299,9 +287,7 @@ msgstr "{prog}: 書き込みました {path}"
 
 #: src/npcli/main.py:94
 #, python-brace-format
-msgid ""
-"{prog}: run: systemctl --user daemon-reload && systemctl --user enable --now "
-"netpoisson"
+msgid "{prog}: run: systemctl --user daemon-reload && systemctl --user enable --now netpoisson"
 msgstr "{prog}: 実行: systemctl --user daemon-reload && systemctl --user enable --now netpoisson"
 
 #: src/npcli/main.py:102
@@ -352,11 +338,9 @@ msgstr "{prog}: {proto} {endpoint} に接続、{lam} 要求/秒"
 #~ msgid ""
 #~ "Offer a Poisson stream of requests to SERVER, or listen for them when\n"
 #~ "SERVER is omitted.\n"
-#~ msgstr ""
-#~ "SERVER へポアソン過程でリクエストを送る。SERVER を省くと待ち受ける。\n"
+#~ msgstr "SERVER へポアソン過程でリクエストを送る。SERVER を省くと待ち受ける。\n"
 
-#~ msgid ""
-#~ "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
+#~ msgid "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
 #~ msgstr "  -d, --daemon       待ち受ける（サーバー省略時の既定）\n"
 
 #~ msgid "  -H, --host HOST    address to bind (default 0.0.0.0)\n"
@@ -371,8 +355,7 @@ msgstr "{prog}: {proto} {endpoint} に接続、{lam} 要求/秒"
 #~ msgid "  -l, --lambda N     offered requests per second (default 100)\n"
 #~ msgstr "  -l, --lambda N     目標リクエスト毎秒（既定 100）\n"
 
-#~ msgid ""
-#~ "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
+#~ msgid "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
 #~ msgstr "  -s, --stats SECS   SECS 秒走らせたあと JSON 報告を出す\n"
 
 #~ msgid "  -w, --web          serve a live dashboard and open a browser\n"
@@ -386,22 +369,13 @@ msgstr "{prog}: {proto} {endpoint} に接続、{lam} 要求/秒"
 
 #~ msgid ""
 #~ "ECHO responses are the request bytes. STATUS responses carry the server\n"
-#~ "timeline and queues. Req/Resp lines scroll right: newest slices on the "
-#~ "left.\n"
+#~ "timeline and queues. Req/Resp lines scroll right: newest slices on the left.\n"
 #~ msgstr ""
 #~ "ECHO の応答はリクエストそのもの。STATUS はサーバの時間線と待ち行列。\n"
 #~ "Req/Resp は右へ流れる。新しい時間片は左。\n"
 
-#~ msgid ""
-#~ "Req counts local arrivals per slice (newest on the left). The center "
-#~ "number has not left this host."
-#~ msgstr ""
-#~ "Req は自ホストの時間片ごとの到着数（新しいものが左）。中央の数はまだ網口を"
-#~ "出ていない。"
+#~ msgid "Req counts local arrivals per slice (newest on the left). The center number has not left this host."
+#~ msgstr "Req は自ホストの時間片ごとの到着数（新しいものが左）。中央の数はまだ網口を出ていない。"
 
-#~ msgid ""
-#~ "Resp counts server replies per slice. Left of the arrow: requests not yet "
-#~ "read. Next: replies not yet sent."
-#~ msgstr ""
-#~ "Resp はサーバの時間片ごとの応答数。矢印の左は未読・未解析の要求。その次は"
-#~ "まだ送出されていない応答。"
+#~ msgid "Resp counts server replies per slice. Left of the arrow: requests not yet read. Next: replies not yet sent."
+#~ msgstr "Resp はサーバの時間片ごとの応答数。矢印の左は未読・未解析の要求。その次はまだ送出されていない応答。"

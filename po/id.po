@@ -21,9 +21,7 @@ msgid "Usage: netpoisson [OPTION]... [SERVER]\n"
 msgstr "Penggunaan: netpoisson [OPSI]... [SERVER]\n"
 
 #: src/npcli/args.py:112
-msgid ""
-"Offer a Poisson stream of requests to SERVER, or listen when SERVER is "
-"omitted.\n"
+msgid "Offer a Poisson stream of requests to SERVER, or listen when SERVER is omitted.\n"
 msgstr "Kirim aliran permintaan Poisson ke SERVER, atau dengarkan bila SERVER dihilangkan.\n"
 
 #: src/npcli/args.py:116
@@ -31,14 +29,11 @@ msgid "Modes:\n"
 msgstr "Mode:\n"
 
 #: src/npcli/args.py:117
-msgid ""
-"  -d, --daemon              listen (also the default when SERVER is "
-"omitted)\n"
+msgid "  -d, --daemon              listen (also the default when SERVER is omitted)\n"
 msgstr "  -d, --daemon              dengarkan (juga bawaan bila SERVER dihilangkan)\n"
 
 #: src/npcli/args.py:118
-msgid ""
-"      --stdio-server        serve NDJSON @nPoi protocol on stdin/stdout\n"
+msgid "      --stdio-server        serve NDJSON @nPoi protocol on stdin/stdout\n"
 msgstr "      --stdio-server        sajikan protokol NDJSON @nPoi di stdin/stdout\n"
 
 #: src/npcli/args.py:119
@@ -51,7 +46,7 @@ msgstr "      --install/--remove    kelola unit layanan pengguna systemd\n"
 
 #: src/npcli/args.py:122
 msgid "Transport:\n"
-msgstr "Transport:\n"
+msgstr "Transpor:\n"
 
 #: src/npcli/args.py:123
 msgid "  -H, --host HOST           bind host (default 0.0.0.0)\n"
@@ -126,8 +121,7 @@ msgid "      --bucket D            timeline bucket (default 100ms)\n"
 msgstr "      --bucket D            ember garis waktu (bawaan 100ms)\n"
 
 #: src/npcli/args.py:142
-msgid ""
-"      --window D            visible window (default auto; or e.g. 12s)\n"
+msgid "      --window D            visible window (default auto; or e.g. 12s)\n"
 msgstr "      --window D            jendela terlihat (bawaan auto; atau mis. 12s)\n"
 
 #: src/npcli/args.py:143
@@ -180,11 +174,11 @@ msgstr "keluarkan informasi versi dan keluar\n"
 
 #: src/npcli/args.py:163
 msgid ""
-"TCP/UDP use a length-prefixed binary PDU. SSH stdio uses @nPoi NDJSON "
-"lines.\n"
-"When stdout is not a TTY, live UI is suppressed and NDJSON events are "
-"emitted.\n"
-msgstr "TCP/UDP memakai PDU biner berawalan panjang. SSH stdio memakai baris NDJSON @nPoi.\nJika stdout bukan TTY, UI langsung ditekan dan peristiwa NDJSON dikeluarkan.\n"
+"TCP/UDP use a length-prefixed binary PDU. SSH stdio uses @nPoi NDJSON lines.\n"
+"When stdout is not a TTY, live UI is suppressed and NDJSON events are emitted.\n"
+msgstr ""
+"TCP/UDP memakai PDU biner berawalan panjang. SSH stdio memakai baris NDJSON @nPoi.\n"
+"Jika stdout bukan TTY, UI langsung ditekan dan peristiwa NDJSON dikeluarkan.\n"
 
 #: src/npcli/args.py:168
 #, python-brace-format
@@ -197,10 +191,8 @@ msgid "Copyright (C) {year} {author}\n"
 msgstr "Hak cipta (C) {year} {author}\n"
 
 #: src/npcli/args.py:174
-msgid ""
-"License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
-msgstr ""
-"Lisensi AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgid "License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgstr "Lisensi AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
 
 #: src/npcli/args.py:175
 msgid "This is free software: you are free to change and redistribute it.\n"
@@ -211,12 +203,8 @@ msgid "This project opposes AI exploitation and AI hegemony.\n"
 msgstr "Proyek ini menentang eksploitasi dan hegemoni AI.\n"
 
 #: src/npcli/args.py:179
-msgid ""
-"This project rejects mindless MIT-style licensing and politically naive BSD-"
-"style licensing.\n"
-msgstr ""
-"Proyek ini menolak lisensi gaya MIT yang tidak dipikirkan dan lisensi gaya "
-"BSD yang naif secara politik.\n"
+msgid "This project rejects mindless MIT-style licensing and politically naive BSD-style licensing.\n"
+msgstr "Proyek ini menolak lisensi gaya MIT yang tidak dipikirkan dan lisensi gaya BSD yang naif secara politik.\n"
 
 #: src/npcli/args.py:183
 msgid "There is NO WARRANTY, to the extent permitted by law.\n"
@@ -304,9 +292,7 @@ msgstr "{prog}: menulis {path}"
 
 #: src/npcli/main.py:94
 #, python-brace-format
-msgid ""
-"{prog}: run: systemctl --user daemon-reload && systemctl --user enable --now "
-"netpoisson"
+msgid "{prog}: run: systemctl --user daemon-reload && systemctl --user enable --now netpoisson"
 msgstr "{prog}: jalankan: systemctl --user daemon-reload && systemctl --user enable --now netpoisson"
 
 #: src/npcli/main.py:102
@@ -357,14 +343,10 @@ msgstr "{prog}: tersambung {proto} {endpoint} pada {lam} req/d"
 #~ msgid ""
 #~ "Offer a Poisson stream of requests to SERVER, or listen for them when\n"
 #~ "SERVER is omitted.\n"
-#~ msgstr ""
-#~ "Kirim aliran Poisson permintaan ke SERVER, atau dengarkan jika SERVER "
-#~ "dihilangkan.\n"
+#~ msgstr "Kirim aliran Poisson permintaan ke SERVER, atau dengarkan jika SERVER dihilangkan.\n"
 
-#~ msgid ""
-#~ "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
-#~ msgstr ""
-#~ "  -d, --daemon       dengarkan (juga bawaan jika SERVER dihilangkan)\n"
+#~ msgid "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
+#~ msgstr "  -d, --daemon       dengarkan (juga bawaan jika SERVER dihilangkan)\n"
 
 #~ msgid "  -H, --host HOST    address to bind (default 0.0.0.0)\n"
 #~ msgstr "  -H, --host HOST    alamat bind (bawaan 0.0.0.0)\n"
@@ -376,11 +358,9 @@ msgstr "{prog}: tersambung {proto} {endpoint} pada {lam} req/d"
 #~ msgstr "  -u, --udp          gunakan UDP (bawaan TCP)\n"
 
 #~ msgid "  -l, --lambda N     offered requests per second (default 100)\n"
-#~ msgstr ""
-#~ "  -l, --lambda N     permintaan yang ditawarkan per detik (bawaan 100)\n"
+#~ msgstr "  -l, --lambda N     permintaan yang ditawarkan per detik (bawaan 100)\n"
 
-#~ msgid ""
-#~ "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
+#~ msgid "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
 #~ msgstr "  -s, --stats SECS   jalankan SECS detik, lalu cetak laporan JSON\n"
 
 #~ msgid "  -w, --web          serve a live dashboard and open a browser\n"
@@ -394,23 +374,13 @@ msgstr "{prog}: tersambung {proto} {endpoint} pada {lam} req/d"
 
 #~ msgid ""
 #~ "ECHO responses are the request bytes. STATUS responses carry the server\n"
-#~ "timeline and queues. Req/Resp lines scroll right: newest slices on the "
-#~ "left.\n"
+#~ "timeline and queues. Req/Resp lines scroll right: newest slices on the left.\n"
 #~ msgstr ""
-#~ "Respons ECHO adalah bita permintaan. STATUS membawa linimasa dan "
-#~ "antrean.\n"
+#~ "Respons ECHO adalah bita permintaan. STATUS membawa linimasa dan antrean.\n"
 #~ "Baris Req/Resp bergeser ke kanan: irisan terbaru di kiri.\n"
 
-#~ msgid ""
-#~ "Req counts local arrivals per slice (newest on the left). The center "
-#~ "number has not left this host."
-#~ msgstr ""
-#~ "Req menghitung kedatangan lokal per irisan (terbaru di kiri). Angka di "
-#~ "tengah belum meninggalkan host ini."
+#~ msgid "Req counts local arrivals per slice (newest on the left). The center number has not left this host."
+#~ msgstr "Req menghitung kedatangan lokal per irisan (terbaru di kiri). Angka di tengah belum meninggalkan host ini."
 
-#~ msgid ""
-#~ "Resp counts server replies per slice. Left of the arrow: requests not yet "
-#~ "read. Next: replies not yet sent."
-#~ msgstr ""
-#~ "Resp menghitung balasan server per irisan. Kiri panah: permintaan yang "
-#~ "belum dibaca. Berikutnya: balasan yang belum terkirim."
+#~ msgid "Resp counts server replies per slice. Left of the arrow: requests not yet read. Next: replies not yet sent."
+#~ msgstr "Resp menghitung balasan server per irisan. Kiri panah: permintaan yang belum dibaca. Berikutnya: balasan yang belum terkirim."

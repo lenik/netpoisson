@@ -15,17 +15,14 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: src/npcli/args.py:109
 msgid "Usage: netpoisson [OPTION]... [SERVER]\n"
 msgstr "Использование: netpoisson [ПАРАМЕТР]... [СЕРВЕР]\n"
 
 #: src/npcli/args.py:112
-msgid ""
-"Offer a Poisson stream of requests to SERVER, or listen when SERVER is "
-"omitted.\n"
+msgid "Offer a Poisson stream of requests to SERVER, or listen when SERVER is omitted.\n"
 msgstr "Отправляет пуассоновский поток запросов на SERVER или слушает, если SERVER опущен.\n"
 
 #: src/npcli/args.py:116
@@ -33,14 +30,11 @@ msgid "Modes:\n"
 msgstr "Режимы:\n"
 
 #: src/npcli/args.py:117
-msgid ""
-"  -d, --daemon              listen (also the default when SERVER is "
-"omitted)\n"
+msgid "  -d, --daemon              listen (also the default when SERVER is omitted)\n"
 msgstr "  -d, --daemon              слушать (также по умолчанию, если SERVER опущен)\n"
 
 #: src/npcli/args.py:118
-msgid ""
-"      --stdio-server        serve NDJSON @nPoi protocol on stdin/stdout\n"
+msgid "      --stdio-server        serve NDJSON @nPoi protocol on stdin/stdout\n"
 msgstr "      --stdio-server        обслуживать протокол NDJSON @nPoi на stdin/stdout\n"
 
 #: src/npcli/args.py:119
@@ -128,8 +122,7 @@ msgid "      --bucket D            timeline bucket (default 100ms)\n"
 msgstr "      --bucket D            корзина шкалы времени (по умолчанию 100ms)\n"
 
 #: src/npcli/args.py:142
-msgid ""
-"      --window D            visible window (default auto; or e.g. 12s)\n"
+msgid "      --window D            visible window (default auto; or e.g. 12s)\n"
 msgstr "      --window D            видимое окно (по умолчанию auto; или напр. 12s)\n"
 
 #: src/npcli/args.py:143
@@ -182,11 +175,11 @@ msgstr "показать сведения о версии и выйти\n"
 
 #: src/npcli/args.py:163
 msgid ""
-"TCP/UDP use a length-prefixed binary PDU. SSH stdio uses @nPoi NDJSON "
-"lines.\n"
-"When stdout is not a TTY, live UI is suppressed and NDJSON events are "
-"emitted.\n"
-msgstr "TCP/UDP используют двоичный PDU с префиксом длины. SSH stdio — строки NDJSON @nPoi.\nЕсли stdout не TTY, живой UI отключается и выводятся события NDJSON.\n"
+"TCP/UDP use a length-prefixed binary PDU. SSH stdio uses @nPoi NDJSON lines.\n"
+"When stdout is not a TTY, live UI is suppressed and NDJSON events are emitted.\n"
+msgstr ""
+"TCP/UDP используют двоичный PDU с префиксом длины. SSH stdio — строки NDJSON @nPoi.\n"
+"Если stdout не TTY, живой UI отключается и выводятся события NDJSON.\n"
 
 #: src/npcli/args.py:168
 #, python-brace-format
@@ -199,10 +192,8 @@ msgid "Copyright (C) {year} {author}\n"
 msgstr "Copyright (C) {year} {author}\n"
 
 #: src/npcli/args.py:174
-msgid ""
-"License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
-msgstr ""
-"Лицензия AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgid "License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgstr "Лицензия AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
 
 #: src/npcli/args.py:175
 msgid "This is free software: you are free to change and redistribute it.\n"
@@ -213,12 +204,8 @@ msgid "This project opposes AI exploitation and AI hegemony.\n"
 msgstr "Этот проект против эксплуатации ИИ и гегемонии ИИ.\n"
 
 #: src/npcli/args.py:179
-msgid ""
-"This project rejects mindless MIT-style licensing and politically naive BSD-"
-"style licensing.\n"
-msgstr ""
-"Этот проект отвергает бездумные лицензии в духе MIT и политически наивные "
-"лицензии в духе BSD.\n"
+msgid "This project rejects mindless MIT-style licensing and politically naive BSD-style licensing.\n"
+msgstr "Этот проект отвергает бездумные лицензии в духе MIT и политически наивные лицензии в духе BSD.\n"
 
 #: src/npcli/args.py:183
 msgid "There is NO WARRANTY, to the extent permitted by law.\n"
@@ -306,9 +293,7 @@ msgstr "{prog}: записано {path}"
 
 #: src/npcli/main.py:94
 #, python-brace-format
-msgid ""
-"{prog}: run: systemctl --user daemon-reload && systemctl --user enable --now "
-"netpoisson"
+msgid "{prog}: run: systemctl --user daemon-reload && systemctl --user enable --now netpoisson"
 msgstr "{prog}: выполните: systemctl --user daemon-reload && systemctl --user enable --now netpoisson"
 
 #: src/npcli/main.py:102
@@ -359,33 +344,25 @@ msgstr "{prog}: подключено {proto} {endpoint}, {lam} запр./с"
 #~ msgid ""
 #~ "Offer a Poisson stream of requests to SERVER, or listen for them when\n"
 #~ "SERVER is omitted.\n"
-#~ msgstr ""
-#~ "Шлёт запросы серверу по процессу Пуассона; если СЕРВЕР не указан — "
-#~ "слушает.\n"
+#~ msgstr "Шлёт запросы серверу по процессу Пуассона; если СЕРВЕР не указан — слушает.\n"
 
-#~ msgid ""
-#~ "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
-#~ msgstr ""
-#~ "  -d, --daemon       слушать (также по умолчанию, если сервер не указан)\n"
+#~ msgid "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
+#~ msgstr "  -d, --daemon       слушать (также по умолчанию, если сервер не указан)\n"
 
 #~ msgid "  -H, --host HOST    address to bind (default 0.0.0.0)\n"
 #~ msgstr "  -H, --host HOST    адрес привязки (по умолчанию 0.0.0.0)\n"
 
 #~ msgid "  -p, --port PORT    port to bind or connect to (default 1871)\n"
-#~ msgstr ""
-#~ "  -p, --port PORT    порт привязки или подключения (по умолчанию 1871)\n"
+#~ msgstr "  -p, --port PORT    порт привязки или подключения (по умолчанию 1871)\n"
 
 #~ msgid "  -u, --udp          use UDP (default is TCP)\n"
 #~ msgstr "  -u, --udp          использовать UDP (по умолчанию TCP)\n"
 
 #~ msgid "  -l, --lambda N     offered requests per second (default 100)\n"
-#~ msgstr ""
-#~ "  -l, --lambda N     предлагаемые запросы в секунду (по умолчанию 100)\n"
+#~ msgstr "  -l, --lambda N     предлагаемые запросы в секунду (по умолчанию 100)\n"
 
-#~ msgid ""
-#~ "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
-#~ msgstr ""
-#~ "  -s, --stats SECS   работать SECS секунд, затем вывести отчёт JSON\n"
+#~ msgid "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
+#~ msgstr "  -s, --stats SECS   работать SECS секунд, затем вывести отчёт JSON\n"
 
 #~ msgid "  -w, --web          serve a live dashboard and open a browser\n"
 #~ msgstr "  -w, --web          отдать живую панель и открыть браузер\n"
@@ -398,22 +375,13 @@ msgstr "{prog}: подключено {proto} {endpoint}, {lam} запр./с"
 
 #~ msgid ""
 #~ "ECHO responses are the request bytes. STATUS responses carry the server\n"
-#~ "timeline and queues. Req/Resp lines scroll right: newest slices on the "
-#~ "left.\n"
+#~ "timeline and queues. Req/Resp lines scroll right: newest slices on the left.\n"
 #~ msgstr ""
 #~ "Ответ ECHO — те же байты запроса. STATUS несёт шкалу времени и очереди.\n"
 #~ "Строки Req/Resp бегут вправо: новые интервалы слева.\n"
 
-#~ msgid ""
-#~ "Req counts local arrivals per slice (newest on the left). The center "
-#~ "number has not left this host."
-#~ msgstr ""
-#~ "Req — локальные прибытия по интервалам (новые слева). Число в центре ещё "
-#~ "не покинуло этот узел."
+#~ msgid "Req counts local arrivals per slice (newest on the left). The center number has not left this host."
+#~ msgstr "Req — локальные прибытия по интервалам (новые слева). Число в центре ещё не покинуло этот узел."
 
-#~ msgid ""
-#~ "Resp counts server replies per slice. Left of the arrow: requests not yet "
-#~ "read. Next: replies not yet sent."
-#~ msgstr ""
-#~ "Resp — ответы сервера по интервалам. Слева от стрелки: запросы ещё не "
-#~ "прочитаны. Дальше: ответы ещё не отправлены."
+#~ msgid "Resp counts server replies per slice. Left of the arrow: requests not yet read. Next: replies not yet sent."
+#~ msgstr "Resp — ответы сервера по интервалам. Слева от стрелки: запросы ещё не прочитаны. Дальше: ответы ещё не отправлены."

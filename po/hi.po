@@ -21,9 +21,7 @@ msgid "Usage: netpoisson [OPTION]... [SERVER]\n"
 msgstr "उपयोग: netpoisson [विकल्प]... [सर्वर]\n"
 
 #: src/npcli/args.py:112
-msgid ""
-"Offer a Poisson stream of requests to SERVER, or listen when SERVER is "
-"omitted.\n"
+msgid "Offer a Poisson stream of requests to SERVER, or listen when SERVER is omitted.\n"
 msgstr "SERVER को प्वासों अनुरोध धारा भेजें, या SERVER छोड़ने पर सुनें।\n"
 
 #: src/npcli/args.py:116
@@ -31,14 +29,11 @@ msgid "Modes:\n"
 msgstr "मोड:\n"
 
 #: src/npcli/args.py:117
-msgid ""
-"  -d, --daemon              listen (also the default when SERVER is "
-"omitted)\n"
+msgid "  -d, --daemon              listen (also the default when SERVER is omitted)\n"
 msgstr "  -d, --daemon              सुनें (SERVER छोड़ने पर भी यही डिफ़ॉल्ट है)\n"
 
 #: src/npcli/args.py:118
-msgid ""
-"      --stdio-server        serve NDJSON @nPoi protocol on stdin/stdout\n"
+msgid "      --stdio-server        serve NDJSON @nPoi protocol on stdin/stdout\n"
 msgstr "      --stdio-server        stdin/stdout पर NDJSON @nPoi प्रोटोकॉल दें\n"
 
 #: src/npcli/args.py:119
@@ -126,8 +121,7 @@ msgid "      --bucket D            timeline bucket (default 100ms)\n"
 msgstr "      --bucket D            टाइमलाइन बकेट (डिफ़ॉल्ट 100ms)\n"
 
 #: src/npcli/args.py:142
-msgid ""
-"      --window D            visible window (default auto; or e.g. 12s)\n"
+msgid "      --window D            visible window (default auto; or e.g. 12s)\n"
 msgstr "      --window D            दृश्यमान विंडो (डिफ़ॉल्ट auto; या जैसे 12s)\n"
 
 #: src/npcli/args.py:143
@@ -180,11 +174,11 @@ msgstr "संस्करण जानकारी दिखाकर निक
 
 #: src/npcli/args.py:163
 msgid ""
-"TCP/UDP use a length-prefixed binary PDU. SSH stdio uses @nPoi NDJSON "
-"lines.\n"
-"When stdout is not a TTY, live UI is suppressed and NDJSON events are "
-"emitted.\n"
-msgstr "TCP/UDP लंबाई-उपसर्ग वाली द्विआधारी PDU उपयोग करते हैं। SSH stdio @nPoi NDJSON पंक्तियाँ उपयोग करता है।\nstdout TTY न होने पर लाइव UI बंद रहता है और NDJSON इवेंट निकलते हैं।\n"
+"TCP/UDP use a length-prefixed binary PDU. SSH stdio uses @nPoi NDJSON lines.\n"
+"When stdout is not a TTY, live UI is suppressed and NDJSON events are emitted.\n"
+msgstr ""
+"TCP/UDP लंबाई-उपसर्ग वाली द्विआधारी PDU उपयोग करते हैं। SSH stdio @nPoi NDJSON पंक्तियाँ उपयोग करता है।\n"
+"stdout TTY न होने पर लाइव UI बंद रहता है और NDJSON इवेंट निकलते हैं।\n"
 
 #: src/npcli/args.py:168
 #, python-brace-format
@@ -197,10 +191,8 @@ msgid "Copyright (C) {year} {author}\n"
 msgstr "कॉपीराइट (C) {year} {author}\n"
 
 #: src/npcli/args.py:174
-msgid ""
-"License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
-msgstr ""
-"लाइसेंस AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgid "License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgstr "लाइसेंस AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
 
 #: src/npcli/args.py:175
 msgid "This is free software: you are free to change and redistribute it.\n"
@@ -211,12 +203,8 @@ msgid "This project opposes AI exploitation and AI hegemony.\n"
 msgstr "यह परियोजना एआई शोषण और एआई वर्चस्व का विरोध करती है।\n"
 
 #: src/npcli/args.py:179
-msgid ""
-"This project rejects mindless MIT-style licensing and politically naive BSD-"
-"style licensing.\n"
-msgstr ""
-"यह परियोजना बिना सोचे MIT-शैली और राजनीतिक रूप से भोले BSD-शैली लाइसेंस को अस्वीकार "
-"करती है।\n"
+msgid "This project rejects mindless MIT-style licensing and politically naive BSD-style licensing.\n"
+msgstr "यह परियोजना बिना सोचे MIT-शैली और राजनीतिक रूप से भोले BSD-शैली लाइसेंस को अस्वीकार करती है।\n"
 
 #: src/npcli/args.py:183
 msgid "There is NO WARRANTY, to the extent permitted by law.\n"
@@ -304,9 +292,7 @@ msgstr "{prog}: लिखा {path}"
 
 #: src/npcli/main.py:94
 #, python-brace-format
-msgid ""
-"{prog}: run: systemctl --user daemon-reload && systemctl --user enable --now "
-"netpoisson"
+msgid "{prog}: run: systemctl --user daemon-reload && systemctl --user enable --now netpoisson"
 msgstr "{prog}: चलाएँ: systemctl --user daemon-reload && systemctl --user enable --now netpoisson"
 
 #: src/npcli/main.py:102
@@ -359,8 +345,7 @@ msgstr "{prog}: {proto} {endpoint} से जुड़ा, {lam} अनुरो
 #~ "SERVER is omitted.\n"
 #~ msgstr "SERVER को पॉइसन प्रवाह में अनुरोध भेजें, या SERVER न होने पर सुनें।\n"
 
-#~ msgid ""
-#~ "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
+#~ msgid "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
 #~ msgstr "  -d, --daemon       सुनें (SERVER छोड़ने पर भी यही डिफ़ॉल्ट है)\n"
 
 #~ msgid "  -H, --host HOST    address to bind (default 0.0.0.0)\n"
@@ -375,8 +360,7 @@ msgstr "{prog}: {proto} {endpoint} से जुड़ा, {lam} अनुरो
 #~ msgid "  -l, --lambda N     offered requests per second (default 100)\n"
 #~ msgstr "  -l, --lambda N     प्रति सेकंड प्रस्तावित अनुरोध (डिफ़ॉल्ट 100)\n"
 
-#~ msgid ""
-#~ "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
+#~ msgid "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
 #~ msgstr "  -s, --stats SECS   SECS सेकंड चलाकर JSON रिपोर्ट छापें\n"
 
 #~ msgid "  -w, --web          serve a live dashboard and open a browser\n"
@@ -390,22 +374,13 @@ msgstr "{prog}: {proto} {endpoint} से जुड़ा, {lam} अनुरो
 
 #~ msgid ""
 #~ "ECHO responses are the request bytes. STATUS responses carry the server\n"
-#~ "timeline and queues. Req/Resp lines scroll right: newest slices on the "
-#~ "left.\n"
+#~ "timeline and queues. Req/Resp lines scroll right: newest slices on the left.\n"
 #~ msgstr ""
 #~ "ECHO उत्तर अनुरोध के बाइट हैं। STATUS समयरेखा और कतारें लाता है।\n"
 #~ "Req/Resp दाएँ खिसकते हैं: नवीनतम स्लाइस बाएँ।\n"
 
-#~ msgid ""
-#~ "Req counts local arrivals per slice (newest on the left). The center "
-#~ "number has not left this host."
-#~ msgstr ""
-#~ "Req इस होस्ट पर हर समय-खंड की आगमन संख्या है (नया बाएँ)। बीच की संख्या अभी नेट से "
-#~ "नहीं निकली।"
+#~ msgid "Req counts local arrivals per slice (newest on the left). The center number has not left this host."
+#~ msgstr "Req इस होस्ट पर हर समय-खंड की आगमन संख्या है (नया बाएँ)। बीच की संख्या अभी नेट से नहीं निकली।"
 
-#~ msgid ""
-#~ "Resp counts server replies per slice. Left of the arrow: requests not yet "
-#~ "read. Next: replies not yet sent."
-#~ msgstr ""
-#~ "Resp सर्वर के हर समय-खंड के उत्तर हैं। तीर के बाएँ: अभी न पढ़े अनुरोध। उसके बाद: अभी न "
-#~ "भेजे उत्तर।"
+#~ msgid "Resp counts server replies per slice. Left of the arrow: requests not yet read. Next: replies not yet sent."
+#~ msgstr "Resp सर्वर के हर समय-खंड के उत्तर हैं। तीर के बाएँ: अभी न पढ़े अनुरोध। उसके बाद: अभी न भेजे उत्तर।"

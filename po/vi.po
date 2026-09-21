@@ -16,9 +16,7 @@ msgid "Usage: netpoisson [OPTION]... [SERVER]\n"
 msgstr "Cách dùng: netpoisson [TÙY CHỌN]... [MÁY CHỦ]\n"
 
 #: src/npcli/args.py:112
-msgid ""
-"Offer a Poisson stream of requests to SERVER, or listen when SERVER is "
-"omitted.\n"
+msgid "Offer a Poisson stream of requests to SERVER, or listen when SERVER is omitted.\n"
 msgstr "Gửi luồng yêu cầu Poisson tới SERVER, hoặc lắng nghe khi bỏ SERVER.\n"
 
 #: src/npcli/args.py:116
@@ -26,14 +24,11 @@ msgid "Modes:\n"
 msgstr "Chế độ:\n"
 
 #: src/npcli/args.py:117
-msgid ""
-"  -d, --daemon              listen (also the default when SERVER is "
-"omitted)\n"
+msgid "  -d, --daemon              listen (also the default when SERVER is omitted)\n"
 msgstr "  -d, --daemon              lắng nghe (cũng là mặc định khi bỏ SERVER)\n"
 
 #: src/npcli/args.py:118
-msgid ""
-"      --stdio-server        serve NDJSON @nPoi protocol on stdin/stdout\n"
+msgid "      --stdio-server        serve NDJSON @nPoi protocol on stdin/stdout\n"
 msgstr "      --stdio-server        phục vụ giao thức NDJSON @nPoi trên stdin/stdout\n"
 
 #: src/npcli/args.py:119
@@ -121,8 +116,7 @@ msgid "      --bucket D            timeline bucket (default 100ms)\n"
 msgstr "      --bucket D            ô thời gian (mặc định 100ms)\n"
 
 #: src/npcli/args.py:142
-msgid ""
-"      --window D            visible window (default auto; or e.g. 12s)\n"
+msgid "      --window D            visible window (default auto; or e.g. 12s)\n"
 msgstr "      --window D            cửa sổ hiển thị (mặc định auto; hoặc vd. 12s)\n"
 
 #: src/npcli/args.py:143
@@ -175,11 +169,11 @@ msgstr "in thông tin phiên bản rồi thoát\n"
 
 #: src/npcli/args.py:163
 msgid ""
-"TCP/UDP use a length-prefixed binary PDU. SSH stdio uses @nPoi NDJSON "
-"lines.\n"
-"When stdout is not a TTY, live UI is suppressed and NDJSON events are "
-"emitted.\n"
-msgstr "TCP/UDP dùng PDU nhị phân có tiền tố độ dài. SSH stdio dùng dòng NDJSON @nPoi.\nKhi stdout không phải TTY, UI trực tiếp bị tắt và phát sự kiện NDJSON.\n"
+"TCP/UDP use a length-prefixed binary PDU. SSH stdio uses @nPoi NDJSON lines.\n"
+"When stdout is not a TTY, live UI is suppressed and NDJSON events are emitted.\n"
+msgstr ""
+"TCP/UDP dùng PDU nhị phân có tiền tố độ dài. SSH stdio dùng dòng NDJSON @nPoi.\n"
+"Khi stdout không phải TTY, UI trực tiếp bị tắt và phát sự kiện NDJSON.\n"
 
 #: src/npcli/args.py:168
 #, python-brace-format
@@ -192,10 +186,8 @@ msgid "Copyright (C) {year} {author}\n"
 msgstr "Bản quyền (C) {year} {author}\n"
 
 #: src/npcli/args.py:174
-msgid ""
-"License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
-msgstr ""
-"Giấy phép AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgid "License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgstr "Giấy phép AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
 
 #: src/npcli/args.py:175
 msgid "This is free software: you are free to change and redistribute it.\n"
@@ -206,12 +198,8 @@ msgid "This project opposes AI exploitation and AI hegemony.\n"
 msgstr "Dự án này phản đối sự bóc lột và bá quyền của AI.\n"
 
 #: src/npcli/args.py:179
-msgid ""
-"This project rejects mindless MIT-style licensing and politically naive BSD-"
-"style licensing.\n"
-msgstr ""
-"Dự án này bác giấy phép kiểu MIT vô tâm và giấy phép kiểu BSD ngây thơ về "
-"chính trị.\n"
+msgid "This project rejects mindless MIT-style licensing and politically naive BSD-style licensing.\n"
+msgstr "Dự án này bác giấy phép kiểu MIT vô tâm và giấy phép kiểu BSD ngây thơ về chính trị.\n"
 
 #: src/npcli/args.py:183
 msgid "There is NO WARRANTY, to the extent permitted by law.\n"
@@ -299,9 +287,7 @@ msgstr "{prog}: đã ghi {path}"
 
 #: src/npcli/main.py:94
 #, python-brace-format
-msgid ""
-"{prog}: run: systemctl --user daemon-reload && systemctl --user enable --now "
-"netpoisson"
+msgid "{prog}: run: systemctl --user daemon-reload && systemctl --user enable --now netpoisson"
 msgstr "{prog}: chạy: systemctl --user daemon-reload && systemctl --user enable --now netpoisson"
 
 #: src/npcli/main.py:102
@@ -352,12 +338,9 @@ msgstr "{prog}: đã nối {proto} {endpoint} ở {lam} yêu cầu/giây"
 #~ msgid ""
 #~ "Offer a Poisson stream of requests to SERVER, or listen for them when\n"
 #~ "SERVER is omitted.\n"
-#~ msgstr ""
-#~ "Gửi luồng yêu cầu Poisson tới máy chủ, hoặc lắng nghe nếu bỏ qua máy "
-#~ "chủ.\n"
+#~ msgstr "Gửi luồng yêu cầu Poisson tới máy chủ, hoặc lắng nghe nếu bỏ qua máy chủ.\n"
 
-#~ msgid ""
-#~ "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
+#~ msgid "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
 #~ msgstr "  -d, --daemon       lắng nghe (cũng là mặc định khi bỏ máy chủ)\n"
 
 #~ msgid "  -H, --host HOST    address to bind (default 0.0.0.0)\n"
@@ -372,8 +355,7 @@ msgstr "{prog}: đã nối {proto} {endpoint} ở {lam} yêu cầu/giây"
 #~ msgid "  -l, --lambda N     offered requests per second (default 100)\n"
 #~ msgstr "  -l, --lambda N     số yêu cầu chào mỗi giây (mặc định 100)\n"
 
-#~ msgid ""
-#~ "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
+#~ msgid "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
 #~ msgstr "  -s, --stats SECS   chạy SECS giây rồi in báo cáo JSON\n"
 
 #~ msgid "  -w, --web          serve a live dashboard and open a browser\n"
@@ -387,23 +369,13 @@ msgstr "{prog}: đã nối {proto} {endpoint} ở {lam} yêu cầu/giây"
 
 #~ msgid ""
 #~ "ECHO responses are the request bytes. STATUS responses carry the server\n"
-#~ "timeline and queues. Req/Resp lines scroll right: newest slices on the "
-#~ "left.\n"
+#~ "timeline and queues. Req/Resp lines scroll right: newest slices on the left.\n"
 #~ msgstr ""
-#~ "Phản hồi ECHO là đúng các byte yêu cầu. STATUS mang dòng thời gian và "
-#~ "hàng đợi.\n"
+#~ "Phản hồi ECHO là đúng các byte yêu cầu. STATUS mang dòng thời gian và hàng đợi.\n"
 #~ "Dòng Req/Resp trượt sang phải: lát mới nhất ở bên trái.\n"
 
-#~ msgid ""
-#~ "Req counts local arrivals per slice (newest on the left). The center "
-#~ "number has not left this host."
-#~ msgstr ""
-#~ "Req đếm lượt đến cục bộ theo lát (mới nhất bên trái). Số ở giữa chưa rời "
-#~ "cổng mạng máy này."
+#~ msgid "Req counts local arrivals per slice (newest on the left). The center number has not left this host."
+#~ msgstr "Req đếm lượt đến cục bộ theo lát (mới nhất bên trái). Số ở giữa chưa rời cổng mạng máy này."
 
-#~ msgid ""
-#~ "Resp counts server replies per slice. Left of the arrow: requests not yet "
-#~ "read. Next: replies not yet sent."
-#~ msgstr ""
-#~ "Resp đếm phản hồi của máy chủ theo lát. Bên trái mũi tên: yêu cầu chưa "
-#~ "được đọc. Kế tiếp: phản hồi chưa gửi đi."
+#~ msgid "Resp counts server replies per slice. Left of the arrow: requests not yet read. Next: replies not yet sent."
+#~ msgstr "Resp đếm phản hồi của máy chủ theo lát. Bên trái mũi tên: yêu cầu chưa được đọc. Kế tiếp: phản hồi chưa gửi đi."

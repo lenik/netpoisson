@@ -11,8 +11,10 @@ netpoisson (0.2.1) unstable; urgency=medium
   * Install: bash launcher (netpoisson.in) in bindir; Python under
     /usr/lib/netpoisson; split web page assets for packaging/lint.
   * Docs: refresh L1 man web sections and README i18n notes.
+  * Refresh gettext catalogs (POTFILES + LINGUAS) for the redesigned CLI
+    help and install/remove messages.
 
- -- Lenik (谢继雷) <lenik@bodz.net>  Mon, 21 Sep 2026 21:00:00 +0800
+ -- Lenik (谢继雷) <lenik@bodz.net>  Mon, 21 Sep 2026 21:15:00 +0800
 
 netpoisson (0.2.0) unstable; urgency=medium
 
