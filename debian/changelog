@@ -1,3 +1,13 @@
+netpoisson (0.1.0) unstable; urgency=medium
+
+  * Replace the example utility with a Poisson traffic tester.
+  * Echo requests unchanged and answer STATUS with server timelines and
+    queues.
+  * Show scrolling Req/Resp lines, a JSON report, and a live web
+    dashboard.
+
+ -- Lenik (谢继雷) <lenik@bodz.net>  Mon, 21 Sep 2026 13:38:12 +0800
+
 netpoisson (0.0.1) unstable; urgency=medium
 
   * Initial release

@@ -1,128 +1,86 @@
 # netpoisson
 
-`netpoisson` is a Python + Meson project template for small command-line apps.
-`netpoisson` is one **example app** in this template; more apps can be added in the same repository.
-
-## Repository layout
-
-- `src/` - Python sources (`netpoisson.py` example app and `commons.py` shared helpers)
-- `tests/` - Python unit tests (`unittest`)
-- `debian/` - Debian packaging metadata
-- `po/` - gettext message catalogs
-- `man/` - AsciiDoc man page sources (`man/*.adoc`)
-- `meson.build` - install rules, tests, and helper targets
-
-## Example app: `netpoisson`
-
-`netpoisson` is a cat-like utility:
+`netpoisson` offers a Poisson stream of requests and can listen for them.
+ECHO replies are the request bytes. STATUS replies carry the server timeline
+and its receive and send queues.
 
 ```bash
-netpoisson [OPTION]... [FILE]...
+netpoisson [OPTION]... [SERVER]
 ```
 
-- If no `FILE` is provided, it reads from `stdin`.
-- If a `FILE` is `-`, it reads from `stdin` at that position.
-- Output is written to `stdout`.
+With no `SERVER`, or with `-d`, it listens. Otherwise it connects to `SERVER`
+(`host` or `host:port`).
 
-Supported options:
+## Options
 
-- `-v`, `--verbose`
-- `-q`, `--quiet`
-- `-h`, `--help`
-- `--version`
+- `-d`, `--daemon` — listen (also the default when `SERVER` is omitted)
+- `-H`, `--host HOST` — bind address (default `0.0.0.0`)
+- `-p`, `--port PORT` — bind or connect port (default `1871`)
+- `-u`, `--udp` — UDP instead of TCP
+- `-l`, `--lambda N` — offered requests per second (default `100`)
+- `-s`, `--stats SECS` — run for `SECS` seconds, then print a JSON report
+- `-w`, `--web` — serve a live dashboard and open a browser
+- `--web-host`, `--web-port` — dashboard bind (default `127.0.0.1:8711`)
+- `-v`, `--quiet`, `-h`, `--version`
+
+## What the two lines mean
+
+Time slices are 100 ms. The newest slice is on the left and the lines scroll
+to the right.
+
+```text
+Req. [1 2 0 1 1 3 1 0 2 1 3 1 -> 17 -> 1 2 0 1 1 3 1 0 2 1 3 1]
+Resp [                     16 -> 20 -> 2 0 1 1 3 1 0 2 1 3 1]
+```
+
+- The request numbers are local arrivals in each slice.
+- `17` is the local send queue: requests that have not left this host.
+- The response numbers are server replies in each slice. Recent slices stay
+  blank until replies exist.
+- `16` is requests the server has not read or analyzed yet.
+- `20` is responses still queued on the server, not yet on the wire.
+
+`-w` shows the same timelines in a browser, plus RTT, RFC 3550 jitter, loss,
+queue delay, and whether the arrivals still look like a Poisson process.
+
+## Examples
+
+```bash
+netpoisson -d
+netpoisson -l 100 127.0.0.1
+netpoisson -u -l 50 -s 10 127.0.0.1
+netpoisson -w -l 100 127.0.0.1
+```
+
+`-s` writes the report to standard output. The live lines go to the terminal
+on standard error, and `-q` turns them off.
 
 ## Build and test
 
-### Build dependencies (Debian example)
-
 ```bash
 sudo apt install meson ninja-build python3 gettext asciidoctor
-```
-
-### Configure and build
-
-Use the absolute build directory `/build`:
-
-```bash
 meson setup /build
 ninja -C /build
-```
-
-### Run tests
-
-```bash
 meson test -C /build
 ```
 
-Meson runs `python3 -m unittest discover` against `tests/test_*.py`.
+The program is Python 3 from the standard library. Meson installs the modules
+next to the `netpoisson` executable so `import` works from `/usr/bin`.
 
 ## i18n (gettext)
 
-`netpoisson` uses gettext translations under `po/` (`*.po` + generated `.mo` files).
-
-Netpoisson style recommends `po/LINGUAS` cover at least: **ar bn de es fr hi id it
-ja ko pt ru sv ta te th tr ur vi zh_CN zh_TW** (English is the msgid source;
-`zh-cn`/`zh-tw` map to `zh_CN`/`zh_TW`).
-
-- Installed runtime loads translations from system locale dir.
-- Dev runtime (`/build/netpoisson`) prefers project-local translations from `/build/po` if present.
-
-### Sync translation catalogs
-
-Use `posync` to update catalogs from current source strings:
+Catalogs live in `po/`. Sync them with `ninja -C /build posync`. English is
+the source language. `po/LINGUAS` lists the translations.
 
 ```bash
-ninja -C /build posync
-```
-
-`posync` will:
-
-- add missing messages into each language from `po/LINGUAS`
-- remove obsolete messages no longer used in source
-
-### Build translation files
-
-```bash
-ninja -C /build
-```
-
-### Quick locale testing
-
-Prefer `LANGUAGE=<lang>` for predictable gettext selection in dev shells:
-
-```bash
-LANGUAGE=ja /build/netpoisson -h
 LANGUAGE=zh_CN /build/netpoisson -h
-```
-
-`LANG=<lang>.<encoding>` may depend on whether that locale is generated on your system.
-
-## Install / symlink helpers
-
-Normal install:
-
-```bash
-meson install -C /build
-```
-
-Debug symlink workflow (under configured prefix):
-
-```bash
-ninja -C /build install-symlinks
-ninja -C /build uninstall-symlinks
-```
-
-## Debian package
-
-```bash
-dpkg-buildpackage -us -uc
 ```
 
 ## License
 
 Copyright (C) 2026 Lenik <netpoisson@bodz.net>
 
-Licensed under **AGPL-3.0-or-later**.  
+Licensed under **AGPL-3.0-or-later**.
 This project explicitly opposes AI exploitation and AI hegemony, and rejects
-mindless MIT-style licensing and politically naive BSD-style licensing.  
-See `LICENSE` for the full text and supplemental project terms.
+mindless MIT-style licensing and politically naive BSD-style licensing.
+See `LICENSE`.

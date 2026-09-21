@@ -2,79 +2,213 @@ msgid ""
 msgstr ""
 "Project-Id-Version: netpoisson\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-24 22:31+0800\n"
+"POT-Creation-Date: 2026-09-21 13:26+0800\n"
 "Language: ko\n"
+"PO-Revision-Date: 2026-09-21 13:26+0800\n"
+"Last-Translator: Lenik <netpoisson@bodz.net>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/netpoisson.c:32
+#: src/netpoisson.py:66
+msgid "Usage: netpoisson [OPTION]... [SERVER]\n"
+msgstr "사용법: netpoisson [옵션]... [서버]\n"
+
+#: src/netpoisson.py:69
 msgid ""
-"Usage: netpoisson [OPTION]... [FILE]...\n"
-"Concatenate FILE(s) to standard output. With no FILE, or when FILE is -,\n"
-"read standard input.\n"
+"Offer a Poisson stream of requests to SERVER, or listen for them when\n"
+"SERVER is omitted.\n"
 msgstr ""
-"사용법: netpoisson [OPTION]... [FILE]...\n"
-"FILE 내용을 이어서 표준 출력으로 보냅니다. FILE이 없거나 FILE이 - 이면,\n"
-"표준 입력을 읽습니다.\n"
+"SERVER에 푸아송 과정으로 요청을 보낸다. SERVER를 생략하면 수신 대기한다.\n"
 
-#: src/netpoisson.c:38
+#: src/netpoisson.py:74
+msgid "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
+msgstr "  -d, --daemon       수신 대기 (서버를 생략했을 때의 기본값)\n"
+
+#: src/netpoisson.py:75
+msgid "  -H, --host HOST    address to bind (default 0.0.0.0)\n"
+msgstr "  -H, --host HOST    바인드 주소 (기본값 0.0.0.0)\n"
+
+#: src/netpoisson.py:76
+msgid "  -p, --port PORT    port to bind or connect to (default 1871)\n"
+msgstr "  -p, --port PORT    바인드 또는 접속 포트 (기본값 1871)\n"
+
+#: src/netpoisson.py:77
+msgid "  -u, --udp          use UDP (default is TCP)\n"
+msgstr "  -u, --udp          UDP 사용 (기본값은 TCP)\n"
+
+#: src/netpoisson.py:78
+msgid "  -l, --lambda N     offered requests per second (default 100)\n"
+msgstr "  -l, --lambda N     초당 제공 요청 수 (기본값 100)\n"
+
+#: src/netpoisson.py:79
+msgid "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
+msgstr "  -s, --stats SECS   SECS초 동안 실행한 뒤 JSON 보고서를 출력\n"
+
+#: src/netpoisson.py:80
+msgid "  -w, --web          serve a live dashboard and open a browser\n"
+msgstr "  -w, --web          실시간 대시보드를 제공하고 브라우저를 연다\n"
+
+#: src/netpoisson.py:81
+msgid "      --web-host H   dashboard address (default 127.0.0.1)\n"
+msgstr "      --web-host H   대시보드 주소 (기본값 127.0.0.1)\n"
+
+#: src/netpoisson.py:82
+msgid "      --web-port N   dashboard port (default 8711)\n"
+msgstr "      --web-port N   대시보드 포트 (기본값 8711)\n"
+
+#: src/netpoisson.py:84
 msgid "repeat for more verbose loggings\n"
-msgstr "더 자세한 로그를 보려면 반복 지정\n"
+msgstr "반복하면 로그가 더 자세해진다\n"
 
-#: src/netpoisson.c:40
+#: src/netpoisson.py:86
 msgid "show less logging messages\n"
-msgstr "로그 메시지를 더 적게 표시\n"
+msgstr "로그 메시지를 줄인다\n"
 
-#: src/netpoisson.c:42
+#: src/netpoisson.py:88
 msgid "display this help and exit\n"
-msgstr "도움말을 표시하고 종료\n"
+msgstr "이 도움말을 표시하고 종료한다\n"
 
-#: src/netpoisson.c:44
+#: src/netpoisson.py:90
 msgid "output version information and exit\n"
-msgstr "버전 정보를 표시하고 종료\n"
+msgstr "버전 정보를 출력하고 종료한다\n"
 
-#: src/netpoisson.c:46
-#, fuzzy, c-format
-msgid "Report bugs to: <%s>\n"
-msgstr "버그 제보: <%s>\n"
-
-#: src/netpoisson.c:54
-#, c-format
-msgid "hello, world!\n"
+#: src/netpoisson.py:94
+msgid ""
+"ECHO responses are the request bytes. STATUS responses carry the server\n"
+"timeline and queues. Req/Resp lines scroll right: newest slices on the "
+"left.\n"
 msgstr ""
+"ECHO 응답은 요청 바이트 그대로다. STATUS는 서버 시간선과 대기열을 담는다.\n"
+"Req/Resp는 오른쪽으로 흐르고, 최신 구간은 왼쪽이다.\n"
 
-#: src/netpoisson.c:81
-#, fuzzy, c-format
-msgid "Copyright (C) %d %s\n"
-msgstr "저작권 (C) %d %s\n"
+#: src/netpoisson.py:99
+msgid "Report bugs to: <{email}>\n"
+msgstr "버그 보고: <{email}>\n"
 
-#: src/netpoisson.c:82
+#: src/netpoisson.py:104
+msgid "Copyright (C) {year} {author}\n"
+msgstr "Copyright (C) {year} {author}\n"
+
+#: src/netpoisson.py:105
 msgid ""
 "License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
 msgstr ""
 "라이선스 AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
 
-#: src/netpoisson.c:84
+#: src/netpoisson.py:106
 msgid "This is free software: you are free to change and redistribute it.\n"
-msgstr "이것은 자유 소프트웨어이며 자유롭게 수정 및 재배포할 수 있습니다.\n"
+msgstr "이것은 자유 소프트웨어입니다. 고치고 재배포할 수 있습니다.\n"
 
-#: src/netpoisson.c:86
+#: src/netpoisson.py:107
 msgid "This project opposes AI exploitation and AI hegemony.\n"
 msgstr "이 프로젝트는 AI 착취와 AI 패권에 반대합니다.\n"
 
-#: src/netpoisson.c:87
+#: src/netpoisson.py:110
 msgid ""
 "This project rejects mindless MIT-style licensing and politically naive BSD-"
 "style licensing.\n"
 msgstr ""
-"이 프로젝트는 무비판적 MIT식 라이선스와 정치적으로 어리석은 BSD식 라이선스를 "
-"거부합니다.\n"
+"이 프로젝트는 무심한 MIT식 라이선스와 정치적으로 순진한 BSD식 라이선스를 거부"
+"합니다.\n"
 
-#: src/netpoisson.c:90
+#: src/netpoisson.py:114
 msgid "There is NO WARRANTY, to the extent permitted by law.\n"
-msgstr "법이 허용하는 한 어떠한 보증도 없습니다.\n"
+msgstr "법이 허용하는 한도에서 어떤 보증도 없습니다.\n"
 
-#: src/lib.c:49
-#, c-format
-msgid "%s: write error\n"
+#: src/netpoisson.py:133
+#, python-brace-format
+msgid "{prog}: missing argument for {opt}\n"
+msgstr "{prog}: {opt}의 인자가 없습니다\n"
+
+#: src/netpoisson.py:141 src/netpoisson.py:151
+#, python-brace-format
+msgid "{prog}: invalid number: {text}\n"
+msgstr "{prog}: 잘못된 숫자: {text}\n"
+
+#: src/netpoisson.py:143 src/netpoisson.py:228
+#, python-brace-format
+msgid "{prog}: port out of range\n"
+msgstr "{prog}: 포트가 범위를 벗어났습니다\n"
+
+#: src/netpoisson.py:154
+#, python-brace-format
+msgid "{prog}: lambda must be positive\n"
+msgstr "{prog}: lambda는 양수여야 합니다\n"
+
+#: src/netpoisson.py:155
+#, python-brace-format
+msgid "{prog}: duration must be positive\n"
+msgstr "{prog}: 시간은 양수여야 합니다\n"
+
+#: src/netpoisson.py:199 src/netpoisson.py:207
+#, python-brace-format
+msgid "{prog}: unknown option {opt}\n"
+msgstr "{prog}: 알 수 없는 옵션 {opt}\n"
+
+#: src/netpoisson.py:230
+#, python-brace-format
+msgid "{prog}: unexpected argument {text}\n"
+msgstr "{prog}: 예기치 않은 인자 {text}\n"
+
+#: src/netpoisson.py:234
+#, python-brace-format
+msgid "{prog}: do not combine --daemon with SERVER\n"
+msgstr "{prog}: --daemon과 서버를 함께 쓸 수 없습니다\n"
+
+#: src/netpoisson.py:242 src/netpoisson.py:249
+#, python-brace-format
+msgid "{prog}: invalid server address\n"
+msgstr "{prog}: 서버 주소가 잘못되었습니다\n"
+
+#: src/netpoisson.py:292
+#, python-brace-format
+msgid "{prog}: {message}\n"
+msgstr "{prog}: {message}\n"
+
+#: src/netpoisson.py:294
+#, python-brace-format
+msgid "{prog}: dashboard {url}"
+msgstr "{prog}: 대시보드 {url}"
+
+#: src/netpoisson.py:324
+#, python-brace-format
+msgid "{prog}: --lambda applies to the client; ignoring it"
+msgstr "{prog}: --lambda는 클라이언트용이라 무시합니다"
+
+#: src/netpoisson.py:333 src/netpoisson.py:367
+#, python-brace-format
+msgid "{prog}: {message}"
+msgstr "{prog}: {message}"
+
+#: src/netpoisson.py:337
+#, python-brace-format
+msgid "{prog}: listening on {proto}://{endpoint}"
+msgstr "{prog}: {proto}://{endpoint} 에서 수신 대기"
+
+#: src/netpoisson.py:357
+#, python-brace-format
+msgid "{prog}: --host is the listen address; the target is SERVER"
+msgstr "{prog}: --host는 수신 주소이고, 대상은 SERVER입니다"
+
+#: src/netpoisson.py:371
+#, python-brace-format
+msgid "{prog}: connected {proto} {endpoint} at {lam} req/s"
+msgstr "{prog}: {proto} {endpoint} 에 연결, {lam} 요청/초"
+
+#: src/netpoisson.py:382
+msgid ""
+"Req counts local arrivals per slice (newest on the left). The center number "
+"has not left this host."
 msgstr ""
+"Req는 이 호스트의 시간 조각별 도착 수다(최신이 왼쪽). 가운데 숫자는 아직 망"
+"을 떠나지 않았다."
+
+#: src/netpoisson.py:389
+msgid ""
+"Resp counts server replies per slice. Left of the arrow: requests not yet "
+"read. Next: replies not yet sent."
+msgstr ""
+"Resp는 서버의 시간 조각별 응답 수다. 화살표 왼쪽은 아직 읽거나 분석하지 않은 "
+"요청, 그다음은 아직 나가지 않은 응답이다."

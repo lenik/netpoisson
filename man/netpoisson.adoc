@@ -9,31 +9,87 @@ v{project-version}, {project-year}
 
 == Name
 
-netpoisson - concatenate files to standard output
+netpoisson - offer a Poisson stream of requests, or answer them
 
 == Synopsis
 
-*netpoisson* [_OPTION_]... [_FILE_]...
+*netpoisson* [_OPTION_]... [_SERVER_]
 
 == Description
 
-Copy each _FILE_ to standard output in order.
-If _FILE_ is a single dash (*-*), read standard input at that position.
-If no _FILE_ is given, read standard input once.
+*netpoisson* either listens for requests, or connects to _SERVER_ and offers
+requests as a Poisson process. The inter-arrival time is exponential with
+mean 1/λ. The default rate is 100 requests per second.
 
-*netpoisson* is similar in spirit to *cat*(1): it writes the concatenation of
-inputs to standard output.
+Each request is *ECHO* or *STATUS*. An *ECHO* response is the request bytes
+unchanged. A *STATUS* response carries the server timeline and the depth of
+the server receive and send queues. Load uses *ECHO*. A second socket probes
+with *STATUS* so those numbers stay visible when the data socket is backed up.
+
+If _SERVER_ is omitted, *netpoisson* listens. *-d* selects the same mode.
+_SERVER_ is a host or `host:port`. *-p* overrides the port.
+
+Time is shown in 100 ms slices. On a terminal the client redraws two lines.
+The newest slice is on the left, so the lines scroll to the right:
+
+ Req. [arrivals per slice -> local send queue -> older arrivals]
+ Resp [            unread -> server send queue -> older replies]
+
+The center number on the request line is requests that have not left this
+host. On the response line, the number left of the arrow is requests the
+server has not read or analyzed, and the next number is responses that have
+not left the server.
+
+*-w* serves the same timelines over HTTP, plus round-trip time, RFC 3550
+jitter, loss, queue delay, and a check that the inter-arrival times still
+look exponential. The page is a hardcoded template and loads Tailwind CSS
+when the network allows it.
+
+*-s* runs for the given number of seconds and then prints one JSON object on
+standard output. The live lines are written to standard error. *-q* disables
+them. If requests were sent and none came back, the client exits with status 1.
 
 == Options
 
+*-d, --daemon*::
+  Listen for requests. This is also the default when _SERVER_ is omitted.
+  Do not pass _SERVER_ together with this option.
+
+*-H, --host _HOST_*::
+  Address to bind. The default is `0.0.0.0`. In client mode the target is
+  _SERVER_, not this address.
+
+*-p, --port _PORT_*::
+  Port to bind, or the port to connect to. The default is 1871.
+  Port 0 asks the kernel for an ephemeral listen port.
+
+*-u, --udp*::
+  Use UDP. The default is TCP. TCP sockets set `TCP_NODELAY`.
+
+*-l, --lambda _N_*::
+  Offered *ECHO* requests per second. The default is 100. _N_ must be positive
+  and may be fractional. This option applies only to the client.
+
+*-s, --stats _SECS_*::
+  Stop after _SECS_ seconds and print a JSON report. The client waits briefly
+  for replies already on the wire before counting the rest as lost.
+
+*-w, --web*::
+  Serve a live dashboard and open it in a browser.
+  Set `NETPOISSON_NO_BROWSER=1` to skip opening a browser.
+
+*--web-host _H_*::
+  Dashboard bind address. The default is `127.0.0.1`.
+
+*--web-port _N_*::
+  Dashboard port. The default is 8711.
+
 *-v, --verbose*::
-  Print each file name (or ``standard input`` for *-*) to standard error
-  before copying that input.
-  Repeat for more verbose logging.
+  Repeat for more logging. One *-v* reports the connection.
 
 *-q, --quiet*::
-  Suppress messages that would be printed by *--verbose*.
-  If both *--verbose* and *--quiet* are given, *--quiet* wins.
+  Do not draw the live status lines. If both *-v* and *-q* are given, the
+  one that appears last wins for the display; *-q* sets logging off.
 
 *-h, --help*::
   Print a usage summary and exit successfully.
@@ -47,7 +103,7 @@ inputs to standard output.
   Success.
 
 *1*::
-  An error occurred (invalid options, unreadable file, or I/O error).
+  An error occurred, or the client sent requests and received none.
 
 == Author
 

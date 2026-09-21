@@ -3,11 +3,11 @@
 pkgname=netpoisson
 pkgver=0.0.0
 pkgrel=1
-pkgdesc="Meson-based CLI template"
+pkgdesc="Poisson request generator and echo server"
 arch=('any')
 url="https://github.com/lenik/netpoisson"
 license=('AGPL-3.0-or-later')
-depends=('bash')
+depends=('python')
 makedepends=('meson' 'ninja' 'asciidoctor')
 source=()
 sha256sums=()

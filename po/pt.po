@@ -7,78 +7,221 @@ msgid ""
 msgstr ""
 "Project-Id-Version: netpoisson 3b1f339-dirty\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-24 22:31+0800\n"
+"POT-Creation-Date: 2026-09-21 13:26+0800\n"
 "PO-Revision-Date: 2026-04-24 22:31+0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ASCII\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/netpoisson.c:32
+#: src/netpoisson.py:66
+msgid "Usage: netpoisson [OPTION]... [SERVER]\n"
+msgstr "Uso: netpoisson [OPÇÃO]... [SERVIDOR]\n"
+
+#: src/netpoisson.py:69
 msgid ""
-"Usage: netpoisson [OPTION]... [FILE]...\n"
-"Concatenate FILE(s) to standard output. With no FILE, or when FILE is -,\n"
-"read standard input.\n"
+"Offer a Poisson stream of requests to SERVER, or listen for them when\n"
+"SERVER is omitted.\n"
 msgstr ""
+"Envia um fluxo de Poisson de pedidos a SERVIDOR, ou escuta se SERVIDOR for "
+"omitido.\n"
 
-#: src/netpoisson.c:38
+#: src/netpoisson.py:74
+msgid "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
+msgstr ""
+"  -d, --daemon       escutar (também a omissão quando SERVIDOR falta)\n"
+
+#: src/netpoisson.py:75
+msgid "  -H, --host HOST    address to bind (default 0.0.0.0)\n"
+msgstr "  -H, --host HOST    endereço de escuta (omissão 0.0.0.0)\n"
+
+#: src/netpoisson.py:76
+msgid "  -p, --port PORT    port to bind or connect to (default 1871)\n"
+msgstr "  -p, --port PORT    porta de escuta ou ligação (omissão 1871)\n"
+
+#: src/netpoisson.py:77
+msgid "  -u, --udp          use UDP (default is TCP)\n"
+msgstr "  -u, --udp          usar UDP (a omissão é TCP)\n"
+
+#: src/netpoisson.py:78
+msgid "  -l, --lambda N     offered requests per second (default 100)\n"
+msgstr "  -l, --lambda N     pedidos oferecidos por segundo (omissão 100)\n"
+
+#: src/netpoisson.py:79
+msgid "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
+msgstr ""
+"  -s, --stats SECS   correr SECS segundos e depois imprimir um relatório "
+"JSON\n"
+
+#: src/netpoisson.py:80
+msgid "  -w, --web          serve a live dashboard and open a browser\n"
+msgstr "  -w, --web          servir um painel ao vivo e abrir um navegador\n"
+
+#: src/netpoisson.py:81
+msgid "      --web-host H   dashboard address (default 127.0.0.1)\n"
+msgstr "      --web-host H   endereço do painel (omissão 127.0.0.1)\n"
+
+#: src/netpoisson.py:82
+msgid "      --web-port N   dashboard port (default 8711)\n"
+msgstr "      --web-port N   porta do painel (omissão 8711)\n"
+
+#: src/netpoisson.py:84
 msgid "repeat for more verbose loggings\n"
-msgstr ""
+msgstr "repetir para registos mais detalhados\n"
 
-#: src/netpoisson.c:40
+#: src/netpoisson.py:86
 msgid "show less logging messages\n"
-msgstr ""
+msgstr "mostrar menos mensagens de registo\n"
 
-#: src/netpoisson.c:42
+#: src/netpoisson.py:88
 msgid "display this help and exit\n"
-msgstr ""
+msgstr "mostrar esta ajuda e sair\n"
 
-#: src/netpoisson.c:44
+#: src/netpoisson.py:90
 msgid "output version information and exit\n"
-msgstr ""
+msgstr "mostrar a versão e sair\n"
 
-#: src/netpoisson.c:46
-#, c-format
-msgid "Report bugs to: <%s>\n"
+#: src/netpoisson.py:94
+msgid ""
+"ECHO responses are the request bytes. STATUS responses carry the server\n"
+"timeline and queues. Req/Resp lines scroll right: newest slices on the "
+"left.\n"
 msgstr ""
+"As respostas ECHO são os bytes do pedido. STATUS traz a linha temporal e as "
+"filas.\n"
+"Req/Resp deslocam-se para a direita: as fatias novas ficam à esquerda.\n"
 
-#: src/netpoisson.c:54
-#, c-format
-msgid "hello, world!\n"
-msgstr ""
+#: src/netpoisson.py:99
+#, python-brace-format
+msgid "Report bugs to: <{email}>\n"
+msgstr "Reportar erros a: <{email}>\n"
 
-#: src/netpoisson.c:81
-#, c-format
-msgid "Copyright (C) %d %s\n"
-msgstr ""
+#: src/netpoisson.py:104
+#, python-brace-format
+msgid "Copyright (C) {year} {author}\n"
+msgstr "Copyright (C) {year} {author}\n"
 
-#: src/netpoisson.c:82
+#: src/netpoisson.py:105
 msgid ""
 "License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
 msgstr ""
+"Licença AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
 
-#: src/netpoisson.c:84
+#: src/netpoisson.py:106
 msgid "This is free software: you are free to change and redistribute it.\n"
-msgstr ""
+msgstr "Isto é software livre: pode alterá-lo e redistribuí-lo.\n"
 
-#: src/netpoisson.c:86
+#: src/netpoisson.py:107
 msgid "This project opposes AI exploitation and AI hegemony.\n"
-msgstr ""
+msgstr "Este projeto opõe-se à exploração e à hegemonia da IA.\n"
 
-#: src/netpoisson.c:87
+#: src/netpoisson.py:110
 msgid ""
 "This project rejects mindless MIT-style licensing and politically naive BSD-"
 "style licensing.\n"
 msgstr ""
+"Este projeto rejeita o licenciamento irrefletido ao estilo MIT e o "
+"licenciamento BSD politicamente ingénuo.\n"
 
-#: src/netpoisson.c:90
+#: src/netpoisson.py:114
 msgid "There is NO WARRANTY, to the extent permitted by law.\n"
-msgstr ""
+msgstr "NÃO HÁ GARANTIA, na medida permitida pela lei.\n"
 
-#: src/lib.c:49
-#, c-format
-msgid "%s: write error\n"
+#: src/netpoisson.py:133
+#, python-brace-format
+msgid "{prog}: missing argument for {opt}\n"
+msgstr "{prog}: falta o argumento de {opt}\n"
+
+#: src/netpoisson.py:141 src/netpoisson.py:151
+#, python-brace-format
+msgid "{prog}: invalid number: {text}\n"
+msgstr "{prog}: número inválido: {text}\n"
+
+#: src/netpoisson.py:143 src/netpoisson.py:228
+#, python-brace-format
+msgid "{prog}: port out of range\n"
+msgstr "{prog}: porta fora do intervalo\n"
+
+#: src/netpoisson.py:154
+#, python-brace-format
+msgid "{prog}: lambda must be positive\n"
+msgstr "{prog}: lambda tem de ser positivo\n"
+
+#: src/netpoisson.py:155
+#, python-brace-format
+msgid "{prog}: duration must be positive\n"
+msgstr "{prog}: a duração tem de ser positiva\n"
+
+#: src/netpoisson.py:199 src/netpoisson.py:207
+#, python-brace-format
+msgid "{prog}: unknown option {opt}\n"
+msgstr "{prog}: opção desconhecida {opt}\n"
+
+#: src/netpoisson.py:230
+#, python-brace-format
+msgid "{prog}: unexpected argument {text}\n"
+msgstr "{prog}: argumento inesperado {text}\n"
+
+#: src/netpoisson.py:234
+#, python-brace-format
+msgid "{prog}: do not combine --daemon with SERVER\n"
+msgstr "{prog}: não combine --daemon com SERVIDOR\n"
+
+#: src/netpoisson.py:242 src/netpoisson.py:249
+#, python-brace-format
+msgid "{prog}: invalid server address\n"
+msgstr "{prog}: endereço de servidor inválido\n"
+
+#: src/netpoisson.py:292
+#, python-brace-format
+msgid "{prog}: {message}\n"
+msgstr "{prog}: {message}\n"
+
+#: src/netpoisson.py:294
+#, python-brace-format
+msgid "{prog}: dashboard {url}"
+msgstr "{prog}: painel {url}"
+
+#: src/netpoisson.py:324
+#, python-brace-format
+msgid "{prog}: --lambda applies to the client; ignoring it"
+msgstr "{prog}: --lambda aplica-se ao cliente; a ignorar"
+
+#: src/netpoisson.py:333 src/netpoisson.py:367
+#, python-brace-format
+msgid "{prog}: {message}"
+msgstr "{prog}: {message}"
+
+#: src/netpoisson.py:337
+#, python-brace-format
+msgid "{prog}: listening on {proto}://{endpoint}"
+msgstr "{prog}: a escutar em {proto}://{endpoint}"
+
+#: src/netpoisson.py:357
+#, python-brace-format
+msgid "{prog}: --host is the listen address; the target is SERVER"
+msgstr "{prog}: --host é o endereço de escuta; o alvo é SERVIDOR"
+
+#: src/netpoisson.py:371
+#, python-brace-format
+msgid "{prog}: connected {proto} {endpoint} at {lam} req/s"
+msgstr "{prog}: ligado a {proto} {endpoint} a {lam} ped./s"
+
+#: src/netpoisson.py:382
+msgid ""
+"Req counts local arrivals per slice (newest on the left). The center number "
+"has not left this host."
 msgstr ""
+"Req conta as chegadas locais por fatia (as mais recentes à esquerda). O "
+"número ao centro ainda não saiu deste anfitrião."
+
+#: src/netpoisson.py:389
+msgid ""
+"Resp counts server replies per slice. Left of the arrow: requests not yet "
+"read. Next: replies not yet sent."
+msgstr ""
+"Resp conta as respostas do servidor por fatia. À esquerda da seta: pedidos "
+"ainda não lidos. A seguir: respostas ainda não enviadas."

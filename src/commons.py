@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 # Copyright (C) 2026 Lenik <netpoisson@bodz.net>
 # SPDX-License-Identifier: AGPL-3.0-or-later
-#
-# Template example: shared helpers live in src/commons.* (not a real module name).
-# In a concrete program, rename to something specific (e.g. stream_copy.py).
+
+"""Shared helpers: locale and gettext."""
 
 from __future__ import annotations
 
@@ -11,7 +10,6 @@ import gettext
 import locale
 import os
 from pathlib import Path
-from typing import BinaryIO
 
 TEXT_DOMAIN = "netpoisson"
 
@@ -21,24 +19,12 @@ def init_i18n(argv0: str) -> gettext.NullTranslations:
 
     localedir = os.environ.get("NETPOISSON_LOCALEDIR")
     if not localedir and "/" in argv0:
-        build_po = Path(argv0).resolve().parent / "po"
-        if build_po.is_dir():
-            localedir = str(build_po)
+        here = Path(argv0).resolve().parent
+        for candidate in (here / "po", here.parent / "po"):
+            if candidate.is_dir():
+                localedir = str(candidate)
+                break
 
     trans = gettext.translation(TEXT_DOMAIN, localedir=localedir, fallback=True)
     trans.install()
     return trans
-
-
-def copy_stream(src: BinaryIO, dst: BinaryIO) -> None:
-    while True:
-        chunk = src.read(8192)
-        if not chunk:
-            return
-        dst.write(chunk)
-        dst.flush()
-
-
-def copy_file(path: str, out: BinaryIO) -> None:
-    with open(path, "rb") as fh:
-        copy_stream(fh, out)

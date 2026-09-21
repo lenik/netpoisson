@@ -7,11 +7,11 @@
 Name:           netpoisson
 Version:        %{version}
 Release:        1%{?dist}
-Summary:        Meson-based CLI project template with example app
+Summary:        Poisson request generator and echo server
 
 License:        AGPL-3.0-or-later
 URL:            https://github.com/lenik/netpoisson
-Packager:       Lenik <netpoisson@bodz.net>
+Packager:       Lenik (谢继雷) <netpoisson@bodz.net>
 Source0:        %{name}-%{srcversion}.tar.xz
 
 BuildRequires:  meson
@@ -23,9 +23,9 @@ BuildRequires:  asciidoctor
 Requires:       python3
 
 %description
-netpoisson is a template repository for small Python command-line utilities.
-It currently ships the netpoisson example application and Debian packaging
-metadata, and includes Python unittest integration.
+netpoisson offers a Poisson stream of ECHO and STATUS requests, or listens
+for them. It draws scrolling per-slice timelines and queue depths, can print
+a JSON report, and can serve a live dashboard.
 
 %prep
 %setup -q -n %{name}-%{srcversion}

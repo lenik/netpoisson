@@ -63,6 +63,18 @@ commons_mod = custom_target(
     install_dir: bindir,
 )
 
+foreach mod : ['protocol.py', 'traffic.py', 'netio.py', 'webui.py']
+    custom_target(
+        mod,
+        input: 'src' / mod,
+        output: mod,
+        command: ['cp', '@INPUT@', '@OUTPUT@'],
+        build_by_default: true,
+        install: true,
+        install_dir: bindir,
+    )
+endforeach
+
 install_data(
     'netpoisson.bash',
     install_dir: datadir / 'bash-completion' / 'completions',

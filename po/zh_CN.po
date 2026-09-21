@@ -2,77 +2,208 @@ msgid ""
 msgstr ""
 "Project-Id-Version: netpoisson\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-24 22:31+0800\n"
+"POT-Creation-Date: 2026-09-21 13:26+0800\n"
 "Language: zh_CN\n"
+"PO-Revision-Date: 2026-09-21 13:26+0800\n"
+"Last-Translator: Lenik <netpoisson@bodz.net>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/netpoisson.c:32
-msgid ""
-"Usage: netpoisson [OPTION]... [FILE]...\n"
-"Concatenate FILE(s) to standard output. With no FILE, or when FILE is -,\n"
-"read standard input.\n"
-msgstr ""
-"用法：netpoisson [选项]... [文件]...\n"
-"将文件内容连接并输出到标准输出。若未提供文件，或文件为 -，\n"
-"则从标准输入读取。\n"
+#: src/netpoisson.py:66
+msgid "Usage: netpoisson [OPTION]... [SERVER]\n"
+msgstr "用法：netpoisson [选项]... [服务器]\n"
 
-#: src/netpoisson.c:38
+#: src/netpoisson.py:69
+msgid ""
+"Offer a Poisson stream of requests to SERVER, or listen for them when\n"
+"SERVER is omitted.\n"
+msgstr "按泊松过程向服务器发送请求；若省略服务器，则改为监听。\n"
+
+#: src/netpoisson.py:74
+msgid "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
+msgstr "  -d, --daemon       监听（省略服务器时也是默认行为）\n"
+
+#: src/netpoisson.py:75
+msgid "  -H, --host HOST    address to bind (default 0.0.0.0)\n"
+msgstr "  -H, --host HOST    绑定地址（默认 0.0.0.0）\n"
+
+#: src/netpoisson.py:76
+msgid "  -p, --port PORT    port to bind or connect to (default 1871)\n"
+msgstr "  -p, --port PORT    绑定或连接的端口（默认 1871）\n"
+
+#: src/netpoisson.py:77
+msgid "  -u, --udp          use UDP (default is TCP)\n"
+msgstr "  -u, --udp          使用 UDP（默认是 TCP）\n"
+
+#: src/netpoisson.py:78
+msgid "  -l, --lambda N     offered requests per second (default 100)\n"
+msgstr "  -l, --lambda N     每秒发出的请求数（默认 100）\n"
+
+#: src/netpoisson.py:79
+msgid "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
+msgstr "  -s, --stats SECS   运行 SECS 秒，然后打印 JSON 报告\n"
+
+#: src/netpoisson.py:80
+msgid "  -w, --web          serve a live dashboard and open a browser\n"
+msgstr "  -w, --web          提供实时仪表盘并打开浏览器\n"
+
+#: src/netpoisson.py:81
+msgid "      --web-host H   dashboard address (default 127.0.0.1)\n"
+msgstr "      --web-host H   仪表盘地址（默认 127.0.0.1）\n"
+
+#: src/netpoisson.py:82
+msgid "      --web-port N   dashboard port (default 8711)\n"
+msgstr "      --web-port N   仪表盘端口（默认 8711）\n"
+
+#: src/netpoisson.py:84
 msgid "repeat for more verbose loggings\n"
 msgstr "重复使用以输出更多详细日志\n"
 
-#: src/netpoisson.c:40
+#: src/netpoisson.py:86
 msgid "show less logging messages\n"
 msgstr "显示更少的日志消息\n"
 
-#: src/netpoisson.c:42
+#: src/netpoisson.py:88
 msgid "display this help and exit\n"
 msgstr "显示此帮助并退出\n"
 
-#: src/netpoisson.c:44
+#: src/netpoisson.py:90
 msgid "output version information and exit\n"
 msgstr "输出版本信息并退出\n"
 
-#: src/netpoisson.c:46
-#, fuzzy, c-format
-msgid "Report bugs to: <%s>\n"
-msgstr "报告问题到：<%s>\n"
-
-#: src/netpoisson.c:54
-#, c-format
-msgid "hello, world!\n"
+#: src/netpoisson.py:94
+msgid ""
+"ECHO responses are the request bytes. STATUS responses carry the server\n"
+"timeline and queues. Req/Resp lines scroll right: newest slices on the "
+"left.\n"
 msgstr ""
+"ECHO 的响应就是请求字节。STATUS 带回服务器时间线和队列。\n"
+"Req/Resp 向右滚动：最新的时间片在左边。\n"
 
-#: src/netpoisson.c:81
-#, fuzzy, c-format
-msgid "Copyright (C) %d %s\n"
-msgstr "版权所有 (C) %d %s\n"
+#: src/netpoisson.py:99
+msgid "Report bugs to: <{email}>\n"
+msgstr "报告问题到：<{email}>\n"
 
-#: src/netpoisson.c:82
+#: src/netpoisson.py:104
+msgid "Copyright (C) {year} {author}\n"
+msgstr "版权所有 (C) {year} {author}\n"
+
+#: src/netpoisson.py:105
 msgid ""
 "License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
 msgstr ""
 "许可证 AGPL-3.0-or-later：<https://www.gnu.org/licenses/agpl-3.0.html>\n"
 
-#: src/netpoisson.c:84
+#: src/netpoisson.py:106
 msgid "This is free software: you are free to change and redistribute it.\n"
 msgstr "这是自由软件：你可以自由修改并重新分发。\n"
 
-#: src/netpoisson.c:86
+#: src/netpoisson.py:107
 msgid "This project opposes AI exploitation and AI hegemony.\n"
 msgstr "本项目反对 AI 剥削与 AI 霸权。\n"
 
-#: src/netpoisson.c:87
+#: src/netpoisson.py:110
 msgid ""
 "This project rejects mindless MIT-style licensing and politically naive BSD-"
 "style licensing.\n"
-msgstr "本项目反对无脑 MIT 式许可证和政治愚蠢 BSD 式许可证。\n"
+msgstr "本项目反对无脑 MIT 式许可证和政治愚蠢的 BSD 式许可证。\n"
 
-#: src/netpoisson.c:90
+#: src/netpoisson.py:114
 msgid "There is NO WARRANTY, to the extent permitted by law.\n"
 msgstr "在法律允许范围内，不提供任何担保。\n"
 
-#: src/lib.c:49
-#, c-format
-msgid "%s: write error\n"
+#: src/netpoisson.py:133
+#, python-brace-format
+msgid "{prog}: missing argument for {opt}\n"
+msgstr "{prog}：缺少 {opt} 的参数\n"
+
+#: src/netpoisson.py:141 src/netpoisson.py:151
+#, python-brace-format
+msgid "{prog}: invalid number: {text}\n"
+msgstr "{prog}：无效数字：{text}\n"
+
+#: src/netpoisson.py:143 src/netpoisson.py:228
+#, python-brace-format
+msgid "{prog}: port out of range\n"
+msgstr "{prog}：端口超出范围\n"
+
+#: src/netpoisson.py:154
+#, python-brace-format
+msgid "{prog}: lambda must be positive\n"
+msgstr "{prog}：lambda 必须为正数\n"
+
+#: src/netpoisson.py:155
+#, python-brace-format
+msgid "{prog}: duration must be positive\n"
+msgstr "{prog}：时长必须为正数\n"
+
+#: src/netpoisson.py:199 src/netpoisson.py:207
+#, python-brace-format
+msgid "{prog}: unknown option {opt}\n"
+msgstr "{prog}：未知选项 {opt}\n"
+
+#: src/netpoisson.py:230
+#, python-brace-format
+msgid "{prog}: unexpected argument {text}\n"
+msgstr "{prog}：多余的参数 {text}\n"
+
+#: src/netpoisson.py:234
+#, python-brace-format
+msgid "{prog}: do not combine --daemon with SERVER\n"
+msgstr "{prog}：不要同时使用 --daemon 和服务器地址\n"
+
+#: src/netpoisson.py:242 src/netpoisson.py:249
+#, python-brace-format
+msgid "{prog}: invalid server address\n"
+msgstr "{prog}：服务器地址无效\n"
+
+#: src/netpoisson.py:292
+#, python-brace-format
+msgid "{prog}: {message}\n"
+msgstr "{prog}：{message}\n"
+
+#: src/netpoisson.py:294
+#, python-brace-format
+msgid "{prog}: dashboard {url}"
+msgstr "{prog}：仪表盘 {url}"
+
+#: src/netpoisson.py:324
+#, python-brace-format
+msgid "{prog}: --lambda applies to the client; ignoring it"
+msgstr "{prog}：--lambda 只对客户端有效，已忽略"
+
+#: src/netpoisson.py:333 src/netpoisson.py:367
+#, python-brace-format
+msgid "{prog}: {message}"
+msgstr "{prog}：{message}"
+
+#: src/netpoisson.py:337
+#, python-brace-format
+msgid "{prog}: listening on {proto}://{endpoint}"
+msgstr "{prog}：正在监听 {proto}://{endpoint}"
+
+#: src/netpoisson.py:357
+#, python-brace-format
+msgid "{prog}: --host is the listen address; the target is SERVER"
+msgstr "{prog}：--host 是监听地址；目标是位置参数 SERVER"
+
+#: src/netpoisson.py:371
+#, python-brace-format
+msgid "{prog}: connected {proto} {endpoint} at {lam} req/s"
+msgstr "{prog}：已连接 {proto} {endpoint}，{lam} 请求/秒"
+
+#: src/netpoisson.py:382
+msgid ""
+"Req counts local arrivals per slice (newest on the left). The center number "
+"has not left this host."
+msgstr "Req 是本机每个时间片的到达数（最新在左）。中间的数字还没离开本机网口。"
+
+#: src/netpoisson.py:389
+msgid ""
+"Resp counts server replies per slice. Left of the arrow: requests not yet "
+"read. Next: replies not yet sent."
 msgstr ""
+"Resp 是服务器每个时间片的响应数。箭头左边：还没被读取/分析的请求。其后：还没"
+"离开网口的响应。"

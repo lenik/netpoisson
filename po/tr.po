@@ -7,78 +7,217 @@ msgid ""
 msgstr ""
 "Project-Id-Version: netpoisson 3b1f339-dirty\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-24 22:31+0800\n"
+"POT-Creation-Date: 2026-09-21 13:26+0800\n"
 "PO-Revision-Date: 2026-04-24 22:31+0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ASCII\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/netpoisson.c:32
+#: src/netpoisson.py:66
+msgid "Usage: netpoisson [OPTION]... [SERVER]\n"
+msgstr "Kullanım: netpoisson [SEÇENEK]... [SUNUCU]\n"
+
+#: src/netpoisson.py:69
 msgid ""
-"Usage: netpoisson [OPTION]... [FILE]...\n"
-"Concatenate FILE(s) to standard output. With no FILE, or when FILE is -,\n"
-"read standard input.\n"
-msgstr ""
+"Offer a Poisson stream of requests to SERVER, or listen for them when\n"
+"SERVER is omitted.\n"
+msgstr "SUNUCU'ya Poisson akışıyla istek gönderir; SUNUCU verilmezse dinler.\n"
 
-#: src/netpoisson.c:38
+#: src/netpoisson.py:74
+msgid "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
+msgstr "  -d, --daemon       dinle (SUNUCU yoksa varsayılan da budur)\n"
+
+#: src/netpoisson.py:75
+msgid "  -H, --host HOST    address to bind (default 0.0.0.0)\n"
+msgstr "  -H, --host HOST    bağlanılacak adres (varsayılan 0.0.0.0)\n"
+
+#: src/netpoisson.py:76
+msgid "  -p, --port PORT    port to bind or connect to (default 1871)\n"
+msgstr ""
+"  -p, --port PORT    bağlanılacak veya bağlanacak kapı (varsayılan 1871)\n"
+
+#: src/netpoisson.py:77
+msgid "  -u, --udp          use UDP (default is TCP)\n"
+msgstr "  -u, --udp          UDP kullan (varsayılan TCP)\n"
+
+#: src/netpoisson.py:78
+msgid "  -l, --lambda N     offered requests per second (default 100)\n"
+msgstr "  -l, --lambda N     saniye başına sunulan istek (varsayılan 100)\n"
+
+#: src/netpoisson.py:79
+msgid "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
+msgstr "  -s, --stats SECS   SECS saniye çalış, sonra bir JSON raporu yaz\n"
+
+#: src/netpoisson.py:80
+msgid "  -w, --web          serve a live dashboard and open a browser\n"
+msgstr "  -w, --web          canlı panoyu sun ve bir tarayıcı aç\n"
+
+#: src/netpoisson.py:81
+msgid "      --web-host H   dashboard address (default 127.0.0.1)\n"
+msgstr "      --web-host H   pano adresi (varsayılan 127.0.0.1)\n"
+
+#: src/netpoisson.py:82
+msgid "      --web-port N   dashboard port (default 8711)\n"
+msgstr "      --web-port N   pano kapısı (varsayılan 8711)\n"
+
+#: src/netpoisson.py:84
 msgid "repeat for more verbose loggings\n"
-msgstr ""
+msgstr "daha ayrıntılı günlük için yineleyin\n"
 
-#: src/netpoisson.c:40
+#: src/netpoisson.py:86
 msgid "show less logging messages\n"
-msgstr ""
+msgstr "daha az günlük iletisi göster\n"
 
-#: src/netpoisson.c:42
+#: src/netpoisson.py:88
 msgid "display this help and exit\n"
-msgstr ""
+msgstr "bu yardımı göster ve çık\n"
 
-#: src/netpoisson.c:44
+#: src/netpoisson.py:90
 msgid "output version information and exit\n"
-msgstr ""
+msgstr "sürüm bilgisini yaz ve çık\n"
 
-#: src/netpoisson.c:46
-#, c-format
-msgid "Report bugs to: <%s>\n"
+#: src/netpoisson.py:94
+msgid ""
+"ECHO responses are the request bytes. STATUS responses carry the server\n"
+"timeline and queues. Req/Resp lines scroll right: newest slices on the "
+"left.\n"
 msgstr ""
+"ECHO yanıtı isteğin baytlarıdır. STATUS zaman çizelgesini ve kuyrukları "
+"taşır.\n"
+"Req/Resp sağa kayar: en yeni dilimler soldadır.\n"
 
-#: src/netpoisson.c:54
-#, c-format
-msgid "hello, world!\n"
-msgstr ""
+#: src/netpoisson.py:99
+#, python-brace-format
+msgid "Report bugs to: <{email}>\n"
+msgstr "Hataları bildirin: <{email}>\n"
 
-#: src/netpoisson.c:81
-#, c-format
-msgid "Copyright (C) %d %s\n"
-msgstr ""
+#: src/netpoisson.py:104
+#, python-brace-format
+msgid "Copyright (C) {year} {author}\n"
+msgstr "Telif hakkı (C) {year} {author}\n"
 
-#: src/netpoisson.c:82
+#: src/netpoisson.py:105
 msgid ""
 "License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
 msgstr ""
+"Lisans AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
 
-#: src/netpoisson.c:84
+#: src/netpoisson.py:106
 msgid "This is free software: you are free to change and redistribute it.\n"
-msgstr ""
+msgstr "Bu özgür yazılımdır: değiştirip yeniden dağıtabilirsiniz.\n"
 
-#: src/netpoisson.c:86
+#: src/netpoisson.py:107
 msgid "This project opposes AI exploitation and AI hegemony.\n"
-msgstr ""
+msgstr "Bu proje yapay zekâ sömürüsüne ve yapay zekâ hegemonyasına karşıdır.\n"
 
-#: src/netpoisson.c:87
+#: src/netpoisson.py:110
 msgid ""
 "This project rejects mindless MIT-style licensing and politically naive BSD-"
 "style licensing.\n"
 msgstr ""
+"Bu proje düşüncesiz MIT tarzı lisansları ve siyaseten saf BSD tarzı "
+"lisansları reddeder.\n"
 
-#: src/netpoisson.c:90
+#: src/netpoisson.py:114
 msgid "There is NO WARRANTY, to the extent permitted by law.\n"
-msgstr ""
+msgstr "Yasanın izin verdiği ölçüde HİÇBİR GARANTİ yoktur.\n"
 
-#: src/lib.c:49
-#, c-format
-msgid "%s: write error\n"
+#: src/netpoisson.py:133
+#, python-brace-format
+msgid "{prog}: missing argument for {opt}\n"
+msgstr "{prog}: {opt} için argüman eksik\n"
+
+#: src/netpoisson.py:141 src/netpoisson.py:151
+#, python-brace-format
+msgid "{prog}: invalid number: {text}\n"
+msgstr "{prog}: geçersiz sayı: {text}\n"
+
+#: src/netpoisson.py:143 src/netpoisson.py:228
+#, python-brace-format
+msgid "{prog}: port out of range\n"
+msgstr "{prog}: kapı aralık dışında\n"
+
+#: src/netpoisson.py:154
+#, python-brace-format
+msgid "{prog}: lambda must be positive\n"
+msgstr "{prog}: lambda pozitif olmalı\n"
+
+#: src/netpoisson.py:155
+#, python-brace-format
+msgid "{prog}: duration must be positive\n"
+msgstr "{prog}: süre pozitif olmalı\n"
+
+#: src/netpoisson.py:199 src/netpoisson.py:207
+#, python-brace-format
+msgid "{prog}: unknown option {opt}\n"
+msgstr "{prog}: bilinmeyen seçenek {opt}\n"
+
+#: src/netpoisson.py:230
+#, python-brace-format
+msgid "{prog}: unexpected argument {text}\n"
+msgstr "{prog}: beklenmeyen argüman {text}\n"
+
+#: src/netpoisson.py:234
+#, python-brace-format
+msgid "{prog}: do not combine --daemon with SERVER\n"
+msgstr "{prog}: --daemon ile SUNUCU'yu birlikte vermeyin\n"
+
+#: src/netpoisson.py:242 src/netpoisson.py:249
+#, python-brace-format
+msgid "{prog}: invalid server address\n"
+msgstr "{prog}: geçersiz sunucu adresi\n"
+
+#: src/netpoisson.py:292
+#, python-brace-format
+msgid "{prog}: {message}\n"
+msgstr "{prog}: {message}\n"
+
+#: src/netpoisson.py:294
+#, python-brace-format
+msgid "{prog}: dashboard {url}"
+msgstr "{prog}: pano {url}"
+
+#: src/netpoisson.py:324
+#, python-brace-format
+msgid "{prog}: --lambda applies to the client; ignoring it"
+msgstr "{prog}: --lambda istemciye aittir; yok sayılıyor"
+
+#: src/netpoisson.py:333 src/netpoisson.py:367
+#, python-brace-format
+msgid "{prog}: {message}"
+msgstr "{prog}: {message}"
+
+#: src/netpoisson.py:337
+#, python-brace-format
+msgid "{prog}: listening on {proto}://{endpoint}"
+msgstr "{prog}: dinleniyor {proto}://{endpoint}"
+
+#: src/netpoisson.py:357
+#, python-brace-format
+msgid "{prog}: --host is the listen address; the target is SERVER"
+msgstr "{prog}: --host dinleme adresidir; hedef SUNUCU'dur"
+
+#: src/netpoisson.py:371
+#, python-brace-format
+msgid "{prog}: connected {proto} {endpoint} at {lam} req/s"
+msgstr "{prog}: bağlandı {proto} {endpoint}, {lam} istek/sn"
+
+#: src/netpoisson.py:382
+msgid ""
+"Req counts local arrivals per slice (newest on the left). The center number "
+"has not left this host."
 msgstr ""
+"Req bu makinedeki dilim başına varışları sayar (en yeni solda). Ortadaki "
+"sayı henüz ağdan çıkmadı."
+
+#: src/netpoisson.py:389
+msgid ""
+"Resp counts server replies per slice. Left of the arrow: requests not yet "
+"read. Next: replies not yet sent."
+msgstr ""
+"Resp sunucunun dilim başına yanıtlarını sayar. Okun solu: henüz okunmamış "
+"istekler. Sonraki: henüz gönderilmemiş yanıtlar."

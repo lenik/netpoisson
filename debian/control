@@ -1,7 +1,7 @@
 Source: netpoisson
 Section: utils
 Priority: optional
-Maintainer: Lenik <netpoisson@bodz.net>
+Maintainer: Lenik (谢继雷) <netpoisson@bodz.net>
 Build-Depends: debhelper-compat (= 13), meson, ninja-build, python3, gettext, asciidoctor
 Standards-Version: 4.6.0
 Homepage: https://github.com/lenik/netpoisson
@@ -12,7 +12,7 @@ Architecture: any
 Depends: 
     python3, 
     ${misc:Depends}
-Description: Meson-based CLI project template with example app
- netpoisson is a template repository for small Python command-line utilities.
- It currently ships the netpoisson example application and Debian packaging
- metadata, and includes Python unittest integration.
+Description: Poisson request generator and echo server
+ netpoisson offers a Poisson stream of ECHO and STATUS requests, or listens
+ for them. It draws scrolling per-slice timelines and queue depths, can print
+ a JSON report, and can serve a live dashboard.

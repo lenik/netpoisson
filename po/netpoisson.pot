@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-20 09:03+0800\n"
+"POT-Creation-Date: 2026-09-21 13:26+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,58 +17,196 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/netpoisson.py:16
-msgid ""
-"Usage: netpoisson [OPTION]... [FILE]...\n"
-"Concatenate FILE(s) to standard output. With no FILE, or when FILE is -,\n"
-"read standard input.\n"
+#: src/netpoisson.py:66
+msgid "Usage: netpoisson [OPTION]... [SERVER]\n"
 msgstr ""
 
-#: src/netpoisson.py:22
+#: src/netpoisson.py:69
+msgid ""
+"Offer a Poisson stream of requests to SERVER, or listen for them when\n"
+"SERVER is omitted.\n"
+msgstr ""
+
+#: src/netpoisson.py:74
+msgid "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
+msgstr ""
+
+#: src/netpoisson.py:75
+msgid "  -H, --host HOST    address to bind (default 0.0.0.0)\n"
+msgstr ""
+
+#: src/netpoisson.py:76
+msgid "  -p, --port PORT    port to bind or connect to (default 1871)\n"
+msgstr ""
+
+#: src/netpoisson.py:77
+msgid "  -u, --udp          use UDP (default is TCP)\n"
+msgstr ""
+
+#: src/netpoisson.py:78
+msgid "  -l, --lambda N     offered requests per second (default 100)\n"
+msgstr ""
+
+#: src/netpoisson.py:79
+msgid "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
+msgstr ""
+
+#: src/netpoisson.py:80
+msgid "  -w, --web          serve a live dashboard and open a browser\n"
+msgstr ""
+
+#: src/netpoisson.py:81
+msgid "      --web-host H   dashboard address (default 127.0.0.1)\n"
+msgstr ""
+
+#: src/netpoisson.py:82
+msgid "      --web-port N   dashboard port (default 8711)\n"
+msgstr ""
+
+#: src/netpoisson.py:84
 msgid "repeat for more verbose loggings\n"
 msgstr ""
 
-#: src/netpoisson.py:24
+#: src/netpoisson.py:86
 msgid "show less logging messages\n"
 msgstr ""
 
-#: src/netpoisson.py:26
+#: src/netpoisson.py:88
 msgid "display this help and exit\n"
 msgstr ""
 
-#: src/netpoisson.py:28
+#: src/netpoisson.py:90
 msgid "output version information and exit\n"
 msgstr ""
 
-#: src/netpoisson.py:30
+#: src/netpoisson.py:94
+msgid ""
+"ECHO responses are the request bytes. STATUS responses carry the server\n"
+"timeline and queues. Req/Resp lines scroll right: newest slices on the "
+"left.\n"
+msgstr ""
+
+#: src/netpoisson.py:99
 #, python-brace-format
 msgid "Report bugs to: <{email}>\n"
 msgstr ""
 
-#: src/netpoisson.py:35
+#: src/netpoisson.py:104
 #, python-brace-format
 msgid "Copyright (C) {year} {author}\n"
 msgstr ""
 
-#: src/netpoisson.py:36
+#: src/netpoisson.py:105
 msgid ""
 "License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
 msgstr ""
 
-#: src/netpoisson.py:37
+#: src/netpoisson.py:106
 msgid "This is free software: you are free to change and redistribute it.\n"
 msgstr ""
 
-#: src/netpoisson.py:38
+#: src/netpoisson.py:107
 msgid "This project opposes AI exploitation and AI hegemony.\n"
 msgstr ""
 
-#: src/netpoisson.py:41
+#: src/netpoisson.py:110
 msgid ""
 "This project rejects mindless MIT-style licensing and politically naive BSD-"
 "style licensing.\n"
 msgstr ""
 
-#: src/netpoisson.py:45
+#: src/netpoisson.py:114
 msgid "There is NO WARRANTY, to the extent permitted by law.\n"
+msgstr ""
+
+#: src/netpoisson.py:133
+#, python-brace-format
+msgid "{prog}: missing argument for {opt}\n"
+msgstr ""
+
+#: src/netpoisson.py:141 src/netpoisson.py:151
+#, python-brace-format
+msgid "{prog}: invalid number: {text}\n"
+msgstr ""
+
+#: src/netpoisson.py:143 src/netpoisson.py:228
+#, python-brace-format
+msgid "{prog}: port out of range\n"
+msgstr ""
+
+#: src/netpoisson.py:154
+#, python-brace-format
+msgid "{prog}: lambda must be positive\n"
+msgstr ""
+
+#: src/netpoisson.py:155
+#, python-brace-format
+msgid "{prog}: duration must be positive\n"
+msgstr ""
+
+#: src/netpoisson.py:199 src/netpoisson.py:207
+#, python-brace-format
+msgid "{prog}: unknown option {opt}\n"
+msgstr ""
+
+#: src/netpoisson.py:230
+#, python-brace-format
+msgid "{prog}: unexpected argument {text}\n"
+msgstr ""
+
+#: src/netpoisson.py:234
+#, python-brace-format
+msgid "{prog}: do not combine --daemon with SERVER\n"
+msgstr ""
+
+#: src/netpoisson.py:242 src/netpoisson.py:249
+#, python-brace-format
+msgid "{prog}: invalid server address\n"
+msgstr ""
+
+#: src/netpoisson.py:292
+#, python-brace-format
+msgid "{prog}: {message}\n"
+msgstr ""
+
+#: src/netpoisson.py:294
+#, python-brace-format
+msgid "{prog}: dashboard {url}"
+msgstr ""
+
+#: src/netpoisson.py:324
+#, python-brace-format
+msgid "{prog}: --lambda applies to the client; ignoring it"
+msgstr ""
+
+#: src/netpoisson.py:333 src/netpoisson.py:367
+#, python-brace-format
+msgid "{prog}: {message}"
+msgstr ""
+
+#: src/netpoisson.py:337
+#, python-brace-format
+msgid "{prog}: listening on {proto}://{endpoint}"
+msgstr ""
+
+#: src/netpoisson.py:357
+#, python-brace-format
+msgid "{prog}: --host is the listen address; the target is SERVER"
+msgstr ""
+
+#: src/netpoisson.py:371
+#, python-brace-format
+msgid "{prog}: connected {proto} {endpoint} at {lam} req/s"
+msgstr ""
+
+#: src/netpoisson.py:382
+msgid ""
+"Req counts local arrivals per slice (newest on the left). The center number "
+"has not left this host."
+msgstr ""
+
+#: src/netpoisson.py:389
+msgid ""
+"Resp counts server replies per slice. Left of the arrow: requests not yet "
+"read. Next: replies not yet sent."
 msgstr ""
