@@ -1,12 +1,13 @@
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: netpoisson\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-21 13:26+0800\n"
-"Language: it\n"
 "PO-Revision-Date: 2026-09-21 13:26+0800\n"
 "Last-Translator: Lenik <netpoisson@bodz.net>\n"
 "Language-Team: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,9 +20,7 @@ msgstr "Uso: netpoisson [OPZIONE]... [SERVER]\n"
 msgid ""
 "Offer a Poisson stream of requests to SERVER, or listen for them when\n"
 "SERVER is omitted.\n"
-msgstr ""
-"Invia un flusso di Poisson di richieste a SERVER, oppure ascolta se SERVER è "
-"omesso.\n"
+msgstr "Invia un flusso di Poisson di richieste a SERVER, oppure ascolta se SERVER è omesso.\n"
 
 #: src/netpoisson.py:74
 msgid "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
@@ -45,8 +44,7 @@ msgstr "  -l, --lambda N     richieste offerte al secondo (predefinito 100)\n"
 
 #: src/netpoisson.py:79
 msgid "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
-msgstr ""
-"  -s, --stats SECS   esegui per SECS secondi, poi stampa un rapporto JSON\n"
+msgstr "  -s, --stats SECS   esegui per SECS secondi, poi stampa un rapporto JSON\n"
 
 #: src/netpoisson.py:80
 msgid "  -w, --web          serve a live dashboard and open a browser\n"
@@ -54,8 +52,7 @@ msgstr "  -w, --web          servi una dashboard dal vivo e apri un browser\n"
 
 #: src/netpoisson.py:81
 msgid "      --web-host H   dashboard address (default 127.0.0.1)\n"
-msgstr ""
-"      --web-host H   indirizzo della dashboard (predefinito 127.0.0.1)\n"
+msgstr "      --web-host H   indirizzo della dashboard (predefinito 127.0.0.1)\n"
 
 #: src/netpoisson.py:82
 msgid "      --web-port N   dashboard port (default 8711)\n"
@@ -80,11 +77,9 @@ msgstr "mostra le informazioni di versione ed esci\n"
 #: src/netpoisson.py:94
 msgid ""
 "ECHO responses are the request bytes. STATUS responses carry the server\n"
-"timeline and queues. Req/Resp lines scroll right: newest slices on the "
-"left.\n"
+"timeline and queues. Req/Resp lines scroll right: newest slices on the left.\n"
 msgstr ""
-"Le risposte ECHO sono i byte della richiesta. STATUS porta la sequenza "
-"temporale e le code.\n"
+"Le risposte ECHO sono i byte della richiesta. STATUS porta la sequenza temporale e le code.\n"
 "Req/Resp scorrono a destra: le fette più recenti sono a sinistra.\n"
 
 #: src/netpoisson.py:99
@@ -96,27 +91,20 @@ msgid "Copyright (C) {year} {author}\n"
 msgstr "Copyright (C) {year} {author}\n"
 
 #: src/netpoisson.py:105
-msgid ""
-"License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
-msgstr ""
-"Licenza AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgid "License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgstr "Licenza AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
 
 #: src/netpoisson.py:106
 msgid "This is free software: you are free to change and redistribute it.\n"
-msgstr ""
-"Questo è software libero: sei libero di modificarlo e ridistribuirlo.\n"
+msgstr "Questo è software libero: sei libero di modificarlo e ridistribuirlo.\n"
 
 #: src/netpoisson.py:107
 msgid "This project opposes AI exploitation and AI hegemony.\n"
 msgstr "Questo progetto si oppone allo sfruttamento e all'egemonia dell'IA.\n"
 
 #: src/netpoisson.py:110
-msgid ""
-"This project rejects mindless MIT-style licensing and politically naive BSD-"
-"style licensing.\n"
-msgstr ""
-"Questo progetto rifiuta le licenze stile MIT avventate e le licenze stile "
-"BSD politicamente ingenue.\n"
+msgid "This project rejects mindless MIT-style licensing and politically naive BSD-style licensing.\n"
+msgstr "Questo progetto rifiuta le licenze stile MIT avventate e le licenze stile BSD politicamente ingenue.\n"
 
 #: src/netpoisson.py:114
 msgid "There is NO WARRANTY, to the extent permitted by law.\n"
@@ -175,7 +163,7 @@ msgstr "{prog}: {message}\n"
 #: src/netpoisson.py:294
 #, python-brace-format
 msgid "{prog}: dashboard {url}"
-msgstr "{prog}: dashboard {url}"
+msgstr "{prog}: cruscotto {url}"
 
 #: src/netpoisson.py:324
 #, python-brace-format
@@ -203,17 +191,9 @@ msgid "{prog}: connected {proto} {endpoint} at {lam} req/s"
 msgstr "{prog}: connesso a {proto} {endpoint} a {lam} rich./s"
 
 #: src/netpoisson.py:382
-msgid ""
-"Req counts local arrivals per slice (newest on the left). The center number "
-"has not left this host."
-msgstr ""
-"Req conta gli arrivi locali per intervallo (i più recenti a sinistra). Il "
-"numero al centro non ha ancora lasciato questo host."
+msgid "Req counts local arrivals per slice (newest on the left). The center number has not left this host."
+msgstr "Req conta gli arrivi locali per intervallo (i più recenti a sinistra). Il numero al centro non ha ancora lasciato questo host."
 
 #: src/netpoisson.py:389
-msgid ""
-"Resp counts server replies per slice. Left of the arrow: requests not yet "
-"read. Next: replies not yet sent."
-msgstr ""
-"Resp conta le risposte del server per intervallo. A sinistra della freccia: "
-"richieste non ancora lette. Poi: risposte non ancora inviate."
+msgid "Resp counts server replies per slice. Left of the arrow: requests not yet read. Next: replies not yet sent."
+msgstr "Resp conta le risposte del server per intervallo. A sinistra della freccia: richieste non ancora lette. Poi: risposte non ancora inviate."

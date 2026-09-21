@@ -25,8 +25,7 @@ msgstr ""
 
 #: src/netpoisson.py:74
 msgid "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
-msgstr ""
-"  -d, --daemon       auf Anfragen warten (Vorgabe, wenn SERVER fehlt)\n"
+msgstr "  -d, --daemon       auf Anfragen warten (Vorgabe, wenn SERVER fehlt)\n"
 
 #: src/netpoisson.py:75
 msgid "  -H, --host HOST    address to bind (default 0.0.0.0)\n"
@@ -46,13 +45,11 @@ msgstr "  -l, --lambda N     angebotene Anfragen pro Sekunde (Vorgabe 100)\n"
 
 #: src/netpoisson.py:79
 msgid "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
-msgstr ""
-"  -s, --stats SECS   SECS Sekunden laufen, dann einen JSON-Bericht drucken\n"
+msgstr "  -s, --stats SECS   SECS Sekunden laufen, dann einen JSON-Bericht drucken\n"
 
 #: src/netpoisson.py:80
 msgid "  -w, --web          serve a live dashboard and open a browser\n"
-msgstr ""
-"  -w, --web          Live-Übersicht anbieten und einen Browser öffnen\n"
+msgstr "  -w, --web          Live-Übersicht anbieten und einen Browser öffnen\n"
 
 #: src/netpoisson.py:81
 msgid "      --web-host H   dashboard address (default 127.0.0.1)\n"
@@ -81,11 +78,9 @@ msgstr "Versionsinformation ausgeben und beenden\n"
 #: src/netpoisson.py:94
 msgid ""
 "ECHO responses are the request bytes. STATUS responses carry the server\n"
-"timeline and queues. Req/Resp lines scroll right: newest slices on the "
-"left.\n"
+"timeline and queues. Req/Resp lines scroll right: newest slices on the left.\n"
 msgstr ""
-"ECHO-Antworten sind die Anfragebytes. STATUS trägt Zeitlinie und "
-"Warteschlangen.\n"
+"ECHO-Antworten sind die Anfragebytes. STATUS trägt Zeitlinie und Warteschlangen.\n"
 "Req/Resp laufen nach rechts: die neuesten Scheiben stehen links.\n"
 
 #: src/netpoisson.py:99
@@ -97,10 +92,8 @@ msgid "Copyright (C) {year} {author}\n"
 msgstr "Copyright (C) {year} {author}\n"
 
 #: src/netpoisson.py:105
-msgid ""
-"License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
-msgstr ""
-"Lizenz AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgid "License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgstr "Lizenz AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
 
 #: src/netpoisson.py:106
 msgid "This is free software: you are free to change and redistribute it.\n"
@@ -111,12 +104,8 @@ msgid "This project opposes AI exploitation and AI hegemony.\n"
 msgstr "Dieses Projekt lehnt KI-Ausbeutung und KI-Hegemonie ab.\n"
 
 #: src/netpoisson.py:110
-msgid ""
-"This project rejects mindless MIT-style licensing and politically naive BSD-"
-"style licensing.\n"
-msgstr ""
-"Dieses Projekt lehnt gedankenlose MIT-Lizenzen und politisch naive BSD-"
-"Lizenzen ab.\n"
+msgid "This project rejects mindless MIT-style licensing and politically naive BSD-style licensing.\n"
+msgstr "Dieses Projekt lehnt gedankenlose MIT-Lizenzen und politisch naive BSD-Lizenzen ab.\n"
 
 #: src/netpoisson.py:114
 msgid "There is NO WARRANTY, to the extent permitted by law.\n"
@@ -203,17 +192,9 @@ msgid "{prog}: connected {proto} {endpoint} at {lam} req/s"
 msgstr "{prog}: verbunden mit {proto} {endpoint} bei {lam} Anfr./s"
 
 #: src/netpoisson.py:382
-msgid ""
-"Req counts local arrivals per slice (newest on the left). The center number "
-"has not left this host."
-msgstr ""
-"Req zählt lokale Ankünfte je Zeitscheibe (das Neueste links). Die mittlere "
-"Zahl hat diesen Rechner noch nicht verlassen."
+msgid "Req counts local arrivals per slice (newest on the left). The center number has not left this host."
+msgstr "Req zählt lokale Ankünfte je Zeitscheibe (das Neueste links). Die mittlere Zahl hat diesen Rechner noch nicht verlassen."
 
 #: src/netpoisson.py:389
-msgid ""
-"Resp counts server replies per slice. Left of the arrow: requests not yet "
-"read. Next: replies not yet sent."
-msgstr ""
-"Resp zählt Server-Antworten je Zeitscheibe. Links vom Pfeil: noch nicht "
-"gelesene Anfragen. Danach: noch nicht gesendete Antworten."
+msgid "Resp counts server replies per slice. Left of the arrow: requests not yet read. Next: replies not yet sent."
+msgstr "Resp zählt Server-Antworten je Zeitscheibe. Links vom Pfeil: noch nicht gelesene Anfragen. Danach: noch nicht gesendete Antworten."

@@ -19,9 +19,7 @@ msgstr "Utilisation : netpoisson [OPTION]... [SERVEUR]\n"
 msgid ""
 "Offer a Poisson stream of requests to SERVER, or listen for them when\n"
 "SERVER is omitted.\n"
-msgstr ""
-"Envoie un flux de Poisson de requêtes à SERVEUR, ou écoute si SERVEUR est "
-"omis.\n"
+msgstr "Envoie un flux de Poisson de requêtes à SERVEUR, ou écoute si SERVEUR est omis.\n"
 
 #: src/netpoisson.py:74
 msgid "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
@@ -45,13 +43,11 @@ msgstr "  -l, --lambda N     requêtes offertes par seconde (défaut 100)\n"
 
 #: src/netpoisson.py:79
 msgid "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
-msgstr ""
-"  -s, --stats SECS   tourner SECS secondes, puis afficher un rapport JSON\n"
+msgstr "  -s, --stats SECS   tourner SECS secondes, puis afficher un rapport JSON\n"
 
 #: src/netpoisson.py:80
 msgid "  -w, --web          serve a live dashboard and open a browser\n"
-msgstr ""
-"  -w, --web          servir un tableau de bord et ouvrir un navigateur\n"
+msgstr "  -w, --web          servir un tableau de bord et ouvrir un navigateur\n"
 
 #: src/netpoisson.py:81
 msgid "      --web-host H   dashboard address (default 127.0.0.1)\n"
@@ -80,11 +76,9 @@ msgstr "afficher la version et quitter\n"
 #: src/netpoisson.py:94
 msgid ""
 "ECHO responses are the request bytes. STATUS responses carry the server\n"
-"timeline and queues. Req/Resp lines scroll right: newest slices on the "
-"left.\n"
+"timeline and queues. Req/Resp lines scroll right: newest slices on the left.\n"
 msgstr ""
-"Les réponses ECHO sont les octets de la requête. STATUS porte la chronologie "
-"et les files.\n"
+"Les réponses ECHO sont les octets de la requête. STATUS porte la chronologie et les files.\n"
 "Req/Resp défilent vers la droite : les tranches récentes sont à gauche.\n"
 
 #: src/netpoisson.py:99
@@ -96,27 +90,20 @@ msgid "Copyright (C) {year} {author}\n"
 msgstr "Copyright (C) {year} {author}\n"
 
 #: src/netpoisson.py:105
-msgid ""
-"License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
-msgstr ""
-"Licence AGPL-3.0-or-later : <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgid "License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgstr "Licence AGPL-3.0-or-later : <https://www.gnu.org/licenses/agpl-3.0.html>\n"
 
 #: src/netpoisson.py:106
 msgid "This is free software: you are free to change and redistribute it.\n"
-msgstr ""
-"Ceci est un logiciel libre : vous pouvez le modifier et le redistribuer.\n"
+msgstr "Ceci est un logiciel libre : vous pouvez le modifier et le redistribuer.\n"
 
 #: src/netpoisson.py:107
 msgid "This project opposes AI exploitation and AI hegemony.\n"
 msgstr "Ce projet s'oppose à l'exploitation et à l'hégémonie de l'IA.\n"
 
 #: src/netpoisson.py:110
-msgid ""
-"This project rejects mindless MIT-style licensing and politically naive BSD-"
-"style licensing.\n"
-msgstr ""
-"Ce projet rejette les licences MIT irréfléchies et les licences BSD "
-"politiquement naïves.\n"
+msgid "This project rejects mindless MIT-style licensing and politically naive BSD-style licensing.\n"
+msgstr "Ce projet rejette les licences MIT irréfléchies et les licences BSD politiquement naïves.\n"
 
 #: src/netpoisson.py:114
 msgid "There is NO WARRANTY, to the extent permitted by law.\n"
@@ -203,17 +190,9 @@ msgid "{prog}: connected {proto} {endpoint} at {lam} req/s"
 msgstr "{prog} : connecté à {proto} {endpoint} à {lam} req/s"
 
 #: src/netpoisson.py:382
-msgid ""
-"Req counts local arrivals per slice (newest on the left). The center number "
-"has not left this host."
-msgstr ""
-"Req compte les arrivées locales par tranche (les plus récentes à gauche). Le "
-"nombre central n'a pas encore quitté cet hôte."
+msgid "Req counts local arrivals per slice (newest on the left). The center number has not left this host."
+msgstr "Req compte les arrivées locales par tranche (les plus récentes à gauche). Le nombre central n'a pas encore quitté cet hôte."
 
 #: src/netpoisson.py:389
-msgid ""
-"Resp counts server replies per slice. Left of the arrow: requests not yet "
-"read. Next: replies not yet sent."
-msgstr ""
-"Resp compte les réponses du serveur par tranche. À gauche de la flèche : "
-"requêtes pas encore lues. Ensuite : réponses pas encore envoyées."
+msgid "Resp counts server replies per slice. Left of the arrow: requests not yet read. Next: replies not yet sent."
+msgstr "Resp compte les réponses du serveur par tranche. À gauche de la flèche : requêtes pas encore lues. Ensuite : réponses pas encore envoyées."

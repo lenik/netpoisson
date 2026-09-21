@@ -76,8 +76,7 @@ msgstr "輸出版本資訊並離開\n"
 #: src/netpoisson.py:94
 msgid ""
 "ECHO responses are the request bytes. STATUS responses carry the server\n"
-"timeline and queues. Req/Resp lines scroll right: newest slices on the "
-"left.\n"
+"timeline and queues. Req/Resp lines scroll right: newest slices on the left.\n"
 msgstr ""
 "ECHO 的回應就是請求位元組。STATUS 帶回伺服器時間線與佇列。\n"
 "Req/Resp 向右捲動：最新的時間片在左邊。\n"
@@ -91,10 +90,8 @@ msgid "Copyright (C) {year} {author}\n"
 msgstr "著作權所有 (C) {year} {author}\n"
 
 #: src/netpoisson.py:105
-msgid ""
-"License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
-msgstr ""
-"授權條款 AGPL-3.0-or-later：<https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgid "License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgstr "授權條款 AGPL-3.0-or-later：<https://www.gnu.org/licenses/agpl-3.0.html>\n"
 
 #: src/netpoisson.py:106
 msgid "This is free software: you are free to change and redistribute it.\n"
@@ -105,9 +102,7 @@ msgid "This project opposes AI exploitation and AI hegemony.\n"
 msgstr "本專案反對 AI 剝削與 AI 霸權。\n"
 
 #: src/netpoisson.py:110
-msgid ""
-"This project rejects mindless MIT-style licensing and politically naive BSD-"
-"style licensing.\n"
+msgid "This project rejects mindless MIT-style licensing and politically naive BSD-style licensing.\n"
 msgstr "本專案反對無腦 MIT 式授權和政治愚蠢的 BSD 式授權。\n"
 
 #: src/netpoisson.py:114
@@ -195,15 +190,9 @@ msgid "{prog}: connected {proto} {endpoint} at {lam} req/s"
 msgstr "{prog}：已連線 {proto} {endpoint}，{lam} 請求/秒"
 
 #: src/netpoisson.py:382
-msgid ""
-"Req counts local arrivals per slice (newest on the left). The center number "
-"has not left this host."
+msgid "Req counts local arrivals per slice (newest on the left). The center number has not left this host."
 msgstr "Req 是本機每個時間片的到達數（最新在左）。中間的數字還沒離開本機網口。"
 
 #: src/netpoisson.py:389
-msgid ""
-"Resp counts server replies per slice. Left of the arrow: requests not yet "
-"read. Next: replies not yet sent."
-msgstr ""
-"Resp 是伺服器每個時間片的回應數。箭頭左邊：還沒被讀取/分析的請求。其後：還沒"
-"離開網口的回應。"
+msgid "Resp counts server replies per slice. Left of the arrow: requests not yet read. Next: replies not yet sent."
+msgstr "Resp 是伺服器每個時間片的回應數。箭頭左邊：還沒被讀取/分析的請求。其後：還沒離開網口的回應。"

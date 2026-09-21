@@ -15,7 +15,7 @@ SRC = Path(__file__).resolve().parents[1] / "src"
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
-from commons import init_i18n  # noqa: E402
+from i18nutil import init_i18n  # noqa: E402
 from netio import Client, Server, connect_socket  # noqa: E402
 from netpoisson import parse_args  # noqa: E402
 from protocol import (  # noqa: E402

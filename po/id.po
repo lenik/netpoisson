@@ -24,9 +24,7 @@ msgstr "Penggunaan: netpoisson [OPSI]... [SERVER]\n"
 msgid ""
 "Offer a Poisson stream of requests to SERVER, or listen for them when\n"
 "SERVER is omitted.\n"
-msgstr ""
-"Kirim aliran Poisson permintaan ke SERVER, atau dengarkan jika SERVER "
-"dihilangkan.\n"
+msgstr "Kirim aliran Poisson permintaan ke SERVER, atau dengarkan jika SERVER dihilangkan.\n"
 
 #: src/netpoisson.py:74
 msgid "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
@@ -46,8 +44,7 @@ msgstr "  -u, --udp          gunakan UDP (bawaan TCP)\n"
 
 #: src/netpoisson.py:78
 msgid "  -l, --lambda N     offered requests per second (default 100)\n"
-msgstr ""
-"  -l, --lambda N     permintaan yang ditawarkan per detik (bawaan 100)\n"
+msgstr "  -l, --lambda N     permintaan yang ditawarkan per detik (bawaan 100)\n"
 
 #: src/netpoisson.py:79
 msgid "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
@@ -84,8 +81,7 @@ msgstr "keluarkan informasi versi dan keluar\n"
 #: src/netpoisson.py:94
 msgid ""
 "ECHO responses are the request bytes. STATUS responses carry the server\n"
-"timeline and queues. Req/Resp lines scroll right: newest slices on the "
-"left.\n"
+"timeline and queues. Req/Resp lines scroll right: newest slices on the left.\n"
 msgstr ""
 "Respons ECHO adalah bita permintaan. STATUS membawa linimasa dan antrean.\n"
 "Baris Req/Resp bergeser ke kanan: irisan terbaru di kiri.\n"
@@ -101,10 +97,8 @@ msgid "Copyright (C) {year} {author}\n"
 msgstr "Hak cipta (C) {year} {author}\n"
 
 #: src/netpoisson.py:105
-msgid ""
-"License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
-msgstr ""
-"Lisensi AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgid "License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgstr "Lisensi AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
 
 #: src/netpoisson.py:106
 msgid "This is free software: you are free to change and redistribute it.\n"
@@ -115,12 +109,8 @@ msgid "This project opposes AI exploitation and AI hegemony.\n"
 msgstr "Proyek ini menentang eksploitasi dan hegemoni AI.\n"
 
 #: src/netpoisson.py:110
-msgid ""
-"This project rejects mindless MIT-style licensing and politically naive BSD-"
-"style licensing.\n"
-msgstr ""
-"Proyek ini menolak lisensi gaya MIT yang tidak dipikirkan dan lisensi gaya "
-"BSD yang naif secara politik.\n"
+msgid "This project rejects mindless MIT-style licensing and politically naive BSD-style licensing.\n"
+msgstr "Proyek ini menolak lisensi gaya MIT yang tidak dipikirkan dan lisensi gaya BSD yang naif secara politik.\n"
 
 #: src/netpoisson.py:114
 msgid "There is NO WARRANTY, to the extent permitted by law.\n"
@@ -207,17 +197,9 @@ msgid "{prog}: connected {proto} {endpoint} at {lam} req/s"
 msgstr "{prog}: tersambung {proto} {endpoint} pada {lam} req/d"
 
 #: src/netpoisson.py:382
-msgid ""
-"Req counts local arrivals per slice (newest on the left). The center number "
-"has not left this host."
-msgstr ""
-"Req menghitung kedatangan lokal per irisan (terbaru di kiri). Angka di "
-"tengah belum meninggalkan host ini."
+msgid "Req counts local arrivals per slice (newest on the left). The center number has not left this host."
+msgstr "Req menghitung kedatangan lokal per irisan (terbaru di kiri). Angka di tengah belum meninggalkan host ini."
 
 #: src/netpoisson.py:389
-msgid ""
-"Resp counts server replies per slice. Left of the arrow: requests not yet "
-"read. Next: replies not yet sent."
-msgstr ""
-"Resp menghitung balasan server per irisan. Kiri panah: permintaan yang belum "
-"dibaca. Berikutnya: balasan yang belum terkirim."
+msgid "Resp counts server replies per slice. Left of the arrow: requests not yet read. Next: replies not yet sent."
+msgstr "Resp menghitung balasan server per irisan. Kiri panah: permintaan yang belum dibaca. Berikutnya: balasan yang belum terkirim."

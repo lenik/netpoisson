@@ -81,8 +81,7 @@ msgstr "संस्करण जानकारी दिखाकर निक
 #: src/netpoisson.py:94
 msgid ""
 "ECHO responses are the request bytes. STATUS responses carry the server\n"
-"timeline and queues. Req/Resp lines scroll right: newest slices on the "
-"left.\n"
+"timeline and queues. Req/Resp lines scroll right: newest slices on the left.\n"
 msgstr ""
 "ECHO उत्तर अनुरोध के बाइट हैं। STATUS समयरेखा और कतारें लाता है।\n"
 "Req/Resp दाएँ खिसकते हैं: नवीनतम स्लाइस बाएँ।\n"
@@ -98,10 +97,8 @@ msgid "Copyright (C) {year} {author}\n"
 msgstr "कॉपीराइट (C) {year} {author}\n"
 
 #: src/netpoisson.py:105
-msgid ""
-"License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
-msgstr ""
-"लाइसेंस AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgid "License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgstr "लाइसेंस AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
 
 #: src/netpoisson.py:106
 msgid "This is free software: you are free to change and redistribute it.\n"
@@ -112,12 +109,8 @@ msgid "This project opposes AI exploitation and AI hegemony.\n"
 msgstr "यह परियोजना एआई शोषण और एआई वर्चस्व का विरोध करती है।\n"
 
 #: src/netpoisson.py:110
-msgid ""
-"This project rejects mindless MIT-style licensing and politically naive BSD-"
-"style licensing.\n"
-msgstr ""
-"यह परियोजना बिना सोचे MIT-शैली और राजनीतिक रूप से भोले BSD-शैली लाइसेंस को अस्वीकार "
-"करती है।\n"
+msgid "This project rejects mindless MIT-style licensing and politically naive BSD-style licensing.\n"
+msgstr "यह परियोजना बिना सोचे MIT-शैली और राजनीतिक रूप से भोले BSD-शैली लाइसेंस को अस्वीकार करती है।\n"
 
 #: src/netpoisson.py:114
 msgid "There is NO WARRANTY, to the extent permitted by law.\n"
@@ -204,17 +197,9 @@ msgid "{prog}: connected {proto} {endpoint} at {lam} req/s"
 msgstr "{prog}: {proto} {endpoint} से जुड़ा, {lam} अनुरोध/से"
 
 #: src/netpoisson.py:382
-msgid ""
-"Req counts local arrivals per slice (newest on the left). The center number "
-"has not left this host."
-msgstr ""
-"Req इस होस्ट पर हर समय-खंड की आगमन संख्या है (नया बाएँ)। बीच की संख्या अभी नेट से नहीं "
-"निकली।"
+msgid "Req counts local arrivals per slice (newest on the left). The center number has not left this host."
+msgstr "Req इस होस्ट पर हर समय-खंड की आगमन संख्या है (नया बाएँ)। बीच की संख्या अभी नेट से नहीं निकली।"
 
 #: src/netpoisson.py:389
-msgid ""
-"Resp counts server replies per slice. Left of the arrow: requests not yet "
-"read. Next: replies not yet sent."
-msgstr ""
-"Resp सर्वर के हर समय-खंड के उत्तर हैं। तीर के बाएँ: अभी न पढ़े अनुरोध। उसके बाद: अभी न भेजे "
-"उत्तर।"
+msgid "Resp counts server replies per slice. Left of the arrow: requests not yet read. Next: replies not yet sent."
+msgstr "Resp सर्वर के हर समय-खंड के उत्तर हैं। तीर के बाएँ: अभी न पढ़े अनुरोध। उसके बाद: अभी न भेजे उत्तर।"

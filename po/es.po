@@ -25,13 +25,11 @@ msgstr "Uso: netpoisson [OPCIÓN]... [SERVIDOR]\n"
 msgid ""
 "Offer a Poisson stream of requests to SERVER, or listen for them when\n"
 "SERVER is omitted.\n"
-msgstr ""
-"Envía un flujo de Poisson de peticiones a SERVIDOR, o escucha si se omite.\n"
+msgstr "Envía un flujo de Poisson de peticiones a SERVIDOR, o escucha si se omite.\n"
 
 #: src/netpoisson.py:74
 msgid "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
-msgstr ""
-"  -d, --daemon       escuchar (también por defecto si se omite SERVIDOR)\n"
+msgstr "  -d, --daemon       escuchar (también por defecto si se omite SERVIDOR)\n"
 
 #: src/netpoisson.py:75
 msgid "  -H, --host HOST    address to bind (default 0.0.0.0)\n"
@@ -39,8 +37,7 @@ msgstr "  -H, --host HOST    dirección de enlace (predeterminado 0.0.0.0)\n"
 
 #: src/netpoisson.py:76
 msgid "  -p, --port PORT    port to bind or connect to (default 1871)\n"
-msgstr ""
-"  -p, --port PORT    puerto de enlace o conexión (predeterminado 1871)\n"
+msgstr "  -p, --port PORT    puerto de enlace o conexión (predeterminado 1871)\n"
 
 #: src/netpoisson.py:77
 msgid "  -u, --udp          use UDP (default is TCP)\n"
@@ -48,14 +45,11 @@ msgstr "  -u, --udp          usar UDP (el predeterminado es TCP)\n"
 
 #: src/netpoisson.py:78
 msgid "  -l, --lambda N     offered requests per second (default 100)\n"
-msgstr ""
-"  -l, --lambda N     peticiones ofrecidas por segundo (predeterminado 100)\n"
+msgstr "  -l, --lambda N     peticiones ofrecidas por segundo (predeterminado 100)\n"
 
 #: src/netpoisson.py:79
 msgid "  -s, --stats SECS   run for SECS seconds, then print a JSON report\n"
-msgstr ""
-"  -s, --stats SECS   ejecutar SECS segundos y luego imprimir un informe "
-"JSON\n"
+msgstr "  -s, --stats SECS   ejecutar SECS segundos y luego imprimir un informe JSON\n"
 
 #: src/netpoisson.py:80
 msgid "  -w, --web          serve a live dashboard and open a browser\n"
@@ -63,8 +57,7 @@ msgstr "  -w, --web          servir un tablero en vivo y abrir un navegador\n"
 
 #: src/netpoisson.py:81
 msgid "      --web-host H   dashboard address (default 127.0.0.1)\n"
-msgstr ""
-"      --web-host H   dirección del tablero (predeterminado 127.0.0.1)\n"
+msgstr "      --web-host H   dirección del tablero (predeterminado 127.0.0.1)\n"
 
 #: src/netpoisson.py:82
 msgid "      --web-port N   dashboard port (default 8711)\n"
@@ -89,11 +82,9 @@ msgstr "mostrar la versión y salir\n"
 #: src/netpoisson.py:94
 msgid ""
 "ECHO responses are the request bytes. STATUS responses carry the server\n"
-"timeline and queues. Req/Resp lines scroll right: newest slices on the "
-"left.\n"
+"timeline and queues. Req/Resp lines scroll right: newest slices on the left.\n"
 msgstr ""
-"Las respuestas ECHO son los bytes de la petición. STATUS lleva la línea de "
-"tiempo y las colas.\n"
+"Las respuestas ECHO son los bytes de la petición. STATUS lleva la línea de tiempo y las colas.\n"
 "Req/Resp se desplazan a la derecha: lo más nuevo queda a la izquierda.\n"
 
 #: src/netpoisson.py:99
@@ -107,10 +98,8 @@ msgid "Copyright (C) {year} {author}\n"
 msgstr "Copyright (C) {year} {author}\n"
 
 #: src/netpoisson.py:105
-msgid ""
-"License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
-msgstr ""
-"Licencia AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgid "License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgstr "Licencia AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
 
 #: src/netpoisson.py:106
 msgid "This is free software: you are free to change and redistribute it.\n"
@@ -121,12 +110,8 @@ msgid "This project opposes AI exploitation and AI hegemony.\n"
 msgstr "Este proyecto se opone a la explotación y a la hegemonía de la IA.\n"
 
 #: src/netpoisson.py:110
-msgid ""
-"This project rejects mindless MIT-style licensing and politically naive BSD-"
-"style licensing.\n"
-msgstr ""
-"Este proyecto rechaza las licencias MIT irreflexivas y las licencias BSD "
-"políticamente ingenuas.\n"
+msgid "This project rejects mindless MIT-style licensing and politically naive BSD-style licensing.\n"
+msgstr "Este proyecto rechaza las licencias MIT irreflexivas y las licencias BSD políticamente ingenuas.\n"
 
 #: src/netpoisson.py:114
 msgid "There is NO WARRANTY, to the extent permitted by law.\n"
@@ -213,17 +198,9 @@ msgid "{prog}: connected {proto} {endpoint} at {lam} req/s"
 msgstr "{prog}: conectado a {proto} {endpoint} a {lam} pet./s"
 
 #: src/netpoisson.py:382
-msgid ""
-"Req counts local arrivals per slice (newest on the left). The center number "
-"has not left this host."
-msgstr ""
-"Req cuenta las llegadas locales por intervalo (lo más nuevo a la izquierda). "
-"El número central aún no ha salido de este equipo."
+msgid "Req counts local arrivals per slice (newest on the left). The center number has not left this host."
+msgstr "Req cuenta las llegadas locales por intervalo (lo más nuevo a la izquierda). El número central aún no ha salido de este equipo."
 
 #: src/netpoisson.py:389
-msgid ""
-"Resp counts server replies per slice. Left of the arrow: requests not yet "
-"read. Next: replies not yet sent."
-msgstr ""
-"Resp cuenta las respuestas del servidor por intervalo. A la izquierda de la "
-"flecha: peticiones aún no leídas. Después: respuestas aún no enviadas."
+msgid "Resp counts server replies per slice. Left of the arrow: requests not yet read. Next: replies not yet sent."
+msgstr "Resp cuenta las respuestas del servidor por intervalo. A la izquierda de la flecha: peticiones aún no leídas. Después: respuestas aún no enviadas."

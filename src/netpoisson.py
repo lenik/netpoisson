@@ -16,7 +16,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import TextIO
 
-from commons import init_i18n
+from i18nutil import init_i18n
 from netio import Client, Server
 from traffic import TerminalStatus, cell_width
 from webui import Dashboard, open_browser

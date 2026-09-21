@@ -19,8 +19,7 @@ msgstr "사용법: netpoisson [옵션]... [서버]\n"
 msgid ""
 "Offer a Poisson stream of requests to SERVER, or listen for them when\n"
 "SERVER is omitted.\n"
-msgstr ""
-"SERVER에 푸아송 과정으로 요청을 보낸다. SERVER를 생략하면 수신 대기한다.\n"
+msgstr "SERVER에 푸아송 과정으로 요청을 보낸다. SERVER를 생략하면 수신 대기한다.\n"
 
 #: src/netpoisson.py:74
 msgid "  -d, --daemon       listen (also the default when SERVER is omitted)\n"
@@ -77,8 +76,7 @@ msgstr "버전 정보를 출력하고 종료한다\n"
 #: src/netpoisson.py:94
 msgid ""
 "ECHO responses are the request bytes. STATUS responses carry the server\n"
-"timeline and queues. Req/Resp lines scroll right: newest slices on the "
-"left.\n"
+"timeline and queues. Req/Resp lines scroll right: newest slices on the left.\n"
 msgstr ""
 "ECHO 응답은 요청 바이트 그대로다. STATUS는 서버 시간선과 대기열을 담는다.\n"
 "Req/Resp는 오른쪽으로 흐르고, 최신 구간은 왼쪽이다.\n"
@@ -92,10 +90,8 @@ msgid "Copyright (C) {year} {author}\n"
 msgstr "Copyright (C) {year} {author}\n"
 
 #: src/netpoisson.py:105
-msgid ""
-"License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
-msgstr ""
-"라이선스 AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgid "License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgstr "라이선스 AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
 
 #: src/netpoisson.py:106
 msgid "This is free software: you are free to change and redistribute it.\n"
@@ -106,12 +102,8 @@ msgid "This project opposes AI exploitation and AI hegemony.\n"
 msgstr "이 프로젝트는 AI 착취와 AI 패권에 반대합니다.\n"
 
 #: src/netpoisson.py:110
-msgid ""
-"This project rejects mindless MIT-style licensing and politically naive BSD-"
-"style licensing.\n"
-msgstr ""
-"이 프로젝트는 무심한 MIT식 라이선스와 정치적으로 순진한 BSD식 라이선스를 거부"
-"합니다.\n"
+msgid "This project rejects mindless MIT-style licensing and politically naive BSD-style licensing.\n"
+msgstr "이 프로젝트는 무심한 MIT식 라이선스와 정치적으로 순진한 BSD식 라이선스를 거부합니다.\n"
 
 #: src/netpoisson.py:114
 msgid "There is NO WARRANTY, to the extent permitted by law.\n"
@@ -198,17 +190,9 @@ msgid "{prog}: connected {proto} {endpoint} at {lam} req/s"
 msgstr "{prog}: {proto} {endpoint} 에 연결, {lam} 요청/초"
 
 #: src/netpoisson.py:382
-msgid ""
-"Req counts local arrivals per slice (newest on the left). The center number "
-"has not left this host."
-msgstr ""
-"Req는 이 호스트의 시간 조각별 도착 수다(최신이 왼쪽). 가운데 숫자는 아직 망"
-"을 떠나지 않았다."
+msgid "Req counts local arrivals per slice (newest on the left). The center number has not left this host."
+msgstr "Req는 이 호스트의 시간 조각별 도착 수다(최신이 왼쪽). 가운데 숫자는 아직 망을 떠나지 않았다."
 
 #: src/netpoisson.py:389
-msgid ""
-"Resp counts server replies per slice. Left of the arrow: requests not yet "
-"read. Next: replies not yet sent."
-msgstr ""
-"Resp는 서버의 시간 조각별 응답 수다. 화살표 왼쪽은 아직 읽거나 분석하지 않은 "
-"요청, 그다음은 아직 나가지 않은 응답이다."
+msgid "Resp counts server replies per slice. Left of the arrow: requests not yet read. Next: replies not yet sent."
+msgstr "Resp는 서버의 시간 조각별 응답 수다. 화살표 왼쪽은 아직 읽거나 분석하지 않은 요청, 그다음은 아직 나가지 않은 응답이다."

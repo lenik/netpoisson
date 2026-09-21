@@ -4,12 +4,15 @@
 %{!?version:%global version 0.0.0}
 %{!?srcversion:%global srcversion %{version}}
 
+%global debug_package %{nil}
+
 Name:           netpoisson
 Version:        %{version}
 Release:        1%{?dist}
 Summary:        Poisson request generator and echo server
 
 License:        AGPL-3.0-or-later
+BuildArch:      noarch
 URL:            https://github.com/lenik/netpoisson
 Packager:       Lenik (谢继雷) <netpoisson@bodz.net>
 Source0:        %{name}-%{srcversion}.tar.xz
@@ -46,12 +49,19 @@ meson install -C build --destdir=%{buildroot}
 
 %files
 %{_bindir}/netpoisson
-%{_bindir}/common_lib.py
+%{_bindir}/i18nutil.py
+%{_bindir}/protocol.py
+%{_bindir}/traffic.py
+%{_bindir}/netio.py
+%{_bindir}/netio_sock.py
+%{_bindir}/peer_server.py
+%{_bindir}/peer_client.py
+%{_bindir}/webui.py
 %{_datadir}/bash-completion/completions/netpoisson
 %{_mandir}/man1/netpoisson.1*
-%{_datadir}/doc/%{name}/
+%{_mandir}/*/man1/netpoisson.1*
 %{_datadir}/locale/*/LC_MESSAGES/netpoisson.mo
-
+%{_datadir}/doc/netpoisson/
 %changelog
 * Thu Aug 20 2026 Lenik <netpoisson@bodz.net>
 - Align spec with debian/control (Meson, AGPL-3.0-or-later).

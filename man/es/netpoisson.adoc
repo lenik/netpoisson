@@ -1,0 +1,96 @@
+= netpoisson(1)
+Lenik <netpoisson@bodz.net>
+v{project-version}, {project-year}
+:doctype: manpage
+:manmanual: User Commands
+:mansource: netpoisson
+:man-linkstyle: blue R <>
+:nofooter:
+
+== Nombre
+
+netpoisson - ofrecer un flujo de Poisson de peticiones, o responderlas
+
+== Sinopsis
+
+*netpoisson* [_OPCIÓN_]... [_SERVIDOR_]
+
+== Descripción
+
+*netpoisson* escucha peticiones, o se conecta a _SERVIDOR_ y las ofrece como
+un proceso de Poisson. El tiempo entre llegadas es exponencial de media 1/λ.
+La tasa por omisión es 100 peticiones por segundo.
+
+Cada petición es *ECHO* o *STATUS*. Una respuesta *ECHO* son los bytes de la
+petición. *STATUS* trae la línea temporal del servidor y la profundidad de las
+colas de recepción y envío. La carga usa *ECHO*; un segundo socket consulta con
+*STATUS*.
+
+Sin _SERVIDOR_ (o con *-d*) escucha. _SERVIDOR_ es un host o `host:puerto`.
+
+El tiempo se muestra en cortes de 100 ms. El más reciente queda a la izquierda;
+las líneas avanzan a la derecha. El número central es la cola de envío local.
+A la izquierda de la flecha en Resp: peticiones aún no leídas; después:
+respuestas aún no enviadas.
+
+*-w* sirve las mismas líneas temporales por HTTP, más RTT, jitter RFC 3550,
+pérdidas y retraso de cola. *-s* imprime un informe JSON tras _SECS_ segundos.
+
+== Opciones
+
+*-d, --daemon*::
+  Escuchar (también por omisión sin _SERVIDOR_). No combinar con _SERVIDOR_.
+
+*-H, --host _HOST_*::
+  Dirección de enlace (omisión `0.0.0.0`). En cliente el destino es _SERVIDOR_.
+
+*-p, --port _PORT_*::
+  Puerto de enlace o conexión (omisión 1871). 0 pide un puerto efímero.
+
+*-u, --udp*::
+  Usar UDP (TCP por omisión).
+
+*-l, --lambda _N_*::
+  Peticiones *ECHO* ofrecidas por segundo (omisión 100). Solo cliente.
+
+*-s, --stats _SECS_*::
+  Imprimir un informe JSON tras _SECS_ segundos.
+
+*-w, --web*::
+  Servir un tablero y abrir un navegador. `NETPOISSON_NO_BROWSER=1` lo omite.
+
+*--web-host _H_*::
+  Dirección del tablero (omisión `127.0.0.1`).
+
+*--web-port _N_*::
+  Puerto del tablero (omisión 8711).
+
+*-v, --verbose*::
+  Más mensajes.
+
+*-q, --quiet*::
+  No dibujar las líneas de estado.
+
+*-h, --help*::
+  Mostrar la ayuda y salir.
+
+*--version*::
+  Mostrar versión y licencia y salir.
+
+== Estado de salida
+
+*0*::
+  Éxito.
+
+*1*::
+  Error, o se enviaron peticiones sin ninguna respuesta.
+
+== Autor
+
+Escrito por {project-author} <{project-email}>.
+
+== Copyright
+
+Copyright (C) {project-year}.
+Licencia AGPL-3.0-or-later.
+Sin garantía. Véase LICENSE.

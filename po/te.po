@@ -81,8 +81,7 @@ msgstr "సంస్కరణ సమాచారం చూపి నిష్క
 #: src/netpoisson.py:94
 msgid ""
 "ECHO responses are the request bytes. STATUS responses carry the server\n"
-"timeline and queues. Req/Resp lines scroll right: newest slices on the "
-"left.\n"
+"timeline and queues. Req/Resp lines scroll right: newest slices on the left.\n"
 msgstr ""
 "ECHO స్పందన అభ్యర్థన బైట్లే. STATUS కాలరేఖను వరుసలను తెస్తుంది.\n"
 "Req/Resp కుడికి జరుగుతాయి: కొత్త ముక్కలు ఎడమ.\n"
@@ -98,8 +97,7 @@ msgid "Copyright (C) {year} {author}\n"
 msgstr "కాపీరైట్ (C) {year} {author}\n"
 
 #: src/netpoisson.py:105
-msgid ""
-"License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgid "License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
 msgstr "లైసెన్స్ AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
 
 #: src/netpoisson.py:106
@@ -111,9 +109,7 @@ msgid "This project opposes AI exploitation and AI hegemony.\n"
 msgstr "ఈ ప్రాజెక్టు AI దోపిడీని AI ఆధిపత్యాన్ని వ్యతిరేకిస్తుంది.\n"
 
 #: src/netpoisson.py:110
-msgid ""
-"This project rejects mindless MIT-style licensing and politically naive BSD-"
-"style licensing.\n"
+msgid "This project rejects mindless MIT-style licensing and politically naive BSD-style licensing.\n"
 msgstr "ఈ ప్రాజెక్టు ఆలోచనలేని MIT శైలి లైసెన్స్‌ను, రాజకీయంగా అమాయక BSD శైలి లైసెన్స్‌ను తిరస్కరిస్తుంది.\n"
 
 #: src/netpoisson.py:114
@@ -201,15 +197,9 @@ msgid "{prog}: connected {proto} {endpoint} at {lam} req/s"
 msgstr "{prog}: కనెక్ట్ {proto} {endpoint}, {lam} అభ్యర్థన/సె"
 
 #: src/netpoisson.py:382
-msgid ""
-"Req counts local arrivals per slice (newest on the left). The center number "
-"has not left this host."
+msgid "Req counts local arrivals per slice (newest on the left). The center number has not left this host."
 msgstr "Req ఈ హోస్ట్‌పై ముక్కకు వచ్చినవి (కొత్తవి ఎడమ). మధ్య సంఖ్య ఇంకా నెట్ నుంచి బయటకు రాలేదు."
 
 #: src/netpoisson.py:389
-msgid ""
-"Resp counts server replies per slice. Left of the arrow: requests not yet "
-"read. Next: replies not yet sent."
-msgstr ""
-"Resp సర్వర్ ముక్కకు స్పందనలు. బాణానికి ఎడమ: ఇంకా చదవని అభ్యర్థనలు. తర్వాత: ఇంకా పంపని "
-"స్పందనలు."
+msgid "Resp counts server replies per slice. Left of the arrow: requests not yet read. Next: replies not yet sent."
+msgstr "Resp సర్వర్ ముక్కకు స్పందనలు. బాణానికి ఎడమ: ఇంకా చదవని అభ్యర్థనలు. తర్వాత: ఇంకా పంపని స్పందనలు."

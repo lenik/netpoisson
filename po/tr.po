@@ -37,8 +37,7 @@ msgstr "  -H, --host HOST    bağlanılacak adres (varsayılan 0.0.0.0)\n"
 
 #: src/netpoisson.py:76
 msgid "  -p, --port PORT    port to bind or connect to (default 1871)\n"
-msgstr ""
-"  -p, --port PORT    bağlanılacak veya bağlanacak kapı (varsayılan 1871)\n"
+msgstr "  -p, --port PORT    bağlanılacak veya bağlanacak kapı (varsayılan 1871)\n"
 
 #: src/netpoisson.py:77
 msgid "  -u, --udp          use UDP (default is TCP)\n"
@@ -83,11 +82,9 @@ msgstr "sürüm bilgisini yaz ve çık\n"
 #: src/netpoisson.py:94
 msgid ""
 "ECHO responses are the request bytes. STATUS responses carry the server\n"
-"timeline and queues. Req/Resp lines scroll right: newest slices on the "
-"left.\n"
+"timeline and queues. Req/Resp lines scroll right: newest slices on the left.\n"
 msgstr ""
-"ECHO yanıtı isteğin baytlarıdır. STATUS zaman çizelgesini ve kuyrukları "
-"taşır.\n"
+"ECHO yanıtı isteğin baytlarıdır. STATUS zaman çizelgesini ve kuyrukları taşır.\n"
 "Req/Resp sağa kayar: en yeni dilimler soldadır.\n"
 
 #: src/netpoisson.py:99
@@ -101,10 +98,8 @@ msgid "Copyright (C) {year} {author}\n"
 msgstr "Telif hakkı (C) {year} {author}\n"
 
 #: src/netpoisson.py:105
-msgid ""
-"License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
-msgstr ""
-"Lisans AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgid "License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgstr "Lisans AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
 
 #: src/netpoisson.py:106
 msgid "This is free software: you are free to change and redistribute it.\n"
@@ -115,12 +110,8 @@ msgid "This project opposes AI exploitation and AI hegemony.\n"
 msgstr "Bu proje yapay zekâ sömürüsüne ve yapay zekâ hegemonyasına karşıdır.\n"
 
 #: src/netpoisson.py:110
-msgid ""
-"This project rejects mindless MIT-style licensing and politically naive BSD-"
-"style licensing.\n"
-msgstr ""
-"Bu proje düşüncesiz MIT tarzı lisansları ve siyaseten saf BSD tarzı "
-"lisansları reddeder.\n"
+msgid "This project rejects mindless MIT-style licensing and politically naive BSD-style licensing.\n"
+msgstr "Bu proje düşüncesiz MIT tarzı lisansları ve siyaseten saf BSD tarzı lisansları reddeder.\n"
 
 #: src/netpoisson.py:114
 msgid "There is NO WARRANTY, to the extent permitted by law.\n"
@@ -207,17 +198,9 @@ msgid "{prog}: connected {proto} {endpoint} at {lam} req/s"
 msgstr "{prog}: bağlandı {proto} {endpoint}, {lam} istek/sn"
 
 #: src/netpoisson.py:382
-msgid ""
-"Req counts local arrivals per slice (newest on the left). The center number "
-"has not left this host."
-msgstr ""
-"Req bu makinedeki dilim başına varışları sayar (en yeni solda). Ortadaki "
-"sayı henüz ağdan çıkmadı."
+msgid "Req counts local arrivals per slice (newest on the left). The center number has not left this host."
+msgstr "Req bu makinedeki dilim başına varışları sayar (en yeni solda). Ortadaki sayı henüz ağdan çıkmadı."
 
 #: src/netpoisson.py:389
-msgid ""
-"Resp counts server replies per slice. Left of the arrow: requests not yet "
-"read. Next: replies not yet sent."
-msgstr ""
-"Resp sunucunun dilim başına yanıtlarını sayar. Okun solu: henüz okunmamış "
-"istekler. Sonraki: henüz gönderilmemiş yanıtlar."
+msgid "Resp counts server replies per slice. Left of the arrow: requests not yet read. Next: replies not yet sent."
+msgstr "Resp sunucunun dilim başına yanıtlarını sayar. Okun solu: henüz okunmamış istekler. Sonraki: henüz gönderilmemiş yanıtlar."

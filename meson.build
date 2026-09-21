@@ -53,17 +53,17 @@ netpoisson_exe = custom_target(
     install_dir: bindir,
 )
 
-commons_mod = custom_target(
-    'commons',
-    input: 'src/commons.py',
-    output: 'commons.py',
+i18nutil_mod = custom_target(
+    'i18nutil',
+    input: 'src/i18nutil.py',
+    output: 'i18nutil.py',
     command: ['cp', '@INPUT@', '@OUTPUT@'],
     build_by_default: true,
     install: true,
     install_dir: bindir,
 )
 
-foreach mod : ['protocol.py', 'traffic.py', 'netio.py', 'webui.py']
+foreach mod : ['protocol.py', 'traffic.py', 'netio.py', 'netio_sock.py', 'peer_server.py', 'peer_client.py', 'webui.py']
     custom_target(
         mod,
         input: 'src' / mod,
@@ -88,25 +88,6 @@ install_data(
         'README-zh_CN.md',
     ],
     install_dir: pkgdocdir,
-)
-
-custom_target(
-    'netpoisson-man',
-    input: 'man/netpoisson.adoc',
-    output: 'netpoisson.1',
-    command: [
-        asciidoctor,
-        '-b', 'manpage',
-        '-a', 'project-version=' + meson.project_version(),
-        '-a', 'project-year=@0@'.format(project_year),
-        '-a', 'project-author=' + project_author,
-        '-a', 'project-email=' + project_email,
-        '-o', '@OUTPUT@',
-        '@INPUT@',
-    ],
-    build_by_default: true,
-    install: true,
-    install_dir: mandir / 'man1',
 )
 
 test(
@@ -144,17 +125,9 @@ run_target(
     'install-symlinks',
     command: [
         'bash',
-        '-euc', '''
-            prefix="@0@"
-            bindir="@1@"
-            datadir="@2@"
-            mandir="@3@"
-            mkdir -p "$bindir" "$datadir/bash-completion/completions" "$mandir/man1"
-            sudo ln -sfn "@BUILD_ROOT@/netpoisson" "$bindir/netpoisson"
-            sudo ln -sfn "@BUILD_ROOT@/netpoisson.1" "$mandir/man1/netpoisson.1"
-            sudo ln -sfn "@SOURCE_ROOT@/netpoisson.bash" "$datadir/bash-completion/completions/netpoisson"
-            printf "Symlinks installed under %s\n" "$prefix"
-        '''.format(get_option('prefix'), bindir, datadir, mandir),
+        meson.project_source_root() / 'scripts' / 'install-symlinks.sh',
+        meson.project_source_root(),
+        meson.project_build_root(),
     ],
 )
 
@@ -162,20 +135,68 @@ run_target(
     'uninstall-symlinks',
     command: [
         'bash',
-        '-euc', '''
-            prefix="@0@"
-            bindir="@1@"
-            datadir="@2@"
-            mandir="@3@"
-            for p in "$bindir/netpoisson" "$mandir/man1/netpoisson.1" "$datadir/bash-completion/completions/netpoisson"
-            do
-                if [ -L "$p" ]; then
-                    sudo rm -f "$p"
-                    printf "Removed %s\n" "$p"
-                else
-                    printf "Skipped (not a symlink): %s\n" "$p"
-                fi
-            done
-        '''.format(get_option('prefix'), bindir, datadir, mandir),
+        meson.project_source_root() / 'scripts' / 'uninstall-symlinks.sh',
+        meson.project_source_root(),
+        meson.project_build_root(),
     ],
 )
+
+puffs = [
+    'netpoisson',
+]
+foreach puff : puffs
+  custom_target(
+    puff + '-man',
+    input: 'man' / (puff + '.adoc'),
+    output: puff + '.1',
+    command: [
+      asciidoctor,
+      '-b', 'manpage',
+      '-a', 'project-version=' + meson.project_version(),
+      '-a', 'project-year=@0@'.format(project_year),
+      '-a', 'project-author=' + project_author,
+      '-a', 'project-email=' + project_email,
+      '-o', '@OUTPUT@',
+      '@INPUT@',
+    ],
+    build_by_default: true,
+    install: true,
+    install_dir: mandir / 'man1',
+  )
+endforeach
+
+# Whole-document translated man pages under man/<locale>/.
+man_i18n_langs = []
+foreach lang : ['ar', 'de', 'es', 'fr', 'it', 'ja', 'ko', 'zh_CN']
+  if fs.is_dir(meson.project_source_root() / 'man' / lang)
+    man_i18n_langs += lang
+  endif
+endforeach
+foreach lang : man_i18n_langs
+  foreach puff : puffs
+    adoc = meson.project_source_root() / 'man' / lang / (puff + '.adoc')
+    if fs.is_file(adoc)
+      _loc_man = custom_target(
+        puff + '-man-' + lang,
+        input: adoc,
+        output: puff + '-' + lang + '.1',
+        command: [
+          asciidoctor,
+          '-b', 'manpage',
+          '-a', 'project-version=' + meson.project_version(),
+          '-a', 'project-year=@0@'.format(project_year),
+          '-a', 'project-author=' + project_author,
+          '-a', 'project-email=' + project_email,
+          '-o', '@OUTPUT@',
+          '@INPUT@',
+        ],
+        build_by_default: true,
+      )
+      meson.add_install_script(
+        'install', '-D', '-m644',
+        _loc_man,
+        get_option('prefix') / get_option('mandir') / lang / 'man1' / (puff + '.1'),
+      )
+    endif
+  endforeach
+endforeach

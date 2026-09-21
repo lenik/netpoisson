@@ -1,0 +1,96 @@
+= netpoisson(1)
+Lenik <netpoisson@bodz.net>
+v{project-version}, {project-year}
+:doctype: manpage
+:manmanual: User Commands
+:mansource: netpoisson
+:man-linkstyle: blue R <>
+:nofooter:
+
+== Name
+
+netpoisson - Anfragen als Poisson-Prozess anbieten oder beantworten
+
+== Übersicht
+
+*netpoisson* [_OPTION_]... [_SERVER_]
+
+== Beschreibung
+
+*netpoisson* wartet auf Anfragen oder verbindet sich mit _SERVER_ und sendet
+Anfragen als Poisson-Prozess. Die Zwischenankunftszeit ist exponential mit
+Mittelwert 1/λ. Die Vorgabe ist 100 Anfragen pro Sekunde.
+
+Jede Anfrage ist *ECHO* oder *STATUS*. Eine *ECHO*-Antwort sind die
+Anfragebytes unverändert. *STATUS* liefert die Server-Zeitlinie und die Tiefe
+der Empfangs- und Sendewarteschlangen. Die Last nutzt *ECHO*; ein zweiter
+Socket fragt mit *STATUS* nach.
+
+Ohne _SERVER_ (oder mit *-d*) wird gelauscht. _SERVER_ ist Host oder `Host:Port`.
+
+Die Zeit wird in 100-ms-Scheiben gezeigt. Die neueste Scheibe steht links; die
+Zeilen laufen nach rechts. Die mittlere Zahl ist die lokale Sendewarteschlange.
+Links vom Pfeil auf der Antwortzeile: noch ungelesene Anfragen; danach: noch
+ungesendete Antworten.
+
+*-w* zeigt dieselben Zeitlinien per HTTP plus RTT, RFC-3550-Jitter, Verlust und
+Warteschlangenverzögerung. *-s* schreibt nach _SECS_ Sekunden einen JSON-Bericht.
+
+== Optionen
+
+*-d, --daemon*::
+  Auf Anfragen warten (auch Vorgabe ohne _SERVER_). Nicht mit _SERVER_ kombinieren.
+
+*-H, --host _HOST_*::
+  Bind-Adresse (Vorgabe `0.0.0.0`). Im Clientmodus ist das Ziel _SERVER_.
+
+*-p, --port _PORT_*::
+  Port zum Binden oder Verbinden (Vorgabe 1871). 0 wählt einen ephemeren Port.
+
+*-u, --udp*::
+  UDP verwenden (Vorgabe TCP).
+
+*-l, --lambda _N_*::
+  Angebotene *ECHO*-Anfragen pro Sekunde (Vorgabe 100). Nur Client.
+
+*-s, --stats _SECS_*::
+  Nach _SECS_ Sekunden JSON-Bericht ausgeben.
+
+*-w, --web*::
+  Live-Übersicht bedienen und Browser öffnen. `NETPOISSON_NO_BROWSER=1` unterdrückt das.
+
+*--web-host _H_*::
+  Adresse der Übersicht (Vorgabe `127.0.0.1`).
+
+*--web-port _N_*::
+  Port der Übersicht (Vorgabe 8711).
+
+*-v, --verbose*::
+  Ausführlichere Meldungen.
+
+*-q, --quiet*::
+  Statuszeilen nicht zeichnen.
+
+*-h, --help*::
+  Hilfe anzeigen und beenden.
+
+*--version*::
+  Version und Lizenz anzeigen und beenden.
+
+== Exit-Status
+
+*0*::
+  Erfolg.
+
+*1*::
+  Fehler, oder Anfragen gesendet aber keine Antwort.
+
+== Autor
+
+Geschrieben von {project-author} <{project-email}>.
+
+== Copyright
+
+Copyright (C) {project-year}.
+Lizenz AGPL-3.0-or-later.
+Keine Garantie. Siehe LICENSE.

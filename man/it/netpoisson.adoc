@@ -1,0 +1,95 @@
+= netpoisson(1)
+Lenik <netpoisson@bodz.net>
+v{project-version}, {project-year}
+:doctype: manpage
+:manmanual: User Commands
+:mansource: netpoisson
+:man-linkstyle: blue R <>
+:nofooter:
+
+== Nome
+
+netpoisson - offrire un flusso di Poisson di richieste, oppure rispondervi
+
+== Sinossi
+
+*netpoisson* [_OPZIONE_]... [_SERVER_]
+
+== Descrizione
+
+*netpoisson* ascolta richieste, oppure si collega a _SERVER_ e le offre come
+processo di Poisson. L'inter-arrivo è esponenziale di media 1/λ. La velocità
+predefinita è 100 richieste al secondo.
+
+Ogni richiesta è *ECHO* o *STATUS*. Una risposta *ECHO* è la richiesta
+inalterata. *STATUS* porta la sequenza temporale del server e la profondità
+delle code di ricezione e invio. Il carico usa *ECHO*; un secondo socket
+interroga con *STATUS*.
+
+Senza _SERVER_ (o con *-d*) ascolta. _SERVER_ è un host o `host:porta`.
+
+Il tempo è in fette da 100 ms. La più recente è a sinistra; le righe scorrono
+a destra. Il numero centrale è la coda di invio locale. A sinistra della freccia
+su Resp: richieste non ancora lette; poi: risposte non ancora inviate.
+
+*-w* serve le stesse sequenze via HTTP, più RTT, jitter RFC 3550, perdite e
+ritardo di coda. *-s* stampa un rapporto JSON dopo _SECS_ secondi.
+
+== Opzioni
+
+*-d, --daemon*::
+  Ascoltare (anche predefinito senza _SERVER_). Non combinare con _SERVER_.
+
+*-H, --host _HOST_*::
+  Indirizzo di bind (predefinito `0.0.0.0`). In client la destinazione è _SERVER_.
+
+*-p, --port _PORT_*::
+  Porta di bind o connessione (predefinito 1871). 0 chiede una porta effimera.
+
+*-u, --udp*::
+  Usare UDP (predefinito TCP).
+
+*-l, --lambda _N_*::
+  Richieste *ECHO* offerte al secondo (predefinito 100). Solo client.
+
+*-s, --stats _SECS_*::
+  Stampare un rapporto JSON dopo _SECS_ secondi.
+
+*-w, --web*::
+  Servire una dashboard e aprire un browser. `NETPOISSON_NO_BROWSER=1` lo salta.
+
+*--web-host _H_*::
+  Indirizzo della dashboard (predefinito `127.0.0.1`).
+
+*--web-port _N_*::
+  Porta della dashboard (predefinito 8711).
+
+*-v, --verbose*::
+  Più messaggi.
+
+*-q, --quiet*::
+  Non disegnare le righe di stato.
+
+*-h, --help*::
+  Mostrare l'aiuto e uscire.
+
+*--version*::
+  Mostrare versione e licenza e uscire.
+
+== Stato di uscita
+
+*0*::
+  Successo.
+
+*1*::
+  Errore, oppure richieste inviate senza risposte.
+
+== Autore
+
+Scritto da {project-author} <{project-email}>.
+
+== Copyright
+
+Copyright (C) {project-year}.
+Licenza AGPL-3.0-or-later.
+Nessuna garanzia. Vedere LICENSE.

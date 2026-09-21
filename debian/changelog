@@ -5,6 +5,12 @@ netpoisson (0.1.0) unstable; urgency=medium
     queues.
   * Show scrolling Req/Resp lines, a JSON report, and a live web
     dashboard.
+  * Align packaging with zephyr style: noarch RPM, Architecture all,
+    scripts/, i18nutil.
+  * Split peer I/O into netio_sock, peer_server, and peer_client
+    modules.
+  * Add L1 whole-document man translations and install them under
+    mandir/<locale>/man1.
 
  -- Lenik (谢继雷) <lenik@bodz.net>  Mon, 21 Sep 2026 13:38:12 +0800
 

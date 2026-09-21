@@ -1,0 +1,97 @@
+= netpoisson(1)
+Lenik <netpoisson@bodz.net>
+v{project-version}, {project-year}
+:doctype: manpage
+:manmanual: User Commands
+:mansource: netpoisson
+:man-linkstyle: blue R <>
+:nofooter:
+
+== Nom
+
+netpoisson - offrir un flux de Poisson de requêtes, ou y répondre
+
+== Synopsis
+
+*netpoisson* [_OPTION_]... [_SERVEUR_]
+
+== Description
+
+*netpoisson* écoute des requêtes, ou se connecte à _SERVEUR_ et envoie des
+requêtes selon un processus de Poisson. L'inter-arrivée est exponentielle de
+moyenne 1/λ. Le débit par défaut est 100 requêtes par seconde.
+
+Chaque requête est *ECHO* ou *STATUS*. Une réponse *ECHO* est la requête à
+l'identique. *STATUS* rapporte la chronologie du serveur et la profondeur des
+files de réception et d'émission. La charge utilise *ECHO* ; une seconde
+socket interroge avec *STATUS*.
+
+Sans _SERVEUR_ (ou avec *-d*), le programme écoute. _SERVEUR_ est un hôte ou
+`hôte:port`.
+
+Le temps est découpé en tranches de 100 ms. La tranche la plus récente est à
+gauche ; les lignes défilent vers la droite. Le nombre central est la file
+d'émission locale. À gauche de la flèche sur la ligne Resp : requêtes non lues ;
+ensuite : réponses non encore envoyées.
+
+*-w* sert les mêmes chronologies en HTTP, plus RTT, gigue RFC 3550, pertes et
+délai de file. *-s* imprime un rapport JSON après _SECS_ secondes.
+
+== Options
+
+*-d, --daemon*::
+  Écouter (aussi le défaut sans _SERVEUR_). Ne pas combiner avec _SERVEUR_.
+
+*-H, --host _HOST_*::
+  Adresse d'écoute (défaut `0.0.0.0`). En client, la cible est _SERVEUR_.
+
+*-p, --port _PORT_*::
+  Port d'écoute ou de connexion (défaut 1871). 0 choisit un port éphémère.
+
+*-u, --udp*::
+  Utiliser UDP (TCP par défaut).
+
+*-l, --lambda _N_*::
+  Requêtes *ECHO* offertes par seconde (défaut 100). Client seulement.
+
+*-s, --stats _SECS_*::
+  Afficher un rapport JSON après _SECS_ secondes.
+
+*-w, --web*::
+  Servir un tableau de bord et ouvrir un navigateur. `NETPOISSON_NO_BROWSER=1` pour éviter l'ouverture.
+
+*--web-host _H_*::
+  Adresse du tableau de bord (défaut `127.0.0.1`).
+
+*--web-port _N_*::
+  Port du tableau de bord (défaut 8711).
+
+*-v, --verbose*::
+  Plus de journaux.
+
+*-q, --quiet*::
+  Ne pas dessiner les lignes d'état.
+
+*-h, --help*::
+  Afficher l'aide et quitter.
+
+*--version*::
+  Afficher la version et la licence et quitter.
+
+== Code de sortie
+
+*0*::
+  Succès.
+
+*1*::
+  Erreur, ou requêtes envoyées sans aucune réponse.
+
+== Auteur
+
+Écrit par {project-author} <{project-email}>.
+
+== Copyright
+
+Copyright (C) {project-year}.
+Licence AGPL-3.0-or-later.
+Aucune garantie. Voir LICENSE.
