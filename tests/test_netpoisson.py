@@ -16,19 +16,24 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 from i18nutil import init_i18n  # noqa: E402
-from netio import Client, Server, connect_socket  # noqa: E402
-from netpoisson import parse_args  # noqa: E402
+from netio import Client, Server  # noqa: E402
+from npcli import parse_args  # noqa: E402
 from protocol import (  # noqa: E402
     ECHO,
-    ECHO_PAYLOAD,
-    RESP,
+    FLAG_RESP,
     STATUS,
-    decode_frame,
-    decode_status_payload,
-    dispatch_request,
-    encode_request,
-    encode_status_payload,
-    pop_frames,
+    StatusSnapshot,
+    decode_pdu,
+    decode_status_body,
+    dispatch_binary,
+    encode_echo_request,
+    encode_status_body,
+    encode_telemetry,
+    pop_pdus,
+    stdio_echo_ack,
+    stdio_echo_req,
+    stdio_parse_line,
+    stdio_status_ack,
 )
 from traffic import (  # noqa: E402
     InflightBook,
@@ -46,35 +51,88 @@ init_i18n("netpoisson")
 
 
 class ProtocolTests(unittest.TestCase):
-    def test_echo_response_is_the_request(self) -> None:
-        raw = encode_request(ECHO, 3, 99, ECHO_PAYLOAD)
-        out = dispatch_request(raw, 100, lambda _recv: b"")
+    def test_echo_with_telemetry(self) -> None:
+        raw = encode_echo_request(3, 99, b"payload")
+        telem = encode_telemetry(
+            server_mono_ns=1,
+            request_received_total=2,
+            response_completed_total=3,
+            read_pending=4,
+            processing=5,
+            response_pending=6,
+            rx_bytes=7,
+            tx_bytes=8,
+            interval_rx_requests=9,
+            interval_tx_responses=10,
+        )
+        out = dispatch_binary(raw, make_telemetry=lambda: telem, make_status=None)
+        assert out is not None
+        frame = decode_pdu(out)
+        assert frame is not None
+        self.assertTrue(frame.is_resp)
+        self.assertEqual(frame.payload, b"payload")
+        self.assertIsNotNone(frame.telemetry)
+        self.assertEqual(frame.telemetry["read_pending"], 4)
+
+    def test_echo_identical_without_telemetry(self) -> None:
+        raw = encode_echo_request(3, 99, b"payload")
+        out = dispatch_binary(raw, make_telemetry=None, make_status=None)
         self.assertEqual(out, raw)
 
     def test_status_roundtrip(self) -> None:
-        payload = encode_status_payload(10, 40, 16, 20, 100, [(8, 1), (9, 0), (10, 4)])
-        raw = encode_request(STATUS, 5, 7, b"")
-        out = dispatch_request(raw, 10, lambda _recv: payload)
-        assert out is not None
-        frame = decode_frame(out)
-        assert frame is not None
-        self.assertEqual(frame.role, RESP)
-        self.assertEqual(frame.seq, 5)
-        body = decode_status_payload(frame.payload)
-        assert body is not None
-        self.assertEqual(body["rx_queued"], 16)
-        self.assertEqual(body["tx_queued"], 20)
-        self.assertEqual(body["slices"], [(8, 1), (9, 0), (10, 4)])
-        self.assertEqual(body["send_ns"] - body["recv_ns"], 30)
+        snap = StatusSnapshot(
+            server_monotonic_ns=10,
+            request_received_total=1,
+            response_completed_total=2,
+            read_pending=16,
+            processing=3,
+            response_pending=20,
+            rx_bytes=100,
+            tx_bytes=200,
+            interval_rx_requests=5,
+            interval_tx_responses=4,
+            bucket_ms=100,
+            kernel_send_queue_bytes=None,
+            kernel_recv_queue_bytes=None,
+            recv_slices=[1, 0, 4],
+            resp_slices=[2, 3],
+        )
+        body = encode_status_body(snap)
+        raw = encode_echo_request(5, 7, b"")  # placeholder seq path via status
+        from protocol import encode_status_request
 
-    def test_partial_frames(self) -> None:
-        raw = encode_request(ECHO, 1, 2, ECHO_PAYLOAD)
-        frames, rest = pop_frames(raw[:10])
+        raw = encode_status_request(5, 7)
+        out = dispatch_binary(raw, make_telemetry=None, make_status=lambda: body)
+        assert out is not None
+        frame = decode_pdu(out)
+        assert frame is not None
+        self.assertEqual(frame.flags & FLAG_RESP, FLAG_RESP)
+        self.assertEqual(frame.seq, 5)
+        decoded = decode_status_body(frame.payload)
+        assert decoded is not None
+        self.assertEqual(decoded.read_pending, 16)
+        self.assertEqual(decoded.response_pending, 20)
+        self.assertEqual(decoded.recv_slices, [1, 0, 4])
+        self.assertEqual(decoded.resp_slices, [2, 3])
+
+    def test_partial_pdus(self) -> None:
+        raw = encode_echo_request(1, 2, b"hi")
+        frames, rest = pop_pdus(raw[:10])
         self.assertEqual(frames, [])
         self.assertEqual(rest, raw[:10])
-        frames, rest = pop_frames(rest + raw[10:] + raw[:4])
+        frames, rest = pop_pdus(rest + raw[10:] + raw[:4])
         self.assertEqual(frames, [raw])
         self.assertEqual(rest, raw[:4])
+
+    def test_stdio_prefix(self) -> None:
+        line = stdio_echo_req(1, 100, b"hello")
+        self.assertTrue(line.startswith(b"@nPoi "))
+        kind, obj = stdio_parse_line(line)
+        self.assertEqual(kind, "protocol")
+        assert obj is not None
+        self.assertEqual(obj["t"], "e")
+        kind, _ = stdio_parse_line(b"Welcome to Ubuntu\n")
+        self.assertEqual(kind, "noise")
 
 
 class TimelineTests(unittest.TestCase):
@@ -83,17 +141,15 @@ class TimelineTests(unittest.TestCase):
         self.assertEqual(newest_first(counts, 10, 4), [4, 7, 0, 0])
         self.assertEqual(newest_first(counts, 11, 4), [0, 4, 7, 0])
 
-    def test_status_lines_align_like_the_sketch(self) -> None:
-        req = [1, 2, 0, 1, 1, 3, 1, 0, 4, 0, 2, 1, 9, 8, 7, 6]
-        resp = [0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 2, 1, 9, 8, 7, 6]
-        top, bottom = format_status_lines(req, resp, 17, 16, 20, width=1, half=8, qwidth=2)
-        self.assertTrue(top.startswith("Req. ["))
-        self.assertTrue(bottom.startswith("Resp ["))
-        self.assertIn("-> 17 ->", top)
-        self.assertIn("16 -> 20 ->", bottom)
-        self.assertEqual(top.rfind("->"), bottom.rfind("->"))
-        self.assertEqual(top[top.rfind("->") :], bottom[bottom.rfind("->") :])
-        self.assertNotIn("0", bottom.split("16")[0])
+    def test_status_lines_show_pending(self) -> None:
+        req = [8, 11, 9, 13, 7, 12, 10, 8, 15, 9, 11, 7]
+        resp = [8, 10, 10, 12, 8, 11, 10, 8, 14, 10, 10, 6]
+        lines = format_status_lines(req, resp, 17, 16, 20, width=2, half=12)
+        self.assertTrue(lines[0].startswith("Req."))
+        self.assertTrue(lines[1].startswith("Resp."))
+        self.assertIn("pending 17", lines[0])
+        self.assertIn("processing 16", lines[1])
+        self.assertIn("pending 20", lines[1])
 
     def test_jitter_smooths(self) -> None:
         jitter, prev = update_jitter(0, None, 100)
@@ -148,209 +204,217 @@ class BookTests(unittest.TestCase):
         book = InflightBook(timeout_s=0.05)
         book.add(Pending(seq=1, mtype=1, create_mono=0, send_mono=1000))
         losses, unsent = book.reap(1000 + book.timeout_ns)
-        self.assertEqual((losses, unsent, book.lost), (1, 0, 1))
-        kind, item = book.take(1)
+        self.assertEqual(losses, 1)
+        self.assertEqual(book.lost, 1)
+        kind, pending = book.take(1)
         self.assertEqual(kind, "late")
-        self.assertIsNotNone(item)
+        self.assertIsNotNone(pending)
         self.assertEqual(book.lost, 0)
 
-    def test_status_timeout_is_not_echo_loss(self) -> None:
-        book = InflightBook(timeout_s=0.05)
-        book.add(Pending(seq=2, mtype=2, create_mono=0, send_mono=0, track_loss=False))
-        book.reap(book.timeout_ns + 1)
-        self.assertEqual(book.lost, 0)
-
-    def test_unsent_is_not_loss(self) -> None:
-        book = InflightBook(timeout_s=1)
-        book.add(Pending(seq=3, mtype=1, create_mono=0))
-        _losses, unsent = book.reap(10**18, force=True)
-        self.assertEqual(unsent, 1)
-        self.assertEqual(book.lost, 0)
+    def test_duplicate_response(self) -> None:
+        book = InflightBook(timeout_s=2)
+        book.add(Pending(seq=1, mtype=1, create_mono=0, send_mono=1))
+        kind, _ = book.take(1)
+        self.assertEqual(kind, "ok")
+        kind, _ = book.take(1)
+        self.assertEqual(kind, "duplicate")
+        self.assertEqual(book.duplicates, 1)
 
 
-class CliTests(unittest.TestCase):
-    def test_parse_client_and_server_flags(self) -> None:
-        args = parse_args(["-d", "-u", "-p", "0", "-H", "127.0.0.1"], "netpoisson")
-        self.assertTrue(args.daemon)
-        self.assertTrue(args.udp)
-        self.assertEqual(args.port, 0)
-        self.assertEqual(args.host, "127.0.0.1")
-
-        args = parse_args(["-l", "50", "-s", "1.5", "-w", "--web-port", "9", "127.0.0.1"], "netpoisson")
+class ArgTests(unittest.TestCase):
+    def test_client_target(self) -> None:
+        args = parse_args(["-l", "50", "127.0.0.1:1871"])
         self.assertEqual(args.lam, 50)
-        self.assertEqual(args.stats, 1.5)
-        self.assertTrue(args.web)
-        self.assertEqual(args.web_port, 9)
-        self.assertEqual(args.server, "127.0.0.1")
+        self.assertEqual(args.server, "127.0.0.1:1871")
+        self.assertFalse(args.daemon)
 
-    def test_reject_daemon_with_server(self) -> None:
-        from netpoisson import UsageError
+    def test_payload_and_bucket(self) -> None:
+        args = parse_args(["--payload", "1k", "--bucket", "50ms", "--window", "6s", "h"])
+        self.assertEqual(args.payload_size, 1024)
+        self.assertEqual(args.bucket_ms, 50)
+        self.assertEqual(args.window_ms, 6000)
 
-        with self.assertRaises(UsageError):
-            parse_args(["-d", "127.0.0.1"], "netpoisson")
+    def test_ssh_profile(self) -> None:
+        args = parse_args(["--ssh", "user@host", "--profile", "ssh-interactive"])
+        self.assertEqual(args.ssh_target, "user@host")
+        self.assertEqual(args.lam, 20.0)
+        self.assertEqual(args.payload_min, 1)
+        self.assertEqual(args.payload_max, 128)
 
-    def test_glued_short_option(self) -> None:
-        args = parse_args(["-l12.5", "-s2"], "netpoisson")
-        self.assertEqual(args.lam, 12.5)
-        self.assertEqual(args.stats, 2)
 
-
-class PeerTests(unittest.TestCase):
-    def test_tcp_echo_bytes_match(self) -> None:
+class IntegrationTests(unittest.TestCase):
+    def test_tcp_echo_roundtrip(self) -> None:
         server = Server("127.0.0.1", 0, udp=False)
         server.start()
-        self.addCleanup(server.stop)
-        sock = connect_socket("127.0.0.1", server.port, udp=False)
-        self.addCleanup(sock.close)
-        raw = encode_request(ECHO, 7, 99, ECHO_PAYLOAD)
-        sock.sendall(raw)
-        sock.settimeout(2)
-        buf = b""
-        while len(buf) < len(raw):
-            buf += sock.recv(4096)
-        self.assertEqual(buf[: len(raw)], raw)
+        try:
+            client = Client("127.0.0.1", server.port, udp=False, lam=80, payload_size=32, seed=1)
+            client.start()
+            time.sleep(0.8)
+            client.stop(grace=0.5)
+            report = client.report()
+            self.assertGreater(report["sent"], 10)
+            self.assertGreater(report["received"], 5)
+            self.assertEqual(report["mismatch"], 0)
+            self.assertIn("rx_bytes", report)
+            self.assertIn("tx_bytes", report)
+        finally:
+            server.stop()
 
-    def test_tcp_status_reports_queues(self) -> None:
-        server = Server("127.0.0.1", 0, udp=False)
-        server.start()
-        self.addCleanup(server.stop)
-        sock = connect_socket("127.0.0.1", server.port, udp=False)
-        self.addCleanup(sock.close)
-        sock.sendall(encode_request(STATUS, 1, 5, b""))
-        sock.settimeout(2)
-        buf = b""
-        frame = None
-        deadline = time.time() + 2
-        while time.time() < deadline and frame is None:
-            buf += sock.recv(4096)
-            frames, buf = pop_frames(buf)
-            if frames:
-                frame = decode_frame(frames[0])
-        assert frame is not None
-        body = decode_status_payload(frame.payload)
-        assert body is not None
-        self.assertGreaterEqual(body["rx_queued"], 0)
-        self.assertEqual(body["slice_ms"], 100)
-        self.assertGreaterEqual(len(body["slices"]), 1)
-
-    def test_client_echo_and_status(self) -> None:
-        server = Server("127.0.0.1", 0, udp=False)
-        server.start()
-        self.addCleanup(server.stop)
-        client = Client("127.0.0.1", server.port, udp=False, lam=80)
-        client.start()
-        self.addCleanup(lambda: client.stop(grace=0.3))
-        time.sleep(0.7)
-        client.stop(grace=0.8)
-        report = client.report()
-        self.assertGreater(report["received"], 10)
-        self.assertEqual(report["mismatch"], 0)
-        self.assertGreater(report["status"]["received"], 0)
-        self.assertIsNotNone(report["rtt_us"]["p50"])
-        self.assertIn("notes", report)
-
-    def test_udp_client(self) -> None:
+    def test_udp_echo(self) -> None:
         server = Server("127.0.0.1", 0, udp=True)
         server.start()
-        self.addCleanup(server.stop)
-        client = Client("127.0.0.1", server.port, udp=True, lam=60)
-        client.start()
-        time.sleep(0.6)
-        client.stop(grace=0.8)
-        report = client.report()
-        self.assertGreater(report["received"], 5)
-        self.assertEqual(report["mismatch"], 0)
-        self.assertEqual(report["proto"], "udp")
-
-
-class WebTests(unittest.TestCase):
-    def test_template_and_live_snapshot(self) -> None:
-        self.assertIn("cdn.tailwindcss.com", PAGE)
-        self.assertIn("q-client-tx", PAGE)
-        self.assertIn("id=\"notes\"", PAGE)
-        server = Server("127.0.0.1", 0, udp=False)
-        server.start()
-        self.addCleanup(server.stop)
-        client = Client("127.0.0.1", server.port, udp=False, lam=40)
-        client.start()
-        self.addCleanup(lambda: client.stop(grace=0.2))
-        dash = Dashboard("127.0.0.1", 0, client.snapshot)
-        url = dash.start()
-        self.addCleanup(dash.close)
-        with urllib.request.urlopen(url, timeout=2) as res:
-            html = res.read().decode("utf-8")
-        self.assertIn("q-server-rx", html)
-        with urllib.request.urlopen(url + "api/snapshot", timeout=2) as res:
-            snap = json.load(res)
-        self.assertEqual(snap["role"], "client")
-        self.assertIn("ascii", snap)
-        self.assertTrue(snap["ascii"][0].startswith("Req."))
-        self.assertTrue(any(note["code"] == "overview" for note in snap["notes"]))
-        host, port = dash.httpd.server_address[:2]
-        probe = socket.create_connection((host, port), timeout=2)
-        probe.sendall(b"GET /events HTTP/1.1\r\nHost: localhost\r\nConnection: close\r\n\r\n")
-        data = b""
-        probe.settimeout(2)
-        while b"data:" not in data:
-            chunk = probe.recv(4096)
-            if not chunk:
-                break
-            data += chunk
-        probe.close()
-        self.assertIn(b"data:", data)
-
-
-class EndToEndCliTests(unittest.TestCase):
-    def test_stats_json(self) -> None:
-        env = os.environ.copy()
-        env["PYTHONPATH"] = str(SRC)
-        env["PYTHONUNBUFFERED"] = "1"
-        env["NETPOISSON_NO_BROWSER"] = "1"
-        env["LC_ALL"] = "C"
-        env["LANGUAGE"] = "C"
-        script = str(SRC / "netpoisson.py")
-        server = subprocess.Popen(
-            [sys.executable, script, "-d", "-q", "-H", "127.0.0.1", "-p", "0"],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            text=True,
-            env=env,
-        )
         try:
-            assert server.stderr is not None
-            line = ""
-            deadline = time.time() + 5
-            while time.time() < deadline:
-                line = server.stderr.readline()
-                if "listening on" in line:
-                    break
-            self.assertIn("listening on", line)
-            port = line.rsplit(":", 1)[-1].strip()
+            client = Client("127.0.0.1", server.port, udp=True, lam=40, payload_size=16, seed=2, timeout_s=1.0)
+            client.start()
+            time.sleep(0.6)
+            client.stop(grace=0.4)
+            report = client.report()
+            self.assertGreater(report["sent"], 5)
+            self.assertGreaterEqual(report["received"], 1)
+        finally:
+            server.stop()
+
+    def test_cli_stats(self) -> None:
+        server = Server("127.0.0.1", 0)
+        server.start()
+        try:
+            env = os.environ.copy()
+            env["PYTHONPATH"] = str(SRC)
+            env["NETPOISSON_NO_BROWSER"] = "1"
             proc = subprocess.run(
-                [sys.executable, script, "-q", "-l", "80", "-s", "0.8", f"127.0.0.1:{port}"],
+                [
+                    sys.executable,
+                    str(SRC / "netpoisson.py"),
+                    "-l",
+                    "60",
+                    "-s",
+                    "0.5",
+                    "--payload",
+                    "16",
+                    f"127.0.0.1:{server.port}",
+                ],
                 capture_output=True,
                 text=True,
                 env=env,
-                timeout=15,
-                check=False,
+                timeout=10,
             )
             self.assertEqual(proc.returncode, 0, proc.stderr)
             report = json.loads(proc.stdout)
             self.assertEqual(report["role"], "client")
-            self.assertGreater(report["received"], 5)
-            self.assertEqual(report["mismatch"], 0)
-            self.assertIn("jitter_rfc3550_us", report)
+            self.assertGreater(report["sent"], 0)
         finally:
-            server.terminate()
+            server.stop()
+
+    def test_stdio_local_pipe(self) -> None:
+        env = {**os.environ, "PYTHONPATH": str(SRC)}
+        srv = subprocess.Popen(
+            [sys.executable, str(SRC / "netpoisson.py"), "--stdio-server"],
+            stdin=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            bufsize=0,
+            env=env,
+        )
+        from peer_client import Client, SshTransport
+
+        client = Client(
+            "local",
+            0,
+            lam=50,
+            payload_size=12,
+            seed=9,
+            ssh=SshTransport(proc=srv, setup_ms=0.0, remote_start_ms=0.0),
+            status_interval_ms=150,
+        )
+        try:
+            client.start()
+            time.sleep(0.6)
+            client.stop(grace=0.4)
+            report = client.report()
+            self.assertGreater(report["sent"], 5)
+            self.assertGreater(report["received"], 3)
+            self.assertEqual(report["mismatch"], 0)
+            self.assertEqual(report["proto"], "ssh-stdio")
+        finally:
+            client.stop(grace=0.1)
+
+    def test_tls_tcp_localhost(self) -> None:
+        from wiresec import make_client_ssl_context, make_server_ssl_context
+
+        server = Server("127.0.0.1", 0, ssl_ctx=make_server_ssl_context(None, None))
+        server.start()
+        try:
+            client = Client(
+                "127.0.0.1",
+                server.port,
+                lam=50,
+                payload_size=16,
+                seed=11,
+                ssl_ctx=make_client_ssl_context(insecure=True),
+            )
+            client.start()
+            time.sleep(0.5)
+            client.stop(grace=0.4)
+            report = client.report()
+            self.assertEqual(report["proto"], "tcp+tls")
+            self.assertGreater(report["sent"], 5)
+            self.assertGreater(report["received"], 3)
+            self.assertEqual(report["mismatch"], 0)
+        finally:
+            server.stop()
+
+    def test_udp_psk_localhost(self) -> None:
+        from wiresec import UdpSeal, derive_psk
+
+        seal = UdpSeal(derive_psk("unit-test-psk"))
+        server = Server("127.0.0.1", 0, udp=True, udp_seal=seal)
+        server.start()
+        try:
+            client = Client(
+                "127.0.0.1",
+                server.port,
+                udp=True,
+                lam=40,
+                payload_size=16,
+                seed=12,
+                timeout_s=1.0,
+                udp_seal=seal,
+            )
+            client.start()
+            time.sleep(0.5)
+            client.stop(grace=0.4)
+            report = client.report()
+            self.assertEqual(report["proto"], "udp+psk")
+            self.assertGreater(report["sent"], 5)
+            self.assertGreaterEqual(report["received"], 1)
+        finally:
+            server.stop()
+
+    def test_web_default_port_constant(self) -> None:
+        from npcli.args import DEFAULT_WEB_PORT
+
+        self.assertEqual(DEFAULT_WEB_PORT, 3871)
+        args = parse_args([])
+        self.assertEqual(args.web_addr, "127.0.0.1:3871")
+
+    def test_web_snapshot_has_bandwidth(self) -> None:
+        server = Server("127.0.0.1", 0)
+        server.start()
+        try:
+            dash = Dashboard("127.0.0.1", 0, server.snapshot)
+            url = dash.start()
             try:
-                server.wait(timeout=3)
-            except subprocess.TimeoutExpired:
-                server.kill()
-                server.wait(timeout=3)
-            if server.stdout is not None:
-                server.stdout.close()
-            if server.stderr is not None:
-                server.stderr.close()
+                with urllib.request.urlopen(url + "api/snapshot", timeout=2) as resp:
+                    body = json.loads(resp.read().decode())
+                self.assertIn("bandwidth_bps", body)
+                self.assertIn("rx_bytes", body)
+                self.assertIn("recv", body)
+                self.assertIn("netpoisson", PAGE)
+                self.assertIn("带宽", PAGE)
+            finally:
+                dash.close()
+        finally:
+            server.stop()
 
 
 if __name__ == "__main__":

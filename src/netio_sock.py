@@ -8,7 +8,10 @@ from __future__ import annotations
 
 import queue
 import socket
+import ssl
 import threading
+
+from wiresec import UdpSeal, wrap_client_socket, wrap_server_socket
 
 _READ_TIMEOUT = 0.3
 
@@ -41,7 +44,14 @@ def listen_socket(host: str, port: int, udp: bool) -> socket.socket:
     return sock
 
 
-def connect_socket(host: str, port: int, udp: bool, timeout: float = 2.0) -> socket.socket:
+def connect_socket(
+    host: str,
+    port: int,
+    udp: bool,
+    timeout: float = 2.0,
+    *,
+    ssl_ctx: ssl.SSLContext | None = None,
+) -> socket.socket:
     kind = socket.SOCK_DGRAM if udp else socket.SOCK_STREAM
     infos = socket.getaddrinfo(host, port, type=kind)
     last: Exception | None = None
@@ -56,9 +66,20 @@ def connect_socket(host: str, port: int, udp: bool, timeout: float = 2.0) -> soc
             continue
         if not udp:
             sock.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
+            if ssl_ctx is not None:
+                sock = wrap_client_socket(sock, ssl_ctx, server_hostname=host)
         sock.settimeout(_READ_TIMEOUT)
         return sock
     raise OSError(last or f"cannot connect to {host}:{port}")
+
+
+def accept_socket(lsock: socket.socket, ssl_ctx: ssl.SSLContext | None = None) -> tuple[socket.socket, tuple]:
+    sock, addr = lsock.accept()
+    sock.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
+    if ssl_ctx is not None:
+        sock = wrap_server_socket(sock, ssl_ctx)
+    sock.settimeout(_READ_TIMEOUT)
+    return sock, addr
 
 
 class _Conn:
@@ -70,3 +91,11 @@ class _Conn:
         self.closed = threading.Event()
 
 
+def seal_datagram(seal: UdpSeal | None, data: bytes) -> bytes:
+    return data if seal is None else seal.seal(data)
+
+
+def open_datagram(seal: UdpSeal | None, data: bytes) -> bytes | None:
+    if seal is None:
+        return data
+    return seal.open(data)

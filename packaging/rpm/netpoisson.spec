@@ -51,18 +51,22 @@ meson install -C build --destdir=%{buildroot}
 %{_bindir}/netpoisson
 %{_bindir}/i18nutil.py
 %{_bindir}/protocol.py
-%{_bindir}/traffic.py
 %{_bindir}/netio.py
 %{_bindir}/netio_sock.py
 %{_bindir}/peer_server.py
-%{_bindir}/peer_client.py
 %{_bindir}/webui.py
+%{_bindir}/wiresec.py
+%{_bindir}/traffic/
+%{_bindir}/peer_client/
+%{_bindir}/npcli/
 %{_datadir}/bash-completion/completions/netpoisson
 %{_mandir}/man1/netpoisson.1*
 %{_mandir}/*/man1/netpoisson.1*
 %{_datadir}/locale/*/LC_MESSAGES/netpoisson.mo
 %{_datadir}/doc/netpoisson/
 %changelog
+* Mon Sep 21 2026 Lenik <netpoisson@bodz.net>
+- TLS on TCP (--tls), PSK seal on UDP, modular packages, web :3871.
 * Thu Aug 20 2026 Lenik <netpoisson@bodz.net>
 - Align spec with debian/control (Meson, AGPL-3.0-or-later).
 - Version comes from `zfr version`, the same method meson.build uses.

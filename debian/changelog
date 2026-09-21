@@ -1,3 +1,18 @@
+netpoisson (0.2.0) unstable; urgency=medium
+
+  * Redesign wire protocol, client validation, SSH stdio, and timelines.
+  * Document binary length-prefixed and SSH @nPoi NDJSON protocols.
+  * Absolute Poisson schedule, client validation, four timelines,
+    telemetry trailer.
+  * SSH stdio transport, systemd --install/--remove, web bandwidth and
+    session bytes.
+  * Split long modules into traffic/, peer_client/, and npcli/ packages
+    (ZL0001).
+  * Add --tls for TCP and PSK datagram sealing for UDP; default web port
+    3871.
+
+ -- Lenik (谢继雷) <lenik@bodz.net>  Mon, 21 Sep 2026 16:25:06 +0800
+
 netpoisson (0.1.0) unstable; urgency=medium
 
   * Replace the example utility with a Poisson traffic tester.

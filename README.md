@@ -1,59 +1,193 @@
 # netpoisson
 
-`netpoisson` offers a Poisson stream of requests and can listen for them.
-ECHO replies are the request bytes. STATUS replies carry the server timeline
-and its receive and send queues.
+`netpoisson` is a Poisson traffic tester for TCP, UDP, and SSH stdio. The
+client offers requests on an absolute monotonic schedule; the server answers
+ECHO and STATUS. Live Req/Resp timelines, a JSON report, and a web dashboard
+show queues, RTT, loss, bandwidth, and schedule skew.
 
 ```bash
 netpoisson [OPTION]... [SERVER]
 ```
 
 With no `SERVER`, or with `-d`, it listens. Otherwise it connects to `SERVER`
-(`host` or `host:port`).
+(`host` or `host:port`). Use `--ssh` for an SSH stdio path.
+
+## Protocol
+
+### TCP / UDP (binary, version 2)
+
+Each PDU is length-prefixed:
+
+```text
+uint32_be total_len     # bytes after this field
+magic "NP" (2)
+version = 2 (u8)
+type: ECHO=1 STATUS=2 (u8)
+flags (u8): REQ=0x01 RESP=0x02 TELEMETRY=0x04
+reserved (u8)
+seq (u64)
+client_ns (u64)         # client monotonic send time
+body_len (u32)
+body...
+```
+
+- **ECHO request** body is the opaque payload.
+- **ECHO response** without `TELEMETRY` is byte-identical to the request PDU.
+- **ECHO response** with `TELEMETRY` keeps the same header fields and payload,
+  then appends a fixed telemetry trailer (queues, byte counters, interval
+  rates). Prefer this over frequent STATUS probes so observation does not
+  invent extra load.
+- **STATUS** body is a structured snapshot: totals, `read_pending` /
+  `processing` / `response_pending`, `rx_bytes` / `tx_bytes`, optional kernel
+  queue sizes, and a fixed newest-first window of recv/resp slice counts
+  (default 120 × 100 ms).
+
+UDP carries one PDU per datagram (including the length prefix).
+
+### SSH stdio (NDJSON)
+
+SSH mode does **not** use the binary PDU. Each message is one UTF-8 JSON line
+prefixed with `@nPoi ` and terminated by `\n`:
+
+```text
+@nPoi {"v":1,"t":"hello","i":0,"cs":...}
+@nPoi {"v":1,"t":"e","i":1,"cs":...,"d":"hello"}
+@nPoi {"v":1,"t":"er","i":1,"cs":...,"sr":...,"ss":...,"d":"hello"}
+@nPoi {"v":1,"t":"s","i":2,"cs":...}
+@nPoi {"v":1,"t":"sr","i":2,...queues and timelines...}
+```
+
+Short field names (`v`,`t`,`i`,`cs`,`sr`,`ss`,`d`,`rq`,`sq`,…) keep overhead
+low. Binary payloads use `"enc":"b64"`. Only lines starting with `@nPoi ` are
+protocol; other stdout is `remote_noise`. SSH stderr is collected separately.
+Every response is flushed immediately (no full buffering).
+
+Clocks on the two hosts are different monotonic domains. Use RTT =
+`client_receive - client_send` and `server_processing = ss - sr`; do not
+subtract cross-host timestamps for one-way delay without a separate offset
+estimate.
+
+### Client validation
+
+The client checks sequence correspondence, payload identity, duplicate
+responses, reordering, UDP loss, RTT, and the skew of actual send time versus
+the planned Poisson instant.
+
+### Statistics output
+
+When stdout is not a TTY (or with `--json`), live UI is suppressed and NDJSON
+events / a final JSON report are written instead. `--report FILE` saves the
+final report.
 
 ## Options
 
-- `-d`, `--daemon` — listen (also the default when `SERVER` is omitted)
-- `-H`, `--host HOST` — bind address (default `0.0.0.0`)
-- `-p`, `--port PORT` — bind or connect port (default `1871`)
-- `-u`, `--udp` — UDP instead of TCP
-- `-l`, `--lambda N` — offered requests per second (default `100`)
-- `-s`, `--stats SECS` — run for `SECS` seconds, then print a JSON report
-- `-w`, `--web` — serve a live dashboard and open a browser
-- `--web-host`, `--web-port` — dashboard bind (default `127.0.0.1:8711`)
-- `-v`, `--quiet`, `-h`, `--version`
-
-## What the two lines mean
-
-Time slices are 100 ms. The newest slice is on the left and the lines scroll
-to the right.
-
 ```text
-Req. [1 2 0 1 1 3 1 0 2 1 3 1 -> 17 -> 1 2 0 1 1 3 1 0 2 1 3 1]
-Resp [                     16 -> 20 -> 2 0 1 1 3 1 0 2 1 3 1]
+Modes:
+  SERVER missing             Run server
+  SERVER present             Run client
+  -d, --daemon               Explicit server mode
+      --stdio-server         NDJSON @nPoi on stdin/stdout
+      --ssh TARGET           Client over SSH stdio
+      --install / --remove   systemd --user unit
+
+Transport:
+  -H, --host HOST            Bind host, default 0.0.0.0
+  -p, --port PORT            Port, default 1871
+  -u, --udp                  UDP; default TCP
+      --tls                   TLS on TCP; PSK seal on UDP (--psk)
+      --psk TEXT              UDP pre-shared key
+      --ssh-command PATH
+      --remote-command CMD
+      --ssh-option KEY=VALUE
+
+Traffic:
+  -l, --lambda RATE          Mean requests/s, default 100
+      --payload SIZE         Payload size, default 64B
+      --connections N        Parallel TCP connections
+      --max-pending N        Client queue limit
+      --status-interval D    STATUS interval, default 100ms
+      --bucket D             Timeline bucket, default 100ms
+      --window D             Visible window, default 12s
+      --seed N               Reproducible RNG
+      --profile NAME         ssh-interactive | ssh-bulk
+
+Execution:
+  -s, --stats D              Run D and print final report
+  -w, --web[=ADDR]           Start Web UI
+      --no-open              Do not open browser
+      --json                 NDJSON event output
+      --report FILE          Save final JSON report
+  -v / -q / -h / -V
 ```
 
-- The request numbers are local arrivals in each slice.
-- `17` is the local send queue: requests that have not left this host.
-- The response numbers are server replies in each slice. Recent slices stay
-  blank until replies exist.
-- `16` is requests the server has not read or analyzed yet.
-- `20` is responses still queued on the server, not yet on the wire.
+## Timelines
 
-`-w` shows the same timelines in a browser, plus RTT, RFC 3550 jitter, loss,
-queue delay, and whether the arrivals still look like a Poisson process.
+Default bucket `100 ms`, window `12 s`. Compact TTY shows two lines; the web
+UI shows four:
+
+```text
+Req.  client transmitted          pending <client_pending>
+Recv. server received
+Resp. server transmitted          processing / pending
+Ack.  client received
+```
+
+`client_pending` grows when the Poisson scheduler keeps producing while the
+socket writer is blocked.
+
+## SSH stdio
+
+```bash
+# remote
+netpoisson --stdio-server
+
+# local (managed SSH child)
+netpoisson --ssh user@server \
+  --remote-command 'netpoisson --stdio-server' \
+  -l 100 -s 60
+```
+
+Defaults include `ssh -T` and `-o BatchMode=yes -o Compression=no
+-o ControlMaster=no -o ControlPath=none -o LogLevel=ERROR
+-o ServerAliveInterval=0`.
+
+Compare:
+
+| Mode        | Measures                         |
+| ----------- | -------------------------------- |
+| Direct TCP  | Network baseline                 |
+| SSH stdio   | Real SSH session/channel jitter  |
+| SSH `-L`    | Forwarded TCP inside an SSH tunnel |
+
+Profiles: `--profile ssh-interactive` (≈20 req/s, 1–128 B) and
+`--profile ssh-bulk` (≈100 req/s, 4–64 KiB).
+
+## TLS and UDP sealing
+
+```bash
+# TCP with TLS (server auto-generates a self-signed cert when --cert/--key omitted)
+netpoisson -d --tls
+netpoisson --tls --tls-insecure -l 100 -s 10 127.0.0.1
+
+# UDP with PSK seal
+netpoisson -d -u --tls --psk secret
+netpoisson -u --tls --psk secret -l 100 -s 10 127.0.0.1
+```
+
+## Web dashboard
+
+`-w` serves a live page with four timelines, RTT / jitter charts, analysis
+notes, **netpoisson-induced bandwidth**, and **session rx/tx bytes**.
 
 ## Examples
 
 ```bash
 netpoisson -d
-netpoisson -l 100 127.0.0.1
+netpoisson -l 100 --payload 64 127.0.0.1
 netpoisson -u -l 50 -s 10 127.0.0.1
 netpoisson -w -l 100 127.0.0.1
+netpoisson --ssh user@host --profile ssh-interactive -s 120
 ```
-
-`-s` writes the report to standard output. The live lines go to the terminal
-on standard error, and `-q` turns them off.
 
 ## Build and test
 
@@ -64,23 +198,7 @@ ninja -C /build
 meson test -C /build
 ```
 
-The program is Python 3 from the standard library. Meson installs the modules
-next to the `netpoisson` executable so `import` works from `/usr/bin`.
-
-## i18n (gettext)
-
-Catalogs live in `po/`. Sync them with `ninja -C /build posync`. English is
-the source language. `po/LINGUAS` lists the translations.
-
-```bash
-LANGUAGE=zh_CN /build/netpoisson -h
-```
-
 ## License
 
-Copyright (C) 2026 Lenik <netpoisson@bodz.net>
-
-Licensed under **AGPL-3.0-or-later**.
-This project explicitly opposes AI exploitation and AI hegemony, and rejects
-mindless MIT-style licensing and politically naive BSD-style licensing.
-See `LICENSE`.
+AGPL-3.0-or-later with the project anti-AI supplemental restriction. See
+`LICENSE`.

@@ -50,6 +50,11 @@ PAGE = """<!DOCTYPE html>
   .card { background: rgba(20, 26, 46, 0.92); border: 1px solid var(--line); border-radius: 16px; padding: 16px; margin-top: 16px; }
   h2 { margin: 0 0 8px; font-size: 16px; }
   .hint { color: var(--muted); margin: 0 0 12px; font-size: 13px; }
+  .board.four { display: flex; flex-direction: column; gap: 10px; }
+  .board.four .row { display: grid; grid-template-columns: 48px 1fr auto auto auto auto; gap: 8px; align-items: end; }
+  .board.four .lab { color: var(--muted); font-size: 12px; padding-bottom: 14px; }
+  .cells.recv .cell i { background: #7dd3fc; }
+  .cells.ack .cell i { background: #c4b5fd; }
   .board {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
@@ -130,25 +135,20 @@ PAGE = """<!DOCTYPE html>
   </header>
 
   <section class="card">
-    <h2>请求 / 响应时间线</h2>
-    <p class="hint">左边是最新的时间片，数字随时间向右滚动。中间是还没离开网口的队列。</p>
-    <div class="board">
-      <div class="cells left req" id="req-left"></div>
-      <div class="mark">
-        <strong class="local" id="q-client-tx">–</strong>
-        <small>本机发送队列 · 未离开网口</small>
-        <div class="arrow">↓</div>
-        <div class="pair">
-          <div><strong class="rx" id="q-server-rx">–</strong><br><small>未读取/分析</small></div>
-          <div class="arrow">→</div>
-          <div><strong class="tx" id="q-server-tx">–</strong><br><small>响应队列 · 未离开网口</small></div>
-        </div>
-      </div>
-      <div class="cells right req" id="req-right"></div>
-      <div class="cells left resp" id="resp-left"></div>
-      <div class="cells right resp" id="resp-right"></div>
+    <h2>四条时间线</h2>
+    <p class="hint">Newest bucket on the left. Req=client transmitted, Recv=server received, Resp=server transmitted, Ack=client received.</p>
+    <div class="board four">
+      <div class="row"><span class="lab">Req.</span><div class="cells req" id="req-cells"></div><strong class="local" id="q-client-tx">–</strong><small>pending</small></div>
+      <div class="row"><span class="lab">Recv.</span><div class="cells recv" id="recv-cells"></div><strong class="rx" id="q-read">–</strong><small>read</small></div>
+      <div class="row"><span class="lab">Resp.</span><div class="cells resp" id="resp-cells"></div><strong class="tx" id="q-proc">–</strong><small>processing</small> <strong class="tx" id="q-server-tx">–</strong><small>pending</small></div>
+      <div class="row"><span class="lab">Ack.</span><div class="cells ack" id="ack-cells"></div></div>
     </div>
-    <div class="legend"><span><i style="background:#5eead4"></i>本机每个时间片的请求数</span><span><i style="background:#fbbf24"></i>服务器每个时间片的响应数</span></div>
+    <div class="legend">
+      <span><i style="background:#5eead4"></i>Req</span>
+      <span><i style="background:#7dd3fc"></i>Recv</span>
+      <span><i style="background:#fbbf24"></i>Resp</span>
+      <span><i style="background:#c4b5fd"></i>Ack</span>
+    </div>
     <pre class="ascii" id="ascii"></pre>
   </section>
 
@@ -160,6 +160,8 @@ PAGE = """<!DOCTYPE html>
       <div class="stat"><b id="rtt-p50">–</b><span>RTT P50</span></div>
       <div class="stat"><b id="rtt-p99">–</b><span>RTT P99</span></div>
       <div class="stat"><b id="jitter">–</b><span>RFC 3550 抖动</span></div>
+      <div class="stat"><b id="bw">–</b><span>带宽 (netpoisson)</span></div>
+      <div class="stat"><b id="bytes">–</b><span>会话收发 bytes</span></div>
       <div class="stat"><b id="lag">–</b><span>时间线滞后</span></div>
     </div>
   </section>
@@ -283,16 +285,15 @@ function render(snap) {
   document.getElementById("pill-endpoint").textContent = snap.endpoint || "–";
   document.getElementById("pill-lambda").textContent = snap.lambda_rps == null ? "λ —" : ("λ " + snap.lambda_rps + "/s");
   document.getElementById("pill-uptime").textContent = (snap.uptime_s || 0).toFixed(1) + " s";
-  const req = split(snap.req || []);
-  const resp = split(snap.resp || []);
-  paintCells(document.getElementById("req-left"), req[0], false);
-  paintCells(document.getElementById("req-right"), req[1], false);
-  paintCells(document.getElementById("resp-left"), resp[0], true);
-  paintCells(document.getElementById("resp-right"), resp[1], false);
+  paintCells(document.getElementById("req-cells"), (snap.req || []).slice(0, 24), false);
+  paintCells(document.getElementById("recv-cells"), (snap.recv || []).slice(0, 24), false);
+  paintCells(document.getElementById("resp-cells"), (snap.resp || []).slice(0, 24), true);
+  paintCells(document.getElementById("ack-cells"), (snap.ack || []).slice(0, 24), false);
   const q = snap.queues || {};
-  document.getElementById("q-client-tx").textContent = show(q.client_tx);
-  document.getElementById("q-server-rx").textContent = show(q.server_rx);
-  document.getElementById("q-server-tx").textContent = show(q.server_tx);
+  document.getElementById("q-client-tx").textContent = show(q.client_pending != null ? q.client_pending : q.client_tx);
+  document.getElementById("q-read").textContent = show(q.read_pending != null ? q.read_pending : q.server_rx);
+  document.getElementById("q-proc").textContent = show(q.processing);
+  document.getElementById("q-server-tx").textContent = show(q.response_pending != null ? q.response_pending : q.server_tx);
   document.getElementById("ascii").textContent = (snap.ascii || []).join("\\n");
   document.getElementById("achieved").textContent = show(snap.achieved_rps);
   const lost = snap.lost == null ? "–" : snap.lost;
@@ -302,6 +303,12 @@ function render(snap) {
   document.getElementById("rtt-p50").textContent = us(rtt.p50);
   document.getElementById("rtt-p99").textContent = us(rtt.p99);
   document.getElementById("jitter").textContent = us(snap.jitter_rfc3550_us);
+  const bw = snap.bandwidth_bps || {};
+  const bps = (bw.rx || 0) + (bw.tx || 0);
+  document.getElementById("bw").textContent = bps ? (bps >= 1e6 ? (bps/1e6).toFixed(2) + " Mb/s" : (bps/1e3).toFixed(1) + " kb/s") : "–";
+  const rxb = snap.session_rx_bytes != null ? snap.session_rx_bytes : snap.rx_bytes;
+  const txb = snap.session_tx_bytes != null ? snap.session_tx_bytes : snap.tx_bytes;
+  document.getElementById("bytes").textContent = (rxb == null && txb == null) ? "–" : ("↓" + show(rxb) + " ↑" + show(txb));
   const lag = snap.timeline_lag_slices;
   document.getElementById("lag").textContent = lag == null ? "–" : (lag + " × " + (snap.slice_ms || 100) + " ms");
   const samples = snap.samples || {};

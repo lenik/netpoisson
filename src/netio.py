@@ -8,6 +8,6 @@ from __future__ import annotations
 
 from netio_sock import connect_socket, listen_socket
 from peer_client import Client
-from peer_server import Server
+from peer_server import Server, StdioServer
 
-__all__ = ["Client", "Server", "connect_socket", "listen_socket"]
+__all__ = ["Client", "Server", "StdioServer", "connect_socket", "listen_socket"]

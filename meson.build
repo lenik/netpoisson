@@ -63,7 +63,8 @@ i18nutil_mod = custom_target(
     install_dir: bindir,
 )
 
-foreach mod : ['protocol.py', 'traffic.py', 'netio.py', 'netio_sock.py', 'peer_server.py', 'peer_client.py', 'webui.py']
+
+foreach mod : ['protocol.py', 'netio.py', 'netio_sock.py', 'peer_server.py', 'webui.py', 'wiresec.py']
     custom_target(
         mod,
         input: 'src' / mod,
@@ -74,6 +75,17 @@ foreach mod : ['protocol.py', 'traffic.py', 'netio.py', 'netio_sock.py', 'peer_s
         install_dir: bindir,
     )
 endforeach
+
+foreach pkg : ['traffic', 'peer_client', 'npcli']
+    install_subdir(
+        'src' / pkg,
+        install_dir: bindir / pkg,
+        strip_directory: true,
+        exclude_directories: ['__pycache__'],
+        exclude_files: ['*.pyc'],
+    )
+endforeach
+
 
 install_data(
     'netpoisson.bash',
