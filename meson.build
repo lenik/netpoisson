@@ -172,6 +172,7 @@ foreach lang : ['ar', 'de', 'es', 'fr', 'it', 'ja', 'ko', 'zh_CN']
     man_i18n_langs += lang
   endif
 endforeach
+_sh = find_program('sh')
 foreach lang : man_i18n_langs
   foreach puff : puffs
     adoc = meson.project_source_root() / 'man' / lang / (puff + '.adoc')
@@ -192,10 +193,13 @@ foreach lang : man_i18n_langs
         ],
         build_by_default: true,
       )
+      # Honor DESTDIR / MESON_INSTALL_DESTDIR_PREFIX (do not install into /usr directly).
       meson.add_install_script(
-        'install', '-D', '-m644',
+        _sh,
+        '-c',
+        'base="${MESON_INSTALL_DESTDIR_PREFIX:-${DESTDIR:-}${MESON_INSTALL_PREFIX:-}}"; dest="$base/$0"; mkdir -p "$(dirname "$dest")"; install -m644 "$1" "$dest"',
+        get_option('mandir') / lang / 'man1' / (puff + '.1'),
         _loc_man,
-        get_option('prefix') / get_option('mandir') / lang / 'man1' / (puff + '.1'),
       )
     endif
   endforeach

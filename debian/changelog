@@ -11,6 +11,8 @@ netpoisson (0.1.0) unstable; urgency=medium
     modules.
   * Add L1 whole-document man translations and install them under
     mandir/<locale>/man1.
+  * Install locale man pages into DESTDIR instead of absolute /usr
+    paths.
 
  -- Lenik (谢继雷) <lenik@bodz.net>  Mon, 21 Sep 2026 13:38:12 +0800
 
