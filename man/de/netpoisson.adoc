@@ -56,13 +56,15 @@ Warteschlangenverzögerung. *-s* schreibt nach _SECS_ Sekunden einen JSON-Berich
 *-s, --stats _SECS_*::
   Nach _SECS_ Sekunden JSON-Bericht ausgeben.
 
-*-w, --web*::
-  Live-Übersicht bedienen und Browser öffnen. `NETPOISSON_NO_BROWSER=1` unterdrückt das.
+*-w, --web[=_ADDR_]*::
+  Live-Dashboard bereitstellen. Standardbindung `127.0.0.1:3871`.
+  WorldMan-Themen (Standard `dark-x-files`; innerhalb jeder Gruppe zuerst hell, dann dunkel).
+  Pause, Runnings/Raw-events, Live-λ/bucket/status per `POST /api/config`, **dense**
+  (Runnings 0.25×/0.5×/1×/2×; Raw 0.5×/1×/2×) mit Fenster `default × dense`.
+  View setzt nur die Blickrichtung; Front/Top/Free teilen Drehen/Zoom/Schwenken.
+  Spectrum ist ein Schiebefenster-Spektrogramm (X bleibt Zeit) mit Farbthema.
+  `NETPOISSON_NO_BROWSER=1` oder *--no-open* überspringt den Browser.
 
-*--web-host _H_*::
-  Adresse der Übersicht (Vorgabe `127.0.0.1`).
-
-*--web-port _N_*::
   Port der Übersicht (Vorgabe 8711).
 
 *-v, --verbose*::

@@ -1,3 +1,19 @@
+netpoisson (0.2.1) unstable; urgency=medium
+
+  * Web dashboard: WorldMan themes (dark-x-files default), Capture/Analyse
+    panels, Lang/Theme switcher with localStorage, and i18n packs under
+    src/web_i18n/<locale>.json (not gettext/po).
+  * Raw events 3D: Front/Top/Free/Spectrum, Fit + Keep-aspect, Swing ±5–20°,
+    hover tips, angle HUD; top-down from +Y; Z log via log1p; canvas fills
+    Capture viewport with Live stats pinned to the bottom.
+  * Live λ/bucket/status via POST /api/config; runnings/raw dense windows;
+    auto --window with POST /api/window; session bytes with grouped units.
+  * Install: bash launcher (netpoisson.in) in bindir; Python under
+    /usr/lib/netpoisson; split web page assets for packaging/lint.
+  * Docs: refresh L1 man web sections and README i18n notes.
+
+ -- Lenik (谢继雷) <lenik@bodz.net>  Mon, 21 Sep 2026 21:00:00 +0800
+
 netpoisson (0.2.0) unstable; urgency=medium
 
   * Redesign wire protocol, client validation, SSH stdio, and timelines.

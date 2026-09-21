@@ -66,7 +66,8 @@ class Args:
     max_pending: int | None = None
     status_interval_ms: int = 100
     bucket_ms: int = 100
-    window_ms: int = 12000
+    window_ms: int | None = None  # None = auto (fit display / VISIBLE slices)
+    window_set: bool = False
     seed: int | None = None
     timeout_s: float = 2.0
     stats: float | None = None
@@ -138,7 +139,7 @@ def usage(out: TextIO) -> None:
     out.write(_("      --max-pending N       client pending queue limit\n"))
     out.write(_("      --status-interval D   STATUS interval (default 100ms)\n"))
     out.write(_("      --bucket D            timeline bucket (default 100ms)\n"))
-    out.write(_("      --window D            visible window (default 12s)\n"))
+    out.write(_("      --window D            visible window (default auto; or e.g. 12s)\n"))
     out.write(_("      --seed N              reproducible RNG seed\n"))
     out.write(_("      --profile NAME        ssh-interactive | ssh-bulk\n"))
     out.write("\n")
@@ -367,7 +368,13 @@ def parse_args(argv: list[str], prog: str = "netpoisson") -> Args:
         elif key == "bucket":
             args.bucket_ms = parse_duration_ms(raw or "100ms")
         elif key == "window":
-            args.window_ms = parse_duration_ms(raw or "12s")
+            text = (raw or "auto").strip().lower()
+            if text in ("auto", "0", "fit"):
+                args.window_ms = None
+                args.window_set = False
+            else:
+                args.window_ms = parse_duration_ms(raw or "12s")
+                args.window_set = True
         elif key == "seed":
             args.seed = int(raw or "0")
         elif key == "ssh":

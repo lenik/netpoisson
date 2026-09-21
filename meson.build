@@ -33,59 +33,104 @@ bindir = prefix / get_option('bindir')
 datadir = prefix / get_option('datadir')
 localedir = prefix / get_option('localedir')
 mandir = prefix / get_option('mandir')
+# Private modules — keep bindir to the bash launcher only.
+pkglibdir = prefix / 'lib' / meson.project_name()
 pkgdocdir = datadir / 'doc' / meson.project_name()
 
 subdir('po')
 
-netpoisson_exe = custom_target(
+# --- Launcher: bindir/netpoisson (bash from netpoisson.in) ---
+
+# Uninstalled / build-tree launcher → src/ + build po/
+conf_local = configuration_data()
+conf_local.set_quoted('PYTHON', py.full_path())
+conf_local.set_quoted('PKGLIBDIR', meson.project_source_root() / 'src')
+conf_local.set_quoted('LOCALEDIR', meson.project_build_root() / 'po')
+netpoisson_local_cfg = configure_file(
+    input: 'netpoisson.in',
+    output: 'netpoisson.local.in',
+    configuration: conf_local,
+)
+custom_target(
     'netpoisson',
-    input: 'src/netpoisson.py',
+    input: netpoisson_local_cfg,
     output: 'netpoisson',
     command: [
-        py,
+        'sh',
         '-c',
-        'import os, shutil, sys; shutil.copyfile(sys.argv[1], sys.argv[2]); os.chmod(sys.argv[2], 0o755)',
+        'cp -f "$1" "$2" && chmod 755 "$2"',
+        'sh',
         '@INPUT@',
         '@OUTPUT@',
     ],
     build_by_default: true,
-    install: true,
-    install_dir: bindir,
 )
 
-i18nutil_mod = custom_target(
-    'i18nutil',
-    input: 'src/i18nutil.py',
-    output: 'i18nutil.py',
-    command: ['cp', '@INPUT@', '@OUTPUT@'],
-    build_by_default: true,
-    install: true,
+# Installed launcher → /usr/lib/netpoisson
+conf_inst = configuration_data()
+conf_inst.set_quoted('PYTHON', '/usr/bin/python3')
+conf_inst.set_quoted('PKGLIBDIR', pkglibdir)
+conf_inst.set_quoted('LOCALEDIR', localedir)
+netpoisson_installed = configure_file(
+    input: 'netpoisson.in',
+    output: 'netpoisson.install',
+    configuration: conf_inst,
+)
+install_data(
+    netpoisson_installed,
     install_dir: bindir,
+    rename: 'netpoisson',
+    install_mode: 'rwxr-xr-x',
 )
 
+# --- Python tree under lib/netpoisson (not bindir) ---
 
-foreach mod : ['protocol.py', 'netio.py', 'netio_sock.py', 'peer_server.py', 'webui.py', 'wiresec.py']
-    custom_target(
-        mod,
-        input: 'src' / mod,
-        output: mod,
-        command: ['cp', '@INPUT@', '@OUTPUT@'],
-        build_by_default: true,
-        install: true,
-        install_dir: bindir,
+foreach mod : [
+    'netpoisson.py',
+    'i18nutil.py',
+    'protocol.py',
+    'netio.py',
+    'netio_sock.py',
+    'peer_server.py',
+    'webui.py',
+    'web_page.html',
+    'web_page.css',
+    'web_dash.js',
+    'web_raw3d.js',
+    'wiresec.py',
+]
+    install_data(
+        'src' / mod,
+        install_dir: pkglibdir,
     )
 endforeach
 
 foreach pkg : ['traffic', 'peer_client', 'npcli']
     install_subdir(
         'src' / pkg,
-        install_dir: bindir / pkg,
+        install_dir: pkglibdir / pkg,
         strip_directory: true,
         exclude_directories: ['__pycache__'],
         exclude_files: ['*.pyc'],
     )
 endforeach
 
+install_subdir(
+    'src' / 'web_themes',
+    install_dir: pkglibdir / 'web_themes',
+    strip_directory: true,
+)
+
+install_subdir(
+    'src' / 'web_i18n',
+    install_dir: pkglibdir / 'web_i18n',
+    strip_directory: true,
+)
+
+install_data(
+    'VERSION',
+    install_dir: pkglibdir,
+)
 
 install_data(
     'netpoisson.bash',

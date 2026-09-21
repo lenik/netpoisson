@@ -75,6 +75,7 @@ class Server:
         self.bucket_ms = max(1, bucket_ms)
         self.bucket_ns = self.bucket_ms * 1_000_000
         self.window_slices = max(8, window_slices)
+        self.window_auto = False
         self.telemetry = telemetry
         self.stopped = threading.Event()
         self.lock = threading.Lock()
@@ -112,6 +113,40 @@ class Server:
 
     def endpoint(self) -> str:
         return f"{self.host}:{self.port}"
+
+    def set_window_slices(self, n: int, *, auto: bool | None = None) -> dict:
+        n = max(8, min(2048, int(n)))
+        self.window_slices = n
+        keep = max(16, n * 2)
+        self.recv_series.keep = keep
+        self.resp_series.keep = keep
+        if auto is not None:
+            self.window_auto = bool(auto)
+        return {
+            "window_slices": self.window_slices,
+            "window_auto": self.window_auto,
+            "bucket_ms": self.bucket_ms,
+            "window_ms": self.window_slices * self.bucket_ms,
+        }
+
+    def set_runtime_config(
+        self,
+        *,
+        lam: float | None = None,
+        bucket_ms: int | None = None,
+        status_interval_ms: int | None = None,
+    ) -> dict:
+        # Server has no λ / STATUS probe interval; bucket still applies to timelines.
+        if bucket_ms is not None:
+            self.bucket_ms = max(1, int(bucket_ms))
+            self.bucket_ns = self.bucket_ms * 1_000_000
+        return {
+            "lambda_rps": None,
+            "bucket_ms": self.bucket_ms,
+            "status_interval_ms": None,
+            "window_slices": self.window_slices,
+            "window_auto": self.window_auto,
+        }
 
     def stop(self) -> None:
         self.stopped.set()
@@ -219,13 +254,16 @@ class Server:
             "lambda_rps": None,
             "slice_ms": self.bucket_ms,
             "bucket_ms": self.bucket_ms,
+            "status_interval_ms": None,
             "window_slices": self.window_slices,
+            "window_auto": getattr(self, "window_auto", False),
             "duration_s": round(duration, 3),
             "uptime_s": round(duration, 3),
-            "req": snap.recv_slices[:32],
-            "recv": snap.recv_slices[:32],
-            "resp": snap.resp_slices[:32],
+            "req": list(snap.recv_slices),
+            "recv": list(snap.recv_slices),
+            "resp": list(snap.resp_slices),
             "ack": [],
+            "raw_events": [],
             "queues": {
                 "client_pending": None,
                 "read_pending": snap.read_pending,

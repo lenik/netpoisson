@@ -58,17 +58,20 @@ class ClientReportingMixin:
             "server_rx": copied["server_rx"],
             "server_tx": copied["server_tx"],
         }
+        sid = slice_id_for(bucket_ns=self.bucket_ns)
+        view["raw_events"] = self.samples.raw_in_window(sid, self.window_slices)
         view["histogram"] = histogram(copied["rtt_us"])
         view["notes"] = build_notes(view)
         view.pop("gaps_us", None)
         width = cell_width(self.lam, self.bucket_ms / 1000)
-        view["ascii"] = list(self.status_lines(120, width=width, half=12))
+        view["ascii"] = list(self.status_lines(120, width=width, half=min(12, max(4, self.window_slices // 2))))
         view["queues"] = {
             "client_pending": view["client_pending"],
             "read_pending": view.get("read_pending"),
             "processing": view["processing"],
             "response_pending": view["response_pending"],
         }
+        view["window_auto"] = getattr(self, "window_auto", False)
         return view
 
     def report(self) -> dict:
@@ -129,10 +132,10 @@ class ClientReportingMixin:
         copied = self.samples.copy()
         rtt_src = copied["all_rtt"] if final else copied["rtt_us"]
         sid = slice_id_for(bucket_ns=self.bucket_ns)
-        req = newest_first(self.req_series.snapshot(), sid, min(32, self.window_slices))
-        recv = newest_first(self.recv_series.snapshot(), sid, min(32, self.window_slices))
-        resp = newest_first(self.resp_series.snapshot(), sid, min(32, self.window_slices))
-        ack = newest_first(self.ack_series.snapshot(), sid, min(32, self.window_slices))
+        req = newest_first(self.req_series.snapshot(), sid, self.window_slices)
+        recv = newest_first(self.recv_series.snapshot(), sid, self.window_slices)
+        resp = newest_first(self.resp_series.snapshot(), sid, self.window_slices)
+        ack = newest_first(self.ack_series.snapshot(), sid, self.window_slices)
         lag = best_lag(list(reversed(req)), list(reversed(resp)))
         duration = max(0.0, time.monotonic() - self.started)
         with self.state:
@@ -171,6 +174,7 @@ class ClientReportingMixin:
             "lambda_rps": self.lam,
             "slice_ms": self.bucket_ms,
             "bucket_ms": self.bucket_ms,
+            "status_interval_ms": self.status_interval_ms,
             "window_slices": self.window_slices,
             "duration_s": round(duration, 3),
             "uptime_s": round(duration, 3),

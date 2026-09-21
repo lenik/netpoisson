@@ -37,7 +37,8 @@ _服务器_ 是主机或 `主机:端口`。*-p* 覆盖端口。
 下一个数字是尚未离开服务器的响应。
 
 *-w* 通过 HTTP 提供相同的时间线，以及往返时延、RFC 3550 抖动、丢失、排队时延，
-并检查到达间隔是否仍像指数分布。页面是写死的模板，网络允许时会加载 Tailwind CSS。
+并检查到达间隔是否仍像指数分布。仪表盘带 WorldMan 主题、dense、实时 λ/bucket/status，
+以及 Raw events 三维视图（含滑动窗频谱图）。
 
 *-s* 运行给定秒数后，在标准输出打印一个 JSON 对象。实时两行写到标准错误。*-q* 关掉它们。
 若已发出请求却一个响应都没回来，客户端以状态 1 退出。
@@ -62,14 +63,14 @@ _服务器_ 是主机或 `主机:端口`。*-p* 覆盖端口。
 *-s, --stats _SECS_*::
   运行 _SECS_ 秒后打印 JSON 报告。客户端会短暂等待已在途的响应，其余计为丢失。
 
-*-w, --web*::
-  提供实时仪表盘并在浏览器中打开。设置 `NETPOISSON_NO_BROWSER=1` 可跳过打开浏览器。
-
-*--web-host _H_*::
-  仪表盘绑定地址。默认是 `127.0.0.1`。
-
-*--web-port _N_*::
-  仪表盘端口。默认是 8711。
+*-w, --web[=_ADDR_]*::
+  提供实时仪表盘。默认绑定 `127.0.0.1:3871`。
+  主题来自 WorldMan，默认 `dark-x-files`（各组内 light 在前、dark 在后）。
+  可暂停刷新、切换 Runnings / Raw events，经 `POST /api/config` 实时改 λ / bucket / status，
+  并用 **dense**（Runnings：0.25×/0.5×/1×/2×；Raw：0.5×/1×/2×）按
+  `default × dense` 协商 timeline window。View 只改朝向；Front/Top/Free 共用旋转缩放平移。
+  Spectrum 为滑动窗频谱图（X 仍为时间），style 变为配色。
+  设置 `NETPOISSON_NO_BROWSER=1` 或传 *--no-open* 可跳过打开浏览器。
 
 *-v, --verbose*::
   重复使用以输出更多日志。一次 *-v* 会报告连接情况。

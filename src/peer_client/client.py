@@ -57,6 +57,7 @@ class Client(ClientReportingMixin, ClientScheduleMixin, ClientBinaryMixin, Clien
         self.bucket_ms = max(1, bucket_ms)
         self.bucket_ns = self.bucket_ms * 1_000_000
         self.window_slices = max(8, window_slices)
+        self.window_auto = False
         self.rng = random.Random(seed)
         self.ssh = ssh
         self.stdio = ssh is not None
@@ -107,6 +108,47 @@ class Client(ClientReportingMixin, ClientScheduleMixin, ClientBinaryMixin, Clien
         if self.ssh:
             return f"ssh:{self.host}"
         return f"{self.host}:{self.port}"
+
+    def set_window_slices(self, n: int, *, auto: bool | None = None) -> dict:
+        """Resize the visible timeline window (and series retention)."""
+        n = max(8, min(2048, int(n)))
+        self.window_slices = n
+        keep = max(16, n * 2)
+        for series in (self.req_series, self.recv_series, self.resp_series, self.ack_series):
+            series.keep = keep
+        if auto is not None:
+            self.window_auto = bool(auto)
+        return {
+            "window_slices": self.window_slices,
+            "window_auto": self.window_auto,
+            "bucket_ms": self.bucket_ms,
+            "window_ms": self.window_slices * self.bucket_ms,
+            "lambda_rps": self.lam,
+            "status_interval_ms": self.status_interval_ms,
+        }
+
+    def set_runtime_config(
+        self,
+        *,
+        lam: float | None = None,
+        bucket_ms: int | None = None,
+        status_interval_ms: int | None = None,
+    ) -> dict:
+        """Live-tune traffic parameters from the web UI."""
+        if lam is not None:
+            self.lam = max(0.01, float(lam))
+        if bucket_ms is not None:
+            self.bucket_ms = max(1, int(bucket_ms))
+            self.bucket_ns = self.bucket_ms * 1_000_000
+        if status_interval_ms is not None:
+            self.status_interval_ms = max(1, int(status_interval_ms))
+        return {
+            "lambda_rps": self.lam,
+            "bucket_ms": self.bucket_ms,
+            "status_interval_ms": self.status_interval_ms,
+            "window_slices": self.window_slices,
+            "window_auto": self.window_auto,
+        }
 
     def start(self) -> None:
         if self.ssh:

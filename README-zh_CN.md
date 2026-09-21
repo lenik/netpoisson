@@ -18,7 +18,7 @@ netpoisson [选项]... [服务器]
 - `-l`, `--lambda N` — 每秒发出的请求数（默认 `100`）
 - `-s`, `--stats 秒` — 运行若干秒后打印 JSON 报告
 - `-w`, `--web` — 提供实时仪表盘并打开浏览器
-- `--web-host`, `--web-port` — 仪表盘绑定地址（默认 `127.0.0.1:8711`）
+- `--web-host`, `--web-port` — 仪表盘绑定地址（默认 `127.0.0.1:3871`）
 - `-v`, `--quiet`, `-h`, `--version`
 
 ## 两行状态
@@ -37,6 +37,10 @@ Resp [                     16 -> 20 -> 2 0 1 1 3 1 0 2 1 3 1]
 - `20` 是服务器还没离开网口的响应。
 
 `-w` 在浏览器里显示同样的时间线，并实时分析 RTT、RFC 3550 抖动、丢失、排队时延，以及到达间隔是否仍像泊松过程。
+仪表盘使用 WorldMan 主题，默认 **Dark X-Files**（`dark-x-files`），可在页头切换。
+`--window` 默认 **auto**（随布局缩放）；**dense**（Runnings 0.25×/0.5×默认/1×/2×；Raw 0.5×/1×默认/2×）按
+`default × dense` 协商 timeline window（X 铺满宽、Y 铺满高）；可实时改 λ / bucket / status
+（`POST /api/config`）；支持暂停/继续，以及 Runnings / Raw events（三维散点·网格·曲面）。
 
 ## 示例
 
@@ -58,15 +62,20 @@ ninja -C /build
 meson test -C /build
 ```
 
-程序只用 Python 3 标准库。Meson 把模块装到 `netpoisson` 可执行文件旁边，这样从 `/usr/bin` 启动时 `import` 仍然找得到。
+程序只用 Python 3 标准库。Meson 在 `bindir` 只安装 bash 启动器（由 `netpoisson.in` 生成），
+Python 模块装到 `/usr/lib/netpoisson/`，启动器设置 `PYTHONPATH` 后执行。
 
-## 国际化（gettext）
+## 国际化
 
-翻译在 `po/`。用 `ninja -C /build posync` 同步。英文是 msgid 源语言，`po/LINGUAS` 列出译文。
+CLI / 终端用 gettext：翻译在 `po/`，用 `ninja -C /build posync` 同步。英文是 msgid
+源语言，`po/LINGUAS` 列出译文。
 
 ```bash
 LANGUAGE=zh_CN /build/netpoisson -h
 ```
+
+Web 仪表盘不经过 gettext：文案在 `src/web_i18n/<locale>.json`（含 Analysis notes
+模板），由页面内嵌 JSON 切换语言。
 
 ## 许可证
 

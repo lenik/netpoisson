@@ -57,13 +57,15 @@ délai de file. *-s* imprime un rapport JSON après _SECS_ secondes.
 *-s, --stats _SECS_*::
   Afficher un rapport JSON après _SECS_ secondes.
 
-*-w, --web*::
-  Servir un tableau de bord et ouvrir un navigateur. `NETPOISSON_NO_BROWSER=1` pour éviter l'ouverture.
+*-w, --web[=_ADDR_]*::
+  Servir un tableau de bord en direct. Liaison par défaut `127.0.0.1:3871`.
+  Thèmes WorldMan (défaut `dark-x-files` ; clair avant sombre dans chaque groupe).
+  Pause, Runnings/Raw events, λ/bucket/status via `POST /api/config`, **dense**
+  (Runnings 0.25×/0.5×/1×/2× ; Raw 0.5×/1×/2×) avec fenêtre `default × dense`.
+  View ne change que la direction ; Front/Top/Free partagent rotation/zoom/pan.
+  Spectrum : spectrogramme à fenêtre glissante (X reste le temps) avec thème de couleurs.
+  `NETPOISSON_NO_BROWSER=1` ou *--no-open* pour ne pas ouvrir le navigateur.
 
-*--web-host _H_*::
-  Adresse du tableau de bord (défaut `127.0.0.1`).
-
-*--web-port _N_*::
   Port du tableau de bord (défaut 8711).
 
 *-v, --verbose*::

@@ -55,13 +55,15 @@ ritardo di coda. *-s* stampa un rapporto JSON dopo _SECS_ secondi.
 *-s, --stats _SECS_*::
   Stampare un rapporto JSON dopo _SECS_ secondi.
 
-*-w, --web*::
-  Servire una dashboard e aprire un browser. `NETPOISSON_NO_BROWSER=1` lo salta.
+*-w, --web[=_ADDR_]*::
+  Serve una dashboard live. Bind predefinito `127.0.0.1:3871`.
+  Temi WorldMan (default `dark-x-files`; light prima di dark in ogni gruppo).
+  Pausa, Runnings/Raw events, λ/bucket/status via `POST /api/config`, **dense**
+  (Runnings 0.25×/0.5×/1×/2×; Raw 0.5×/1×/2×) con finestra `default × dense`.
+  View cambia solo la direzione; Front/Top/Free condividono rotazione/zoom/pan.
+  Spectrum: spettrogramma a finestra scorrevole (X resta il tempo) con tema colore.
+  `NETPOISSON_NO_BROWSER=1` o *--no-open* salta l'apertura del browser.
 
-*--web-host _H_*::
-  Indirizzo della dashboard (predefinito `127.0.0.1`).
-
-*--web-port _N_*::
   Porta della dashboard (predefinito 8711).
 
 *-v, --verbose*::

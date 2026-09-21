@@ -1,10 +1,16 @@
 ---
 description: How to update gettext catalogs and document translations (poedit, no patch scripts)
-globs: po/**,**/LINGUAS,man/**/*.adoc,README*,README-*.md
+globs: po/**,**/LINGUAS,src/web_i18n/**,man/**/*.adoc,README*,README-*.md
 alwaysApply: false
 ---
 
 # Updating translations
+
+## Web dashboard (`src/web_i18n/<locale>.json`) — not gettext
+
+The live web UI does **not** use `.po` / `LINGUAS`. Edit per-locale JSON under
+`src/web_i18n/` (keys including `note_*` templates and `_label` for the lang
+menu). Same hand-translate rule as gettext: no Google/`trans`/batch MT.
 
 ## gettext (`.po`) — never machine-translate
 

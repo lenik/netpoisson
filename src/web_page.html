@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark-x-files" class="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-i18n-title="app_title">Poisson Network Traffic Simulator</title>
+<link rel="stylesheet" href="/themes/themes-web.css">
+<style>
+/*__NP_STYLE__*/
+</style>
+</head>
+<body class="np">
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <h1 data-i18n="app_title">Poisson Network Traffic Simulator</h1>
+      <p class="sub"><span class="ver" id="app-version">v__NP_VERSION__</span><span id="headline" data-i18n="connecting">Connecting…</span></p>
+    </div>
+    <div class="corner-controls">
+      <div class="theme-lang-row">
+        <label class="theme-pick"><span data-i18n="lang">Lang</span>
+          <select id="lang-select" aria-label="Language"></select>
+        </label>
+        <label class="theme-pick"><span data-i18n="theme">Theme</span>
+          <select id="theme-select" aria-label="Theme"></select>
+        </label>
+        <span class="panel-toggle" role="group" aria-label="Panel">
+          <button type="button" class="btn active" id="btn-capture" aria-pressed="true" data-i18n="capture">Capture</button>
+          <button type="button" class="btn" id="btn-analyse" aria-pressed="false" data-i18n="analyse">Analyse</button>
+        </span>
+      </div>
+      <div class="pills">
+        <span class="pill" id="pill-proto">tcp</span>
+        <span class="pill" id="pill-endpoint">–</span>
+        <span class="pill" id="pill-lambda">λ –</span>
+        <span class="pill" id="pill-uptime">0.0 s</span>
+        <span class="pill" id="pill-window">window –</span>
+      </div>
+    </div>
+  </header>
+  <div id="panel-capture">
+  <div class="toolbar">
+    <button type="button" class="btn active" id="btn-running" aria-pressed="true">Runnings</button>
+    <button type="button" class="btn" id="btn-raw" aria-pressed="false">Raw events</button>
+    <span class="ctrl" id="dense-running-wrap">
+      <label><span data-i18n="dense">dense</span>
+        <select id="opt-dense-running" aria-label="Dense">
+          <option value="0.25">0.25×</option>
+          <option value="0.5" selected>0.5×</option>
+          <option value="1">1×</option>
+          <option value="2">2×</option>
+        </select>
+      </label>
+    </span>
+    <span class="ctrl hidden" id="dense-raw-wrap">
+      <label><span data-i18n="dense">dense</span>
+        <select id="opt-dense-raw" aria-label="Dense">
+          <option value="0.5">0.5×</option>
+          <option value="1" selected>1×</option>
+          <option value="2">2×</option>
+        </select>
+      </label>
+    </span>
+    <span class="ctrl" id="cfg-wrap">
+      <label>λ <input type="number" class="cfg-num" id="cfg-lambda" min="0.01" step="any" inputmode="decimal"></label>
+      <label>bucket <input type="number" class="cfg-num" id="cfg-bucket" min="1" step="1" inputmode="numeric"> ms</label>
+      <label>status <input type="number" class="cfg-num" id="cfg-status" min="1" step="1" inputmode="numeric"> ms</label>
+    </span>
+    <button type="button" class="btn btn-pause-end" id="btn-pause" aria-pressed="false" data-i18n="pause">Pause</button>
+  </div>
+  <div class="toolbar toolbar-raw hidden" id="raw-opts-row">
+    <span class="ctrl" id="raw-view-wrap">
+      <label><span data-i18n="view">View</span>
+        <select id="raw-camera" aria-label="Camera view">
+          <option value="front">Front (X-Z)</option>
+          <option value="top">Top Down (X-Y)</option>
+          <option value="spectrum">Spectrum</option>
+          <option value="free">Free 3D</option>
+        </select>
+      </label>
+      <label><span id="style-label" data-i18n="style">Style</span>
+        <select id="raw-style" aria-label="Draw style">
+          <option value="scatter">Scatter</option>
+          <option value="grid">Grid</option>
+          <option value="surface">Surface</option>
+        </select>
+      </label>
+      <label class="chk"><input type="checkbox" id="opt-perspective"> <span data-i18n="perspective">Perspective</span></label>
+      <label class="chk"><input type="checkbox" id="opt-logscale"> <span data-i18n="logscale">Z log scale</span></label>
+      <label class="chk"><input type="checkbox" id="opt-smooth"> <span data-i18n="smooth">Smooth curves</span></label>
+      <label class="chk" title="Auto-resize the plot to fill the canvas"><input type="checkbox" id="opt-fit"> <span data-i18n="fit">Fit</span></label>
+      <label class="chk" title="Keep X/Y scale equal when fitting"><input type="checkbox" id="opt-keep-aspect"> <span data-i18n="keep_aspect">Keep aspect ratio</span></label>
+      <label><span data-i18n="swing">Swing</span>
+        <select id="opt-swing" aria-label="Swing amplitude">
+          <option value="0" selected>Off</option>
+          <option value="5">±5°</option>
+          <option value="10">±10°</option>
+          <option value="15">±15°</option>
+          <option value="20">±20°</option>
+        </select>
+      </label>
+    </span>
+  </div>
+  <section class="card" id="sec-running">
+    <h2 data-i18n="sec_running">Four timelines · runnings</h2>
+    <p class="hint" data-i18n="hint_running">Newest bucket on the left. Running dense 0.25×/0.5×(default)/1×/2×; window = default × dense. Recv/Resp fill after STATUS; pause to freeze a gap.</p>
+    <div class="board four">
+      <div class="row"><span class="lab">Req.</span><div class="cells req" id="req-cells"></div><div class="meta"><strong class="local" id="q-client-tx">–</strong><small data-i18n="pending">pending</small></div></div>
+      <div class="row"><span class="lab">Recv.</span><div class="cells recv" id="recv-cells"></div><div class="meta"><strong class="rx" id="q-read">–</strong><small data-i18n="read">read</small></div></div>
+      <div class="row"><span class="lab">Resp.</span><div class="cells resp" id="resp-cells"></div><div class="meta"><strong class="tx" id="q-proc">–</strong><small data-i18n="processing">processing</small> <strong class="tx" id="q-server-tx">–</strong><small data-i18n="pending">pending</small></div></div>
+      <div class="row"><span class="lab">Ack.</span><div class="cells ack" id="ack-cells"></div><div class="meta"></div></div>
+    </div>
+    <div class="legend">
+      <span><i style="background:var(--primary)"></i>Req</span>
+      <span><i style="background:var(--ring)"></i>Recv</span>
+      <span><i style="background:var(--warning)"></i>Resp</span>
+      <span><i style="background:var(--success)"></i>Ack</span>
+    </div>
+  </section>
+
+  <section class="card hidden" id="sec-raw">
+    <h2 data-i18n="sec_raw">Raw events · 3D</h2>
+    <p class="hint" data-i18n="hint_raw">X = time (fits width). Y = bucket group (fits height). Z = latency. View sets direction only — Front/Top/Free share Free-3D controls. Spectrum is a sliding-window spectrogram (X still time). Raw dense 0.5×/1×(default)/2×; window = default × dense².</p>
+    <div class="raw-stage">
+      <canvas id="raw3d"></canvas>
+      <canvas id="raw3d-gl" class="hidden"></canvas>
+      <div id="raw-tip" class="raw-tip hidden"></div>
+      <div id="raw-angle" class="raw-angle">yaw — · pitch —</div>
+    </div>
+  </section>
+  </div><!-- #panel-capture -->
+
+  <section class="card" id="sec-stats">
+    <h2 data-i18n="sec_stats">Live stats</h2>
+    <div class="stats">
+      <div class="stat"><b id="achieved">–</b><span data-i18n="stat_rps">actual req/s</span></div>
+      <div class="stat"><b id="loss">–</b><span data-i18n="stat_loss">loss</span></div>
+      <div class="stat"><b id="rtt-p50">–</b><span>RTT P50</span></div>
+      <div class="stat"><b id="rtt-p99">–</b><span>RTT P99</span></div>
+      <div class="stat"><b id="jitter">–</b><span data-i18n="stat_jitter">RFC 3550 jitter</span></div>
+      <div class="stat"><b id="bw">–</b><span data-i18n="stat_bw">bandwidth (netpoisson)</span></div>
+      <div class="stat"><b id="bytes">–</b><span data-i18n="stat_bytes">session rx/tx bytes</span></div>
+      <div class="stat"><b id="lag">–</b><span data-i18n="stat_lag">timeline lag</span></div>
+    </div>
+  </section>
+
+  <div id="panel-analyse" class="hidden">
+  <section class="card" id="sec-charts">
+    <h2 data-i18n="sec_charts">Jitter &amp; queues</h2>
+    <div class="charts">
+      <div><p class="hint">RTT</p><canvas id="rtt-chart"></canvas></div>
+      <div><p class="hint" data-i18n="chart_queues">Queue depth</p><canvas id="queue-chart"></canvas></div>
+      <div><p class="hint" data-i18n="chart_hist">RTT histogram</p><canvas id="hist-chart"></canvas></div>
+    </div>
+  </section>
+
+  <section class="card" id="sec-notes">
+    <h2 data-i18n="sec_notes">Analysis</h2>
+    <div id="notes"></div>
+  </section>
+  </div><!-- #panel-analyse -->
+</div>
+<script>
+/*__NP_SCRIPT__*/
+</script>
+</body>
+</html>

@@ -56,13 +56,15 @@ pérdidas y retraso de cola. *-s* imprime un informe JSON tras _SECS_ segundos.
 *-s, --stats _SECS_*::
   Imprimir un informe JSON tras _SECS_ segundos.
 
-*-w, --web*::
-  Servir un tablero y abrir un navegador. `NETPOISSON_NO_BROWSER=1` lo omite.
+*-w, --web[=_ADDR_]*::
+  Servir un panel en vivo. Enlace por defecto `127.0.0.1:3871`.
+  Temas WorldMan (por defecto `dark-x-files`; claro antes que oscuro en cada grupo).
+  Pausa, Runnings/Raw events, λ/bucket/status vía `POST /api/config`, **dense**
+  (Runnings 0.25×/0.5×/1×/2×; Raw 0.5×/1×/2×) con ventana `default × dense`.
+  View solo cambia la dirección; Front/Top/Free comparten rotar/zoom/pan.
+  Spectrum: espectrograma de ventana deslizante (X sigue siendo tiempo) con tema de color.
+  `NETPOISSON_NO_BROWSER=1` o *--no-open* omite abrir el navegador.
 
-*--web-host _H_*::
-  Dirección del tablero (omisión `127.0.0.1`).
-
-*--web-port _N_*::
   Puerto del tablero (omisión 8711).
 
 *-v, --verbose*::

@@ -142,12 +142,12 @@ def _start_ssh(args: Args, prog: str) -> SshTransport:
     return SshTransport(proc=proc, setup_ms=setup_ms, remote_start_ms=0.0)
 
 
-def _start_web(prog: str, args: Args, snapshot) -> Dashboard | None:
+def _start_web(prog: str, args: Args, snapshot, *, set_window=None, set_config=None) -> Dashboard | None:
     if not args.web:
         return None
     host, port = parse_web_addr(args.web_addr, prog)
     try:
-        dash = Dashboard(host, port, snapshot)
+        dash = Dashboard(host, port, snapshot, set_window=set_window, set_config=set_config)
     except OSError as exc:
         raise UsageError(_("{prog}: {message}\n").format(prog=prog, message=str(exc))) from exc
     url = dash.start()
@@ -155,6 +155,15 @@ def _start_web(prog: str, args: Args, snapshot) -> Dashboard | None:
     if not args.no_open:
         open_browser(url)
     return dash
+
+
+def _window_slices(args: Args) -> tuple[int, bool]:
+    """Return (slices, auto). Default is auto = VISIBLE slices."""
+    from traffic import VISIBLE
+
+    if args.window_ms is None or not args.window_set:
+        return max(8, VISIBLE), True
+    return max(8, args.window_ms // max(1, args.bucket_ms)), False
 
 
 def _pump(stop: threading.Event, duration: float | None, painter: TerminalStatus, lines, *, ndjson: bool, snapshot) -> None:
@@ -194,7 +203,9 @@ def main(argv: list[str]) -> int:
         return _do_remove(prog)
 
     if args.stdio_server:
-        server = StdioServer(bucket_ms=args.bucket_ms, window_slices=max(8, args.window_ms // args.bucket_ms))
+        slices, auto = _window_slices(args)
+        server = StdioServer(bucket_ms=args.bucket_ms, window_slices=slices)
+        server.inner.window_auto = auto
         _install_signals(server.stopped)
         return server.run()
 
@@ -205,7 +216,7 @@ def main(argv: list[str]) -> int:
     # Live UI on stderr only when stderr is a TTY and not quiet / not forced json.
     painter = TerminalStatus(args.verbose >= 0 and sys.stderr.isatty() and not args.json_out)
     dash: Dashboard | None = None
-    window_slices = max(8, args.window_ms // max(1, args.bucket_ms))
+    window_slices, window_auto = _window_slices(args)
 
     try:
         if daemon:
@@ -224,6 +235,7 @@ def main(argv: list[str]) -> int:
                 ssl_ctx=ssl_ctx,
                 udp_seal=udp_seal,
             )
+            server.window_auto = window_auto
             try:
                 server.start()
             except OSError as exc:
@@ -240,7 +252,13 @@ def main(argv: list[str]) -> int:
                 file=sys.stderr,
             )
             try:
-                dash = _start_web(prog, args, server.snapshot)
+                dash = _start_web(
+                    prog,
+                    args,
+                    server.snapshot,
+                    set_window=server.set_window_slices,
+                    set_config=server.set_runtime_config,
+                )
             except UsageError as exc:
                 server.stop()
                 sys.stderr.write(exc.message)
@@ -297,6 +315,7 @@ def main(argv: list[str]) -> int:
             ssl_ctx=ssl_ctx,
             udp_seal=udp_seal,
         )
+        client.window_auto = window_auto
         try:
             hello_t0 = time.monotonic()
             client.start()
@@ -317,7 +336,13 @@ def main(argv: list[str]) -> int:
                 file=sys.stderr,
             )
         try:
-            dash = _start_web(prog, args, client.snapshot)
+            dash = _start_web(
+                prog,
+                args,
+                client.snapshot,
+                set_window=client.set_window_slices,
+                set_config=client.set_runtime_config,
+            )
         except UsageError as exc:
             client.stop(grace=0.1)
             sys.stderr.write(exc.message)

@@ -141,7 +141,13 @@ class ClientBinaryMixin:
         if pending.mtype == ECHO:
             self.ack_series.add(slice_id_for(now, self.bucket_ns))
             if rtt_us is not None:
-                self.samples.add_rtt(rtt_us, queue_delay)
+                self.samples.add_rtt(
+                    rtt_us,
+                    queue_delay,
+                    send_mono=pending.send_mono,
+                    bucket_ns=self.bucket_ns,
+                    seq=pending.seq,
+                )
             if frame.telemetry:
                 self._apply_telemetry(frame.telemetry)
         if pending.mtype == STATUS:

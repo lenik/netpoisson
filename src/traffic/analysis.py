@@ -297,7 +297,13 @@ def build_notes(view: dict) -> list[dict]:
 class SampleWindow:
     """Bounded recent samples for the live dashboard."""
 
-    def __init__(self, rtt_keep: int = 2000, spark_keep: int = 240, queue_keep: int = 180) -> None:
+    def __init__(
+        self,
+        rtt_keep: int = 2000,
+        spark_keep: int = 240,
+        queue_keep: int = 180,
+        raw_keep: int = 12000,
+    ) -> None:
         self.rtt_us: deque[float] = deque(maxlen=rtt_keep)
         self.spark_us: deque[float] = deque(maxlen=spark_keep)
         self.gaps_us: deque[float] = deque(maxlen=rtt_keep)
@@ -307,15 +313,36 @@ class SampleWindow:
         self.server_rx: deque[int] = deque(maxlen=queue_keep)
         self.server_tx: deque[int] = deque(maxlen=queue_keep)
         self.all_rtt: deque[float] = deque(maxlen=100000)
+        # Raw echo completions: absolute send-slice id, offset within slice (ms), RTT (µs).
+        self.raw_events: deque[dict] = deque(maxlen=raw_keep)
         self.lock = threading.Lock()
 
-    def add_rtt(self, rtt_us: float, queue_delay_us: float | None = None) -> None:
+    def add_rtt(
+        self,
+        rtt_us: float,
+        queue_delay_us: float | None = None,
+        *,
+        send_mono: int | None = None,
+        bucket_ns: int | None = None,
+        seq: int | None = None,
+    ) -> None:
         with self.lock:
             self.rtt_us.append(rtt_us)
             self.spark_us.append(rtt_us)
             self.all_rtt.append(rtt_us)
             if queue_delay_us is not None:
                 self.queue_delay_us.append(queue_delay_us)
+            if send_mono is not None and bucket_ns and bucket_ns > 0:
+                sid = send_mono // bucket_ns
+                offset_ms = (send_mono % bucket_ns) / 1_000_000.0
+                ev = {
+                    "s": int(sid),
+                    "y": round(offset_ms, 3),
+                    "z": round(rtt_us, 1),
+                }
+                if seq is not None:
+                    ev["seq"] = int(seq)
+                self.raw_events.append(ev)
 
     def add_gap(self, gap_us: float) -> None:
         with self.lock:
@@ -345,4 +372,19 @@ class SampleWindow:
                 "client_tx": list(self.client_tx),
                 "server_rx": list(self.server_rx),
                 "server_tx": list(self.server_tx),
+                "raw_events": list(self.raw_events),
             }
+
+    def raw_in_window(self, newest_sid: int, window_slices: int) -> list[dict]:
+        """Relative slot index x=0 is newest; y=offset ms in slot; z=latency µs."""
+        with self.lock:
+            events = list(self.raw_events)
+        out: list[dict] = []
+        for ev in events:
+            age = newest_sid - int(ev["s"])
+            if 0 <= age < window_slices:
+                row = {"x": age, "y": ev["y"], "z": ev["z"]}
+                if "seq" in ev:
+                    row["seq"] = ev["seq"]
+                out.append(row)
+        return out

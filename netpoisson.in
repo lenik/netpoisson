@@ -1,0 +1,14 @@
+#!/bin/bash
+# Generated from netpoisson.in by meson — do not edit.
+set -euo pipefail
+
+PYTHON=@PYTHON@
+PKGLIBDIR=@PKGLIBDIR@
+LOCALEDIR=@LOCALEDIR@
+
+export PYTHONPATH="${PKGLIBDIR}${PYTHONPATH:+:${PYTHONPATH}}"
+if [ -n "${LOCALEDIR}" ]; then
+  export NETPOISSON_LOCALEDIR="${LOCALEDIR}"
+fi
+
+exec "${PYTHON}" "${PKGLIBDIR}/netpoisson.py" "$@"

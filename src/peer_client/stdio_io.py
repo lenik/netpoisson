@@ -165,7 +165,13 @@ class ClientStdioMixin:
                     self.jitter, self.prev_rtt = update_jitter(self.jitter, self.prev_rtt, rtt_us)
             self.ack_series.add(slice_id_for(now, self.bucket_ns))
             if rtt_us is not None:
-                self.samples.add_rtt(rtt_us, queue_delay)
+                self.samples.add_rtt(
+                    rtt_us,
+                    queue_delay,
+                    send_mono=pending.send_mono,
+                    bucket_ns=self.bucket_ns,
+                    seq=pending.seq,
+                )
             sr = obj.get("sr")
             ss = obj.get("ss")
             if isinstance(sr, int) and isinstance(ss, int) and ss >= sr:

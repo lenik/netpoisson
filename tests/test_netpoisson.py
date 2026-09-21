@@ -45,7 +45,7 @@ from traffic import (  # noqa: E402
     newest_first,
     update_jitter,
 )
-from webui import PAGE, Dashboard  # noqa: E402
+from webui import PAGE, Dashboard, _page_html  # noqa: E402
 
 init_i18n("netpoisson")
 
@@ -233,6 +233,20 @@ class ArgTests(unittest.TestCase):
         self.assertEqual(args.payload_size, 1024)
         self.assertEqual(args.bucket_ms, 50)
         self.assertEqual(args.window_ms, 6000)
+        self.assertTrue(args.window_set)
+
+    def test_window_auto_default(self) -> None:
+        from traffic import VISIBLE
+        from npcli.main import _window_slices
+
+        args = parse_args(["127.0.0.1"])
+        self.assertIsNone(args.window_ms)
+        self.assertFalse(args.window_set)
+        slices, auto = _window_slices(args)
+        self.assertTrue(auto)
+        self.assertEqual(slices, VISIBLE)
+        args2 = parse_args(["--window", "auto", "127.0.0.1"])
+        self.assertIsNone(args2.window_ms)
 
     def test_ssh_profile(self) -> None:
         args = parse_args(["--ssh", "user@host", "--profile", "ssh-interactive"])
@@ -397,6 +411,115 @@ class IntegrationTests(unittest.TestCase):
         args = parse_args([])
         self.assertEqual(args.web_addr, "127.0.0.1:3871")
 
+
+    def test_web_themes_dark_x_files(self) -> None:
+        from webui import DEFAULT_THEME, PAGE, THEMES_DIR, Dashboard
+
+        self.assertEqual(DEFAULT_THEME, "dark-x-files")
+        self.assertIn('data-theme="dark-x-files"', PAGE)
+        self.assertIn("/themes/themes-web.css", PAGE)
+        self.assertIn("Poisson Network Traffic Simulator", PAGE)
+        self.assertIn("corner-controls", PAGE)
+        self.assertIn("app-version", PAGE)
+        self.assertIn("btn-pause", PAGE)
+        self.assertIn("raw3d", PAGE)
+        self.assertIn("/api/window", PAGE)
+        self.assertIn("/api/config", PAGE)
+        self.assertIn("opt-dense-running", PAGE)
+        self.assertIn("opt-dense-raw", PAGE)
+        self.assertIn("cfg-lambda", PAGE)
+        self.assertIn("cfg-bucket", PAGE)
+        self.assertIn("cfg-status", PAGE)
+        self.assertIn("fmtBytes", PAGE)
+        self.assertIn("spectrogramSTFT", PAGE)
+        self.assertIn("opt-perspective", PAGE)
+        self.assertIn("raw-camera", PAGE)
+        self.assertIn("Front (X-Z)", PAGE)
+        self.assertIn("Spectrum", PAGE)
+        self.assertIn("lang-select", PAGE)
+        self.assertIn('lang="en"', PAGE)
+        self.assertIn("Pride", PAGE)
+        self.assertIn("Countries", PAGE)
+        catalog = json.loads((THEMES_DIR / "catalog.json").read_text(encoding="utf-8"))
+        self.assertTrue(any(row.get("group") == "vibe" for row in catalog))
+        self.assertTrue(any(row["id"] == "dark-x-files" for row in catalog))
+        server = Server("127.0.0.1", 0)
+        server.start()
+        try:
+            dash = Dashboard(
+                "127.0.0.1",
+                0,
+                server.snapshot,
+                set_window=server.set_window_slices,
+                set_config=server.set_runtime_config,
+            )
+            url = dash.start()
+            try:
+                with urllib.request.urlopen(url + "themes/catalog.json", timeout=2) as resp:
+                    body = json.loads(resp.read().decode())
+                self.assertTrue(any(row["id"] == "dark-x-files" for row in body))
+                with urllib.request.urlopen(url + "themes/themes-web.css", timeout=2) as resp:
+                    css_body = resp.read().decode()
+                self.assertIn("dark-x-files", css_body)
+                req = urllib.request.Request(
+                    url + "api/window",
+                    data=json.dumps({"slices": 48, "auto": True}).encode(),
+                    headers={"Content-Type": "application/json"},
+                    method="POST",
+                )
+                with urllib.request.urlopen(req, timeout=2) as resp:
+                    win = json.loads(resp.read().decode())
+                self.assertEqual(win["window_slices"], 48)
+                self.assertTrue(win["window_auto"])
+                cfg_req = urllib.request.Request(
+                    url + "api/config",
+                    data=json.dumps({"bucket_ms": 50}).encode(),
+                    headers={"Content-Type": "application/json"},
+                    method="POST",
+                )
+                with urllib.request.urlopen(cfg_req, timeout=2) as resp:
+                    cfg = json.loads(resp.read().decode())
+                self.assertEqual(cfg["bucket_ms"], 50)
+            finally:
+                dash.close()
+        finally:
+            server.stop()
+
+    def test_client_runtime_config(self) -> None:
+        client = Client("127.0.0.1", 1, lam=100.0, bucket_ms=100, status_interval_ms=100)
+        out = client.set_runtime_config(lam=250.5, bucket_ms=40, status_interval_ms=25)
+        self.assertEqual(out["lambda_rps"], 250.5)
+        self.assertEqual(out["bucket_ms"], 40)
+        self.assertEqual(out["status_interval_ms"], 25)
+        self.assertEqual(client.lam, 250.5)
+        self.assertEqual(client.bucket_ns, 40_000_000)
+
+    def test_raw_events_in_client_snapshot(self) -> None:
+        server = Server("127.0.0.1", 0)
+        server.start()
+        try:
+            client = Client("127.0.0.1", server.port, lam=80.0, timeout_s=1.0, window_slices=32)
+            client.start()
+            try:
+                deadline = time.monotonic() + 3.0
+                snap = {}
+                while time.monotonic() < deadline:
+                    snap = client.snapshot()
+                    if snap.get("raw_events"):
+                        break
+                    time.sleep(0.05)
+                self.assertTrue(snap.get("raw_events"), "expected raw_events after echoes")
+                ev = snap["raw_events"][0]
+                self.assertIn("x", ev)
+                self.assertIn("y", ev)
+                self.assertIn("z", ev)
+                self.assertIn("seq", ev)
+                self.assertIn("window_auto", snap)
+            finally:
+                client.stop(grace=0.2)
+        finally:
+            server.stop()
+
     def test_web_snapshot_has_bandwidth(self) -> None:
         server = Server("127.0.0.1", 0)
         server.start()
@@ -409,8 +532,12 @@ class IntegrationTests(unittest.TestCase):
                 self.assertIn("bandwidth_bps", body)
                 self.assertIn("rx_bytes", body)
                 self.assertIn("recv", body)
-                self.assertIn("netpoisson", PAGE)
-                self.assertIn("带宽", PAGE)
+                page = _page_html()
+                self.assertIn("netpoisson", page)
+                self.assertIn("带宽", page)
+                self.assertIn("note_overview", page)
+                self.assertNotIn("__NP_I18N__", page)
+                self.assertNotIn("__NP_LANGS__", page)
             finally:
                 dash.close()
         finally:

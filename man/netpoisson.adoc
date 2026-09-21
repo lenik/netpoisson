@@ -116,7 +116,19 @@ status 1.
 
 *-w, --web[=_ADDR_]*::
   Serve a live dashboard. Default bind `127.0.0.1:3871`.
+  Themes load from the shipped WorldMan web set; default is `dark-x-files`
+  (light themes listed before dark within each group).
+  The page can pause live updates, toggle runnings vs raw-events 3D, tune
+  λ / bucket / status via `POST /api/config`, and choose **dense**
+  (runnings: 0.25×/0.5×/1×/2×; raw: 0.5×/1×/2×) so the auto timeline window
+  is `default × dense`. View presets only change camera direction; Front,
+  Top, and Free share rotate/zoom/pan. Spectrum uses a sliding-bucket
+  spectrogram (X remains time) with a color-theme control.
   Set `NETPOISSON_NO_BROWSER=1` or pass *--no-open* to skip opening a browser.
+
+*--window _D_*::
+  Visible timeline window. Default `auto` (fit display / 32 slices).
+  Pass a duration such as `12s` to fix the window.
 
 *--json*::
   Emit NDJSON events on standard output.

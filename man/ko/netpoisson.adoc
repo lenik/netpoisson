@@ -53,13 +53,15 @@ _서버_ 를 생략하거나 *-d* 를 주면 수신합니다. _서버_ 는 호�
 *-s, --stats _SECS_*::
   _SECS_ 초 후 JSON 보고.
 
-*-w, --web*::
-  대시보드를 열고 브라우저를 띄운다. `NETPOISSON_NO_BROWSER=1` 로 생략.
+*-w, --web[=_ADDR_]*::
+  라이브 대시보드를 제공합니다. 기본 바인드 `127.0.0.1:3871`.
+  WorldMan 테마(기본 `dark-x-files`, 그룹 내 light 먼저·dark 나중).
+  일시정지, Runnings/Raw events, `POST /api/config`로 λ/bucket/status 조정, **dense**
+  (Runnings 0.25×/0.5×/1×/2×, Raw 0.5×/1×/2×)로 창은 `default × dense`.
+  View는 방향만 바꿉니다. Front/Top/Free는 회전·줌·팬을 공유합니다.
+  Spectrum은 슬라이딩 창 스펙트로그램(X는 시간)이며 style이 색 테마가 됩니다.
+  `NETPOISSON_NO_BROWSER=1` 또는 *--no-open*으로 브라우저를 건너뜁니다.
 
-*--web-host _H_*::
-  대시보드 주소(기본 `127.0.0.1`).
-
-*--web-port _N_*::
   대시보드 포트(기본 8711).
 
 *-v, --verbose*::
